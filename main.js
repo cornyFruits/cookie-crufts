@@ -43,7 +43,7 @@ controls.dampingFactor = 0.05;
 const loader = new GLTFLoader();
 let boxModel;
 
-loader.load('/public/model/cereal-box.glb', (gltf) => {
+loader.load('/model/cereal-box.glb', (gltf) => {
   boxModel = gltf.scene;
   
   // ensure raycasting works on invisible clickable panels too
