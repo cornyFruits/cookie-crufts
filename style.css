@@ -5,7 +5,7 @@
 }
 
 body {
-  background: #8B0000;
+  background: #f4f0eb;
   overflow: hidden;
   font-family: 'VT323', monospace;
 }
@@ -14,7 +14,7 @@ body {
 #start-screen {
   position: fixed;
   inset: 0;
-  background: #8B0000;
+  background: #f4f0eb;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +33,7 @@ body {
 }
 
 .start-text {
-  color: #FFD700;
+  color: #c30000;
   font-size: 32px;
   margin-top: 24px;
   letter-spacing: 4px;
@@ -83,7 +83,7 @@ body {
 .nav-links button:hover,
 .nav-links a:hover {
   background: #FFD700;
-  color: #8B0000;
+  color: #c30000;
 }
 
 /* three.js canvas */
@@ -108,7 +108,7 @@ body {
 
 .readme-inner {
   background: #0a0a0a;
-  border: 2px solid #39ff14;
+  border: 2px solid #FFD700;
   padding: 40px;
   max-width: 600px;
   width: 90%;
@@ -118,7 +118,7 @@ body {
 }
 
 #readme-text {
-  color: #39ff14;
+  color: #FFD700;
   font-family: 'VT323', monospace;
   font-size: 20px;
   line-height: 1.6;
@@ -126,7 +126,7 @@ body {
 }
 
 .cursor {
-  color: #39ff14;
+  color: #FFD700;
   animation: blink 1s step-end infinite;
 }
 
@@ -140,7 +140,7 @@ body {
   right: 12px;
   background: none;
   border: none;
-  color: #39ff14;
+  color: #FFD700;
   font-family: 'VT323', monospace;
   font-size: 20px;
   cursor: pointer;

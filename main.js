@@ -60,15 +60,8 @@ loader.load('./model/cereal-box.glb', (gltf) => {
 });
 
 
-/*
-TEST: test box successfully renders
-const geometry = new THREE.BoxGeometry(1, 2, 0.5);
-const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
-const testBox = new THREE.Mesh(geometry, material);
-scene.add(testBox);
-*/
-
 // interaction handling (click and hover)
+// TODO: fix clickable elements aka this function
 function handleInteraction(event) {
   if (!boxModel) return;
 
@@ -81,7 +74,6 @@ function handleInteraction(event) {
 
   if (intersects.length > 0) {
     const clickedObject = intersects[0].object;
-    console.log("ACTUAL NAME:", clickedObject.name);
     const name = clickedObject.name;
 
     // external links
@@ -95,7 +87,7 @@ function handleInteraction(event) {
       window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
     }
 
-    // ── TODO: Uncomment when sweepstakes function is complete
+    // TODO: Uncomment when sweepstakes function is complete
     // looks for any object name in blender containing "input-form"
     //else if (name.includes('input-form')) {
       //openSweepstakes(name); 
