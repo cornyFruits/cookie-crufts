@@ -208,4 +208,19 @@ body {
     width: 100%;
     text-align: center;
   }
+
+  #start-screen {
+    padding: 0 30px; 
+    text-align: center;
+  }
+
+  .start-text {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .start-sub {
+    font-size: 18px;
+    margin-top: 12px;
+  }
 }
