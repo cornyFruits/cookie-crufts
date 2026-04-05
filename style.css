@@ -24,7 +24,7 @@ body {
 }
 
 .cookie-spin {
-  font-size: 150px;
+  font-size: 50px;
   height: auto;
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
   animation: spin 6s linear infinite;
