@@ -152,6 +152,23 @@ document.getElementById('start-screen').addEventListener('click', () => {
   canvas.classList.remove('hidden');
 });
 
+// hamburger menu toggle for mobile
+const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links'); 
+
+  hamburger.onclick = () => {
+    navLinks.classList.toggle('active');
+  };
+
+  // close menu when a link is clicked
+  navLinks.querySelectorAll('a, button').forEach(link => {
+    link.onclick = () => {
+      navLinks.classList.remove('active');
+    };
+  });
+
+
+
 // README typing animation within popup
 const readmeContent = `README.TXT
 ================
@@ -186,17 +203,3 @@ function closeReadme() {
 window.openReadme = openReadme;
 window.closeReadme = closeReadme;
 
-// mobile hamburger menu toggle
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-});
-
-// close menu when link is clicked 
-navLinks.querySelectorAll('a, button').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-  });
-});

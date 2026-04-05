@@ -159,13 +159,13 @@ body {
   display: none !important;
 }
 
-/* mobile Styles */
+/* mobile styles */
 .hamburger {
   display: none; /* hidden on desktop */
   flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 24px;
+  justify-content: space-between;
+  width: 24px;
+  height: 20px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -174,10 +174,33 @@ body {
 }
 
 .hamburger span {
-  width: 30px;
-  height: 4px;
+  width: 100%;
+  height: 4px; /* pixelated */
   background: #FFD700; 
-  border: 1px solid #000; /* pixelated style */
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex; /* show only on mobile */
+  }
+
+  /* ensure the nav-links container can be toggled */
+  .nav-links {
+    display: none; 
+    flex-direction: column;
+    position: absolute;
+    top: 48px; 
+    left: 0;
+    right: 0;
+    background: #c30000;
+    padding: 20px;
+    border-bottom: 2px solid #FFD700;
+    gap: 15px;
+  }
+
+  .nav-links.active {
+    display: flex !important; /* force display when active */
+  }
 }
 
 @media (max-width: 768px) {
