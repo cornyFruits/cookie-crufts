@@ -24,12 +24,15 @@ body {
 }
 
 .cookie-spin {
-  font-size: 80px;
-  animation: spin 2s linear infinite;
+  font-size: 150px;
+  height: auto;
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+  animation: spin 6s linear infinite;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .start-text {
