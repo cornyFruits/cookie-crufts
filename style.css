@@ -24,11 +24,16 @@ body {
 }
 
 .cookie-spin {
-  font-size: 50px;
+  width: 200px;
   height: auto;
+  margin-bottom: 20px;
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
-  animation: spin 6s linear infinite;
+  animation: spin 8s linear infinite;
+  transition: transform 0.3s ease;
 }
+
+.cookie-spin:hover {
+  transform: scale(1.1);
 
 @keyframes spin {
     from { transform: rotate(0deg); }
