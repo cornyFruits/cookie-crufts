@@ -24,9 +24,9 @@ body {
 }
 
 .cookie-spin {
-  width: 100px;
+  width: 70px;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
   animation: spin 8s linear infinite;
   transition: transform 0.3s ease;
