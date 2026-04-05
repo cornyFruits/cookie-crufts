@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #8B0000;
+  overflow: hidden;
+  font-family: 'VT323', monospace;
+}
+
+/* start screen */
+#start-screen {
+  position: fixed;
+  inset: 0;
+  background: #8B0000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.cookie-spin {
+  font-size: 80px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.start-text {
+  color: #FFD700;
+  font-size: 32px;
+  margin-top: 24px;
+  letter-spacing: 4px;
+}
+
+.start-sub {
+  color: #FFD70088;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+/* navbar */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: #5C0000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 50;
+  border-bottom: 2px solid #FFD700;
+}
+
+.nav-brand {
+  font-family: 'VT323', monospace;
+  color: #FFD700;
+  font-size: 24px;
+}
+
+.nav-links button,
+.nav-links a {
+  background: none;
+  border: 1px solid #FFD700;
+  color: #FFD700;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  padding: 4px 12px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 12px;
+}
+
+.nav-links button:hover,
+.nav-links a:hover {
+  background: #FFD700;
+  color: #8B0000;
+}
+
+/* three.js canvas */
+#three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* README popup */
+#readme-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+}
+
+.readme-inner {
+  background: #0a0a0a;
+  border: 2px solid #39ff14;
+  padding: 40px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+#readme-text {
+  color: #39ff14;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.cursor {
+  color: #39ff14;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #39ff14;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* utility */
+.hidden {
+  display: none !important;
+}

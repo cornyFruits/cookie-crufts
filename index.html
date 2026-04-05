@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Crufts</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- click to start screen -->
+  <div id="start-screen">
+    <div class="cookie-spin">🍪</div>
+    <p class="start-text">CLICK ANYWHERE TO START</p>
+    <p class="start-sub">best experienced on desktop</p>
+  </div>
+
+  <!-- navbar -->
+  <nav id="navbar" class="hidden">
+    <span class="nav-brand">Krittika's</span>
+    <div class="nav-links">
+      <button onclick="openReadme()">README.TXT</button>
+      <a href="https://yourframersite.com" target="_blank">Portfolio →</a>
+    </div>
+  </nav>
+
+  <!-- three.js canvas -->
+  <canvas id="three-canvas" class="hidden"></canvas>
+
+  <!-- README popup -->
+  <div id="readme-popup" class="hidden">
+    <div class="readme-inner">
+      <button onclick="closeReadme()" class="close-btn">[ X ]</button>
+      <div id="readme-text"></div>
+      <span class="cursor">█</span>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
