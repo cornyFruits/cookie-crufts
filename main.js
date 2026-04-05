@@ -150,24 +150,10 @@ document.getElementById('start-screen').addEventListener('click', () => {
   document.getElementById('start-screen').classList.add('hidden');
   document.getElementById('navbar').classList.remove('hidden');
   canvas.classList.remove('hidden');
+  
+  // re-run setup just in case 
+  setupMobileMenu();
 });
-
-// hamburger menu toggle for mobile
-const hamburger = document.getElementById('hamburger');
-  const navLinks = document.querySelector('.nav-links'); 
-
-  hamburger.onclick = () => {
-    navLinks.classList.toggle('active');
-  };
-
-  // close menu when a link is clicked
-  navLinks.querySelectorAll('a, button').forEach(link => {
-    link.onclick = () => {
-      navLinks.classList.remove('active');
-    };
-  });
-
-
 
 // README typing animation within popup
 const readmeContent = `README.TXT
@@ -177,15 +163,19 @@ COOKIE CRUFTS — A SOCIAL EXPERIMENT
 by Krittika Sharma, 2026
 
 Grads are commodities. 
-TODO: complete this README`;
+[ SYSTEM LOADING... ]
+Check the navbar for the paper trail.`;
 
-// handle README popup (opening and closing)
+// handle README popup
 function openReadme() {
   const popup = document.getElementById('readme-popup');
   const textEl = document.getElementById('readme-text');
+  if (!popup || !textEl) return;
+
   popup.classList.remove('hidden');
   textEl.innerHTML = '';
   let i = 0;
+  
   function type() {
     if (i < readmeContent.length) {
       textEl.innerHTML += readmeContent.charAt(i);
@@ -200,6 +190,27 @@ function closeReadme() {
   document.getElementById('readme-popup').classList.add('hidden');
 }
 
+
 window.openReadme = openReadme;
 window.closeReadme = closeReadme;
 
+function setupMobileMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links'); 
+
+  if (hamburger && navLinks) {
+    hamburger.onclick = (e) => {
+      e.stopPropagation(); 
+      navLinks.classList.toggle('active');
+    };
+
+    navLinks.querySelectorAll('a, button').forEach(link => {
+      link.onclick = () => {
+        navLinks.classList.remove('active');
+      };
+    });
+  }
+}
+
+// run the setup immediately
+setupMobileMenu();

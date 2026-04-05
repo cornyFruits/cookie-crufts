@@ -179,29 +179,6 @@ body {
   background: #FFD700; 
 }
 
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex; /* show only on mobile */
-  }
-
-  /* ensure the nav-links container can be toggled */
-  .nav-links {
-    display: none; 
-    flex-direction: column;
-    position: absolute;
-    top: 48px; 
-    left: 0;
-    right: 0;
-    background: #c30000;
-    padding: 20px;
-    border-bottom: 2px solid #FFD700;
-    gap: 15px;
-  }
-
-  .nav-links.active {
-    display: flex !important; /* force display when active */
-  }
-}
 
 @media (max-width: 768px) {
   .hamburger {
