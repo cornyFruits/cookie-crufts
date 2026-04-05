@@ -39,6 +39,7 @@ const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
+/*
 // load cereal box (blender model) 
 const loader = new GLTFLoader();
 let boxModel;
@@ -57,6 +58,12 @@ loader.load('/model/cereal-box.glb', (gltf) => {
 }, undefined, (error) => {
   console.error('Model load error:', error);
 });
+*/
+
+const geometry = new THREE.BoxGeometry(1, 2, 0.5);
+const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+const testBox = new THREE.Mesh(geometry, material);
+scene.add(testBox);
 
 // interaction handling (click and hover)
 function handleInteraction(event) {
