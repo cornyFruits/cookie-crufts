@@ -81,6 +81,7 @@ function handleInteraction(event) {
 
   if (intersects.length > 0) {
     const clickedObject = intersects[0].object;
+    console.log("ACTUAL NAME:", clickedObject.name);
     const name = clickedObject.name;
 
     // external links
