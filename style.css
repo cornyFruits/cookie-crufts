@@ -24,7 +24,7 @@ body {
 }
 
 .cookie-spin {
-  width: 70px;
+  width: 50px;
   height: auto;
   margin-bottom: 0px;
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
@@ -50,7 +50,7 @@ body {
 
 .start-sub {
   color: #000000;
-  font-size: 16px;
+  font-size: 20px;
   margin-top: 8px;
 }
 
