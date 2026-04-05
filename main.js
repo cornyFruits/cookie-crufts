@@ -185,3 +185,18 @@ function closeReadme() {
 
 window.openReadme = openReadme;
 window.closeReadme = closeReadme;
+
+// mobile hamburger menu toggle
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+// close menu when link is clicked 
+navLinks.querySelectorAll('a, button').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+  });
+});
