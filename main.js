@@ -176,8 +176,18 @@ const readmeContent = `README.TXT
 COOKIE CRUFTS — A SOCIAL EXPERIMENT
 by Krittika Sharma, 2026
 
-Grads are commodities. 
-TODO: complete this README`;
+THE PREMISE
+The graduate market is a supermarket aisle.
+Status and class decide which boxes sit at eye-level, while the rest stay on the bottom shelf, rarely reached for.
+
+Sometimes, a box is carried halfway through the store and left next to a stack of tomato soup. No explanation. No notification. The shopper doesn't care; the store keeps running.
+
+THE PACKAGING
+This website is a box that knows it's a box. It is packaging aware of itself as packaging.
+
+This experiment is whether creativity breaks the pattern, or if this is just a more interesting way to be ignored.
+
+Thanks for looking around :)`;
 
 // handle README popup (opening and closing)
 function openReadme() {
