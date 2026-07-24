@@ -35,9 +35,27 @@
     My vision is to create work that matters: interfaces that people actually enjoy using, products that feel alive, and designs that stick in memory. I care about clarity, ethics, and impact, whether I&apos;m coding an AI feature or shaping the look and feel of a project. I want my work to spark connection, curiosity, and joy.</p>
   </main> 
 
+  <script type="module">
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
 
+    if (hamburger) {
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navLinks.classList.toggle('active');
+    });
+  }
 
+  // link clicked -> close menu
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+    });
+  });
 
-  <script type="module" src="main.js"></script>
+  // redirect the README button back home or hide it
+  window.openReadme = () => { window.location.href = "/"; };
+
+  </script>
 </body>
 </html>
