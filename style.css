@@ -56,9 +56,7 @@ body {
 /* navbar */
 #navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: 48px;
   background: #c30000;
   display: flex;
@@ -73,6 +71,12 @@ body {
   font-family: 'VT323', monospace;
   color: #FFD700;
   font-size: 24px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .nav-links button,
@@ -222,5 +226,162 @@ body {
   .start-sub {
     font-size: 18px;
     margin-top: 12px;
+  }
+}
+
+/* --- about page --- */
+.about-page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 96px 32px 80px;
+}
+
+.about-heading {
+  font-family: 'VT323', monospace;
+  font-size: clamp(48px, 8vw, 80px);
+  color: #c30000;
+  text-align: left;
+  letter-spacing: 2px;
+  margin-bottom: 32px;
+  line-height: 1;
+}
+
+.yellow-banner {
+  background: #FFD700;
+  padding: 24px 28px;
+  margin-bottom: 64px;
+  border-left: 6px solid #c30000;
+}
+
+.yellow-banner p {
+  font-family: 'VT323', monospace;
+  color: #1a1a1a;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* --- experience section --- */
+.section-label {
+  font-family: 'VT323', monospace;
+  color: #c30000;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: #c30000;
+}
+
+.section-intro {
+  font-size: 13px;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+
+/* ── experience entries ── */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+ 
+.exp-entry {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0 32px;
+  padding: 28px 0;
+  border-bottom: 1px solid #d9d4cc;
+}
+ 
+.exp-entry:first-child {
+  border-top: 1px solid #d9d4cc;
+}
+ 
+.exp-year {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: #888;
+  padding-top: 4px;
+}
+ 
+    .exp-content {}
+ 
+    .exp-logo {
+      height: 20px;
+      width: auto;
+      object-fit: contain;
+      object-position: left;
+      display: block;
+      margin-bottom: 10px;
+      filter: none;
+    }
+ 
+    .exp-logo-text {
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+      color: #c30000;
+      margin-bottom: 10px;
+      display: block;
+    }
+ 
+    .exp-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+    }
+ 
+    .exp-description {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      line-height: 1.8;
+      color: #444;
+    }
+ 
+/* ── mobile ── */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+ 
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 48px;
+        left: 0; right: 0;
+        background: #c30000;
+        padding: 20px;
+        border-bottom: 2px solid #FFD700;
+        gap: 12px;
+      }
+ 
+      .nav-links.active { display: flex; }
+ 
+      .nav-links button,
+      .nav-links a {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+      }
+ 
+      .exp-entry {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+ 
+  .exp-year {
+    font-size: 12px;
   }
 }
