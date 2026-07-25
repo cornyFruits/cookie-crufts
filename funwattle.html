@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funwattle Case Study</title>
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body class="scrollable-page project-body">
+
+  <!-- navbar -->
+  <nav id="navbar">
+    <span class="nav-brand">Krittika Sharma</span>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <button onclick="openReadme()">README.TXT</button>
+      <a href="../about.html">ABOUT ME</a>
+      <a href="https://www.linkedin.com/in/krittika-sharma-119b06245/" target="_blank">I WANNA KNOW YOU</a>
+      <a href="https://github.com/cornyfruits" target="_blank">GIT OUTTA HERE</a>
+    </div>
+  </nav>
+
+  <main class="project-page">
+
+    <!-- hero: image + title row -->
+    <div class="project-header">
+      <img src="../images/funwattle-cover.png" alt="Funwattle project" class="project-image pixel-border">
+      <div class="project-header-text">
+        <h1 class="project-title">AI-POWERED SPEECH THERAPY APP</h1>
+        <span class="project-company">FUNWATTLE</span>
+      </div>
+    </div>
+
+    <!-- overview box -->
+    <div class="overview-box">
+      <div class="overview-label">OVERVIEW</div>
+      <p class="overview-text">
+        The project involved developing an AI-powered speech therapy app for children in collaboration with FunWattle, an early-stage startup, as part of COMP3900 (Computer Science Project). The goal was to improve accessibility to speech therapy through interactive, personalised support outside clinical settings. 
+      </p>
+    </div>
+
+    <!-- tabs -->
+    <div class="project-tabs">
+      <button class="tab-btn" data-tab="approach">THE APPROACH</button>
+      <button class="tab-btn" data-tab="solution">THE SOLUTION</button>
+      <button class="tab-btn" data-tab="result">THE RESULT</button>
+    </div>
+
+    <div class="tab-panel" id="tab-approach">
+        As Product Owner in the Scrum team, I:
+        <ul>
+            <li>Defined and prioritised the product backlog</li>
+            <li>Translated client needs into technical requirements</li>
+            <li>Led sprint planning and aligned design and development</li>
+        </ul>
+        <br>
+        As a Software Engineer on the team, I:
+        <ul>
+            <li> Led the development of the AI speech therapist pipeline, including developing the RAG, prompt engineering, using vector comparisons to determine the correctness of the user's answer</li>
+            <li> Designed and built multiple frontend components and screens, including user dashboards, module libraries, speech exercise components
+            </li>
+        </ul>
+       <br>
+        We focused on:
+        <ul>
+            <li>Child-safe, accessible and intuitive UX</li>
+            <li>Personalised adaptive learning experiences</li>
+            <li>Engaging and child-friendly interfaces and gamification</li>
+        </ul>
+    </div>
+
+    <div class="tab-panel" id="tab-solution">
+        Developed a functional MVP featuring: 
+      <ul>
+        <li>A virtual therapist interface guiding structured exercises</li>
+        <li>AI-driven personalised recommendations</li>
+        <li>Adaptive difficulty based on user progress </li>
+        <li>A child-friendly, intuitive UI/UX </li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="tab-result">
+      The project delivered a functional prototype aligned with FunWattle's goals, demonstrating how AI could enhance accessibility in speech therapy while maintaining ethical safeguards. Demonstrated scalable and extensible architecture for future integration. Received strong client feedback on usability and ethical design.
+      <br>
+      <br>
+      Beyond technical output, this project strengthened my ability to:
+      <ul>
+        <li>Lead within an Agile team</li>
+        <li>Translate healthcare needs into technical systems</li>
+        <li>Design AI solutions responsibly in sensitive domains</li>
+      </ul>
+
+
+    </div>
+
+    <!-- gallery -->
+    <div class="section-label">PHOTO GALLERY</div>
+    <div class="gallery-grid">
+      <img src="../images/funwattle-img-2.png" class="gallery-thumb" alt="Funwattle screenshot 1">
+      <img src="../images/funwattle-2.png" class="gallery-thumb" alt="Funwattle screenshot 2">
+      <img src="../images/funwattle-3.png" class="gallery-thumb" alt="Funwattle screenshot 3">
+      <img src="../images/funwattle-4.png" class="gallery-thumb" alt="Funwattle screenshot 4">
+    </div>
+
+  </main>
+
+  <!-- image modal -->
+  <div id="image-modal" class="modal hidden">
+    <div class="modal-inner">
+      <button class="modal-close" onclick="closeModal()">[ X ]</button>
+      <div class="modal-image-wrap">
+        <button class="modal-chevron modal-chevron-left" id="chevron-left" onclick="navModal(-1)">‹</button>
+        <img id="modal-img" class="modal-img" src="" alt="">
+        <button class="modal-chevron modal-chevron-right" id="chevron-right" onclick="navModal(1)">›</button>
+      </div>
+      <div class="modal-caption" id="modal-caption"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('active');
+      });
+    }
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+    window.openReadme = () => { window.location.href = "../"; };
+
+    // ── tabs ──
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = 'tab-' + btn.dataset.tab;
+        const panel = document.getElementById(tabId);
+        const isOpen = btn.classList.contains('active');
+
+        // close all
+        tabButtons.forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('open'));
+
+        // if it wasn't open, open it
+        if (!isOpen) {
+          btn.classList.add('active');
+          panel.classList.add('open');
+        }
+      });
+    });
+
+    // ── gallery modal ──
+    const thumbs = Array.from(document.querySelectorAll('.gallery-thumb'));
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalCaption = document.getElementById('modal-caption');
+    const chevronLeft = document.getElementById('chevron-left');
+    const chevronRight = document.getElementById('chevron-right');
+    let currentIndex = 0;
+
+    function openModal(index) {
+      currentIndex = index;
+      updateModal();
+      modal.classList.remove('hidden');
+    }
+
+    function updateModal() {
+      const img = thumbs[currentIndex];
+      modalImg.src = img.src;
+      modalCaption.textContent = img.alt;
+      chevronLeft.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
+      chevronRight.style.visibility = currentIndex === thumbs.length - 1 ? 'hidden' : 'visible';
+    }
+
+    window.navModal = (dir) => {
+      currentIndex = Math.min(Math.max(currentIndex + dir, 0), thumbs.length - 1);
+      updateModal();
+    };
+
+    window.closeModal = () => modal.classList.add('hidden');
+
+    thumbs.forEach((thumb, i) => {
+      thumb.addEventListener('click', () => openModal(i));
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (modal.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') navModal(-1);
+      if (e.key === 'ArrowRight') navModal(1);
+    });
+  </script>
+</body>
+</html>

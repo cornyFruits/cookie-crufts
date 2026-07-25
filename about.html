@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body>
+<body class="scrollable-page">
 
   <!-- navbar -->
   <nav id="navbar">
@@ -22,10 +22,9 @@
 
     <div class="nav-links">
       <button onclick="openReadme()">README.TXT</button>
-      <a href="https://krittikasharma.framer.website/about" target="_blank">THE PAPER TRAIL</a>
+      <a href="about.html">ABOUT ME</a>
       <a href="https://www.linkedin.com/in/krittika-sharma-119b06245/" target="_blank">I WANNA KNOW YOU</a>
       <a href="https://github.com/cornyfruits" target="_blank">GIT OUTTA HERE</a>
-      <a href="about.html">ABOUT ME</a>
     </div>
   </nav>
 
@@ -33,7 +32,7 @@
     <div class="about-page">
       <h1 class="about-heading">ABOUT ME.</h1>
       <div class="yellow-banner">
-         <p>I'm Krittika, a builder and creator who thrives where code, design, and imagination meet. I start by digging into the problem, the people, and the details that matter most. Whether I&apos;m designing a web app, prototyping a UX flow, or crafting a visual identity, I aim to make experiences that feel human, intuitive, and unexpectedly unique.My vision is to create work that matters: interfaces that people actually enjoy using, products that feel alive, and designs that stick in memory. I care about clarity, ethics, and impact, whether I&apos;m coding an AI feature or shaping the look and feel of a project. I want my work to spark connection, curiosity, and joy.</p>
+         <p>I'm Krittika, a builder and creator who thrives where code, design, and imagination meet. I start by digging into the problem, the people, and the details that matter most. Whether I&apos;m designing a web app, prototyping a UX flow, or crafting a visual identity, I aim to make experiences that feel human, intuitive, and unexpectedly unique. My vision is to create work that matters: interfaces that people actually enjoy using, products that feel alive, and designs that stick in memory. I care about clarity, ethics, and impact, whether I&apos;m coding an AI feature or shaping the look and feel of a project. I want my work to spark connection, curiosity, and joy.</p>
       </div>
 
       <div class="section-label">EXPERIENCE</div>
@@ -43,10 +42,32 @@
         <div class="exp-entry">
         <div class="exp-year">2025</div>
         <div class="exp-content">
-          <span class="exp-logo-text">Funwattle</span>
-          <div class="exp-title">Product Designer</div>
+          <span class="exp-company"><a href="https://www.funwattle.com/" target="_blank">Funwattle</a></span>
+          <div class="exp-title">Software Developer & Product Owner</div>
           <div class="exp-description">
             Developed an AI-powered speech therapy app for children in collaboration with FunWattle (an early-stage startup) for COMP3900. Implemented features such as a virtual therapist, personalised recommendations, and accessibility tools. Built scalable AI pipeline, backend and frontend architecture end-to-end. Focused on ethical AI use in healthcare to improve accessibility for children with speech challenges.
+          </div>
+
+          <!-- open me project case study toggle -->
+          <div class="exp-toggle" onclick="toggleProjects(this)">
+            OPEN ME <span class="chevron">⌄</span>
+          </div>
+
+          <!-- open me project squares -->
+           <div class="exp-projects">
+            <a href="funwattle.html" class="proj-square" title="AI Speech Therapy App">01</a>
+           </div>
+
+        </div>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-year">2025</div>
+        <div class="exp-content">
+          <span class="exp-company"><a href="https://www.jimsforensics.com" target="_blank">Jim's Forensics</a></span>
+          <div class="exp-title">Cyber Forensics Intern</div>
+          <div class="exp-description">
+            Investigated a corporate data breach. Analysed disk images, registry hives, memory dumps, network captures and system logs. Reconstructed user activity timelines, verified file authenticity, correlated evidence across email records, system artefacts, and security logs. Prepared a comprehensive forensic report, presenting findings with clear evidentiary support and applying industry-standard investigative methodologies to determine internal involvement and assess data exfiltration risks.
           </div>
         </div>
       </div>
@@ -54,33 +75,58 @@
       <div class="exp-entry">
         <div class="exp-year">2025</div>
         <div class="exp-content">
-          <span class="exp-logo-text">Funwattle</span>
-          <div class="exp-title">Product Designer</div>
+          <span class="exp-company"><a href="https://thdr.ai/" target="_blank">THDR Group</a></span>
+          <div class="exp-title">AI Developer</div>
           <div class="exp-description">
-            Developed an AI-powered speech therapy app for children in collaboration with FunWattle (an early-stage startup) for COMP3900. Implemented features such as a virtual therapist, personalised recommendations, and accessibility tools. Built scalable AI pipeline, backend and frontend architecture end-to-end. Focused on ethical AI use in healthcare to improve accessibility for children with speech challenges.
+            Designed and implemented <a href="https://neuono.com/" target="_blank">Neuono</a>, an AI-powered e-commerce app as part of this month-long internship at this fashion-tech startup. Built scalable backend, database architecture, prompt engineered effective LLM workflows, built frontend mobile app components. Collaborated with cross-functional teams including image generation, computer vision and frontend to ensure optimal performance and alignment with project milestones. 
           </div>
+
+          <!-- open me project case study toggle -->
+          <div class="exp-toggle" onclick="toggleProjects(this)">
+            OPEN ME <span class="chevron">⌄</span>
+          </div>
+
+          <!-- open me project squares -->
+           <div class="exp-projects">
+            <a href="thdr.html" class="proj-square" title="AI Tailor">01</a>
+           </div>
+
+
         </div>
       </div>
 
       <div class="exp-entry">
-        <div class="exp-year">2025</div>
+        <div class="exp-year">2024</div>
         <div class="exp-content">
-          <span class="exp-logo-text">Funwattle</span>
-          <div class="exp-title">Product Designer</div>
+          <span class="exp-company"><a href="https://www.spiralblue.space/" target="_blank">Spiral Blue</a></span>
+          <div class="exp-title">Space Software Intern</div>
           <div class="exp-description">
-            Developed an AI-powered speech therapy app for children in collaboration with FunWattle (an early-stage startup) for COMP3900. Implemented features such as a virtual therapist, personalised recommendations, and accessibility tools. Built scalable AI pipeline, backend and frontend architecture end-to-end. Focused on ethical AI use in healthcare to improve accessibility for children with speech challenges.
+            Developed and trained ML image classification models using drone-collected data, enhancing LIDAR-based image recognition for environmental monitoring within the space-tech startups product. Designed and implemented a web app to enable rangers to access space-edge data for ghost net detection. Contributed to the Waratah Seed satellite mission by resolving deployment issues and debugging software. Authored technical documentation and adapted quickly to the evolving demands of a startup. 
           </div>
         </div>
       </div>
 
-      <div class="exp-entry">
-        <div class="exp-year">2025</div>
+      <div class="section-label">PROJECTS</div>
+
+      <div class="experience-list">
+
+        <div class="exp-entry">
+        <div class="exp-year">2026</div>
         <div class="exp-content">
-          <span class="exp-logo-text">Funwattle</span>
-          <div class="exp-title">Product Designer</div>
+          <div class="exp-title">Cookie Crufts</div>
           <div class="exp-description">
-            Developed an AI-powered speech therapy app for children in collaboration with FunWattle (an early-stage startup) for COMP3900. Implemented features such as a virtual therapist, personalised recommendations, and accessibility tools. Built scalable AI pipeline, backend and frontend architecture end-to-end. Focused on ethical AI use in healthcare to improve accessibility for children with speech challenges.
-          </div>
+          Designed and developed a web application that allows users to interact with a 3D cookie model using Three.js. Implemented features such as drag-to-spin, scroll-to-zoom, and responsive design for optimal user experience across devices. Focused on creating an engaging and visually appealing interface while ensuring smooth performance and accessibility.          
+        </div>
+        </div>
+      </div>
+
+        <div class="exp-entry">
+        <div class="exp-year">2024</div>
+        <div class="exp-content">
+          <div class="exp-title">Rubber Ducky</div>
+          <div class="exp-description">
+          Built an ethical Raspberry Pi Pico-based &apos;rubber ducky&apos; (bad USB) capable of scripted attacks (eg. rick-roll, spear-phishing), using Python. Developed a web service and UI to manage payloads, enabling educational demos of USB security threats for cybersecurity awareness and training using HTML/CSS.           
+        </div>
         </div>
       </div>
 
@@ -109,6 +155,12 @@
 
   // redirect the README button back home or hide it
   window.openReadme = () => { window.location.href = "/"; };
+
+  window.toggleProjects = (toggleEl) => {
+  toggleEl.classList.toggle('open');
+  const projects = toggleEl.nextElementSibling;
+  projects.classList.toggle('open');
+};
 
   </script>
 </body>
