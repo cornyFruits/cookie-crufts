@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Misc | KS</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body class="scrollable-page">
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-brand">Krittika Sharma</a>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <button onclick="openReadme()">README.TXT</button>
+      <a href="about.html">ABOUT ME</a>
+      <a href="projects.html">THE PAPER TRAIL</a>
+      <a href="https://www.linkedin.com/in/krittika-sharma-119b06245/" target="_blank">I WANNA KNOW YOU</a>
+      <a href="https://github.com/cornyfruits" target="_blank">GIT OUTTA HERE</a>
+      <a href="misc.html" class="misc-link">MISC</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="about-page">
+      <h1 class="about-heading">MISC.</h1>
+      <p class="misc-intro"> 
+  Some of the things I do for free in my free time. This is strictly a personality showcase!
+</p>
+
+<div class="misc-grid">
+
+  <!-- modal-type tile -->
+  <div class="misc-tile" data-type="modal" data-index="0">
+    <img src="images/pitch-deck-1.png" alt="Climate startup pitch deck">
+    <div class="misc-overlay">
+      <span class="misc-caption">PITCHED, POLITELY REJECTED, NOW HERE</span>
+    </div>
+  </div>
+
+  <div class="misc-tile" data-type="modal" data-index="1">
+    <img src="images/pottery-cover.jpg" alt="Pottery course">
+    <div class="misc-overlay">
+      <span class="misc-caption">DDES1020 CERAMIC DESIGN: WHEEL THROWING</span>
+    </div>
+  </div>
+
+  <div class="misc-tile" data-type="modal" data-index="2">
+    <img src="images/drawing-1.png" alt="Drawing">
+
+    <div class="misc-overlay">
+      <span class="misc-caption">STUFF I'VE SKETCHED</span>
+    </div>
+  </div>
+
+  <!-- external-link tiles -->
+  <a href="https://gamamari.com/category/satire/" target="_blank" class="misc-tile misc-tile-link">
+    <img src="images/gamamari-cover.png" alt="Gamamari column">
+    <div class="misc-overlay">
+      <span class="misc-caption">CREATED GAMAMARI'S FIRST SATIRICAL COLUMN - THE SHALLOT</span>
+    </div>
+  </a>
+
+  <a href="https://www.are.na/krittika-sharma/channels" target="_blank" class="misc-tile misc-tile-link">
+    <img src="images/are-na-cover.png" alt="Are.na profile">
+    <div class="misc-overlay">
+      <span class="misc-caption">MY ARE.NA</span>
+    </div>
+  </a>
+
+  <a href="https://letterboxd.com/_kritty/" target="_blank" class="misc-tile misc-tile-link">
+    <img src="images/letterboxd-cover.png" alt="Letterboxd profile">
+    <div class="misc-overlay">
+      <span class="misc-caption">MY PERFECT LETTERBOXD</span>
+    </div>
+  </a>
+
+
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+      Designed &amp; built by Krittika Sharma
+    </footer>
+
+    <div id="image-modal" class="modal hidden">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeMiscModal()">[ X ]</button>
+    <div class="modal-image-wrap">
+      <button class="modal-chevron modal-chevron-left" id="chevron-left" onclick="navMiscModal(-1)">‹</button>
+      <img id="modal-img" class="modal-img" src="" alt="">
+      <button class="modal-chevron modal-chevron-right" id="chevron-right" onclick="navMiscModal(1)">›</button>
+    </div>
+    <div class="modal-caption" id="modal-caption"></div>
+  </div>
+</div>
+  </main>
+
+  <script type="module">
+      // ── each modal tile owns its own set of slides ──
+  const miscSets = [
+    {
+      images: [
+        { src: "images/pitch-deck-1.png", caption: "Pitch deck I submitted to the Pre-X Climate Startup Competition for an early concept wardrobe intelligence platform" },
+        { src: "images/pitch-deck-2.png", caption: "Yes, it did get politley rejected, but I'm still proud of it and think we should always celebrate our self-directed efforts!" },
+        { src: "images/pitch-deck-3.png", caption: "" }, 
+        { src: "images/pitch-deck-4.png", caption: "" }, 
+        { src: "images/pitch-deck-5.png", caption: "" }, 
+        { src: "images/pitch-deck-6.png", caption: "" }, 
+        { src: "images/pitch-deck-7.png", caption: "" },
+        { src: "images/pitch-deck-8.png", caption: "It's a nice pitch deck, huh" },
+        { src: "images/pitch-deck-9.png", caption: "" },
+        { src: "images/pitch-deck-10.png", caption: "" },
+        { src: "images/pitch-deck-11.png", caption: "" },
+        { src: "images/pitch-deck-12.png", caption: "For making it to the end!" }      
+    ]
+    },
+    {
+      images: [
+        { src: "images/pottery-cover.jpg", caption: "A hero shot of my final pottery work which I worked towards over 12 weeks, consisting of 12 functional pieces and inspired by the natural world, Ai Weiwei and Persian visual culture" }
+      ]
+    }, 
+    {
+      images: [
+        { src: "images/drawing-1.png", caption: "Did I predict Emma Stone's Bugonia look before Bugonia?" }, 
+        { src: "images/drawing-2.png", caption: "Pooh and Piglet" }, 
+        { src: "images/drawing-3.png", caption: "Self-sustaining fashion" }, 
+        { src: "images/drawing-4.png", caption: "Ugh, why am I blonde" }, 
+        { src: "images/drawing-5.png", caption: "The dancing, topless merman" }, 
+        { src: "images/drawing-6.png", caption: "I'll parrot your ear off" }, 
+        { src: "images/drawing-7.png", caption: "Heart eyes (and hair and eyebrows and eyelids)" }, 
+        { src: "images/drawing-8.png", caption: "Flowers have faces" }, 
+        { src: "images/drawing-12.png", caption: "My friend Amber" }, 
+        { src: "images/drawing-9.png", caption: "The clique" }, 
+        { src: "images/drawing-10.png", caption: "Blooming" }, 
+        { src: "images/drawing-11.png", caption: "My friend Bridgette" }, 
+        { src: "images/drawing-13.png", caption: "Faciart" }, 
+        { src: "images/drawing-14.png", caption: "Dogs are better than people" }, 
+        { src: "images/drawing-15.png", caption: "*Eye roll*" }, 
+        { src: "images/drawing-16.png", caption: "English teacher (complimentary)" }, 
+        { src: "images/drawing-17.png", caption: "Head rest" }, 
+        { src: "images/drawing-18.png", caption: "Hmmm" }, 
+        { src: "images/drawing-19.png", caption: "Beauty queen" }, 
+        { src: "images/drawing-20.png", caption: "Mr. O'Flannagan O'Leary" }, 
+        { src: "images/drawing-21.png", caption: "Ballerina" }, 
+        { src: "images/drawing-22.png", caption: "I am Picasso reincarnated" }, 
+        { src: "images/drawing-23.png", caption: "Home is where the plants are" }
+      ]
+    }
+  ];
+
+  let currentSet = 0;
+  let currentSlide = 0;
+
+  const modal = document.getElementById('image-modal');
+  const modalImg = document.getElementById('modal-img');
+  const modalCaption = document.getElementById('modal-caption');
+  const chevronLeft = document.getElementById('chevron-left');
+  const chevronRight = document.getElementById('chevron-right');
+
+  const miscModalTiles = document.querySelectorAll('.misc-tile[data-type="modal"]');
+  miscModalTiles.forEach((tile) => {
+    tile.addEventListener('click', () => {
+      const setIndex = parseInt(tile.dataset.index, 10);
+      openMiscModal(setIndex);
+    });
+  });
+
+  function openMiscModal(setIndex) {
+    currentSet = setIndex;
+    currentSlide = 0;
+    updateMiscModal();
+    modal.classList.remove('hidden');
+  }
+
+  function updateMiscModal() {
+    const slides = miscSets[currentSet].images;
+    const slide = slides[currentSlide];
+    modalImg.src = slide.src;
+    modalCaption.textContent = slide.caption;
+    chevronLeft.style.visibility = currentSlide === 0 ? 'hidden' : 'visible';
+    chevronRight.style.visibility = currentSlide === slides.length - 1 ? 'hidden' : 'visible';
+  }
+
+  window.navMiscModal = (dir) => {
+    const slides = miscSets[currentSet].images;
+    currentSlide = Math.min(Math.max(currentSlide + dir, 0), slides.length - 1);
+    updateMiscModal();
+  };
+
+  window.closeMiscModal = () => modal.classList.add('hidden');
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeMiscModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (modal.classList.contains('hidden')) return;
+    if (e.key === 'Escape') closeMiscModal();
+    if (e.key === 'ArrowLeft') navMiscModal(-1);
+    if (e.key === 'ArrowRight') navMiscModal(1);
+  });
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('active');
+      });
+    }
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+    window.openReadme = () => { window.location.href = "/"; };
+  </script>
+</body>
+</html>

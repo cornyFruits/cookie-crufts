@@ -115,6 +115,12 @@ body {
   color: #c30000;
 }
 
+.nav-links a.misc-link {
+  color: #f4f0eb;
+  border: 1px solid #f4f0eb;
+
+}
+
 /* three.js canvas */
 #three-canvas {
   position: fixed;
@@ -426,8 +432,9 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid #ccc;
-      color: #888;
+      border: 1px solid #FFD700;
+      color: #FFD700;
+      background: #c30000;
       font-family: 'VT323', monospace;
       font-size: 0.9rem;
       text-decoration: none;
@@ -435,9 +442,9 @@ body {
     }
 
     .proj-square:hover {
-      background: #333;
-      color: #fff;
-      border-color: #333;
+      background: #FFD700;
+      color: #c30000;
+      border-color: #c30000;
     }
 
 /* ── mobile ── */
@@ -618,6 +625,16 @@ body.scrollable-page {
   color: #1a1a1a;
   font-size: 13px;
   line-height: 1.8;
+}
+
+.overview-link {
+  color: #c30000; 
+  text-decoration: none; 
+  transition: color 0.2s ease;  
+}
+
+.overview-link:hover {
+  color: #FFD700; 
 }
 
 /* tabs */
@@ -828,4 +845,120 @@ body.scrollable-page {
   font-size: 12px;
   color: #888;
   border-top: 1px solid #d9d4cc;
+}
+
+.misc-intro {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.7;
+  width: 100%;
+  margin-bottom: 32px;
+  margin-top: -20px;
+}
+
+.misc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.misc-tile {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #d9d4cc;
+  display: block;
+  text-decoration: none;
+}
+
+.misc-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.misc-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.misc-tile:hover .misc-overlay {
+  opacity: 1;
+}
+
+.misc-caption {
+  font-family: 'VT323', monospace;
+  color: #f4f0eb;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .misc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.skills-strip {
+  display: flex;
+  align-items: center;
+  background: #c30000;
+  border-top: 2px solid #FFD700;
+  margin-top: 70px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.skills-label {
+  flex-shrink: 0;
+  font-family: 'VT323', monospace;
+  color: #FFD700;
+  font-size: 16px;
+  letter-spacing: 3px;
+  padding: 14px 20px;
+  border-right: 2px solid #FFD700;
+}
+
+.skills-ticker-wrap {
+  overflow: hidden;
+  flex: 1;
+  position: relative;
+}
+
+.skills-ticker {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  width: max-content;
+  animation: ticker-scroll 40s linear infinite;
+  padding: 14px 0;
+}
+
+.skills-ticker span {
+  font-family: 'Space Mono', monospace;
+  color: #f4f0eb;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.skills-sep {
+  color: #FFD700;
+  margin: 0 18px;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
