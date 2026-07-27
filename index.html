@@ -60,14 +60,19 @@
     </div>
 
     <div class="window-body dress-dev-body">
-      <menu role="tablist">
-        <li role="tab" aria-selected="true" data-category="footwear"><a href="#">Footwear</a></li>
-        <li role="tab" data-category="bottoms"><a href="#">Bottoms</a></li>
-        <li role="tab" data-category="tops"><a href="#">Tops</a></li>
-        <li role="tab" data-category="jackets"><a href="#">Jackets</a></li>
-        <li role="tab" data-category="jewellery"><a href="#">Jewellery</a></li>
-        <li role="tab" data-category="accessories"><a href="#">Accessories</a></li>
-      </menu>
+        <div class="dress-dev-header"> 
+        <menu role="tablist">
+          <li role="tab" aria-selected="true" data-category="footwear"><a href="#">Footwear</a></li>
+          <li role="tab" data-category="bottoms"><a href="#">Bottoms</a></li>
+          <li role="tab" data-category="tops"><a href="#">Tops</a></li>
+          <li role="tab" data-category="jackets"><a href="#">Jackets</a></li>
+          <li role="tab" data-category="jewellery"><a href="#">Jewellery</a></li>
+          <li role="tab" data-category="accessories"><a href="#">Accessories</a></li>
+        </menu>
+        <button id="export-btn" class="export-icon-btn" disabled onclick="exportDoll()">
+    <img src="images/dress-dev/export-icon.png" alt="Export">
+  </button>
+      </div>
 
       <div class="dress-dev-panel">
         <div class="dress-dev-panel-body">

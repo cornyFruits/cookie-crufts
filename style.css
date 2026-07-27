@@ -1094,23 +1094,33 @@ body.scrollable-page {
   color: #808080;
 }
 
-.export-btn {
-  margin: 10px 12px;
-  font-family: 'VT323', monospace;
-  font-size: 16px;
-  padding: 6px 14px;
+.dress-dev-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.dress-dev-header menu[role="tablist"] {
+  margin: 0;
+}
+
+.export-icon-btn {
+  width: 18px;
+  height: 22px;
+  padding: 2px;
   cursor: pointer;
-  border: 1px solid #FFD700;
-  background: #c30000;
-  color: #FFD700;
+  margin-right: 12px;
+  margin-top: 0px;
 }
 
-.export-btn:disabled {
-  opacity: 0.4;
+.export-icon-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.export-icon-btn:disabled {
+  opacity: 0.35;
   cursor: not-allowed;
-}
-
-.export-btn:not(:disabled):hover {
-  background: #FFD700;
-  color: #c30000;
 }

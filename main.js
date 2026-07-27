@@ -284,6 +284,7 @@ dressTabs.forEach(tab => {
   });
 });
 
+
 function renderCloset(category) {
   const items = closetItems[category] || [];
   closetGrid.innerHTML = items.map(item => `
@@ -302,9 +303,11 @@ window.equipItem = (itemId, category) => {
   if (item.onDoll === '') {
     layer.src = '';
     layer.classList.add('hidden');
+    equipped[category] = null;
   } else {
     layer.src = item.onDoll;
     layer.classList.remove('hidden');
+    equipped[category] = item.onDoll;
   }
 
   // highlight selected thmnl within this category only
@@ -315,8 +318,60 @@ window.equipItem = (itemId, category) => {
       el.classList.remove('selected');
     }
   });
+
+  checkExportEligibility();
 };
 
 // render initial tab on load
 renderCloset('footwear');
 
+// dress-the-dev export button 
+const requiredCategories = ['bottoms', 'tops', 'footwear'];
+const equipped = {}; 
+
+function checkExportEligibility() {
+  const exportBtn = document.getElementById('export-btn');
+  const hasAll = requiredCategories.every(cat => equipped[cat]);
+  exportBtn.disabled = !hasAll;
+}
+
+// dress-the-dev export png drawing
+async function exportDoll() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 1414;
+  canvas.height = 2000;
+  const ctx = canvas.getContext('2d');
+
+  function loadImg(src) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = src;
+    });
+  }
+
+  const template = await loadImg('images/dress-dev/dress-dev-template.png');
+  ctx.drawImage(template, 0, 0, canvas.width, canvas.height);
+ 
+  const dollX = 476, dollY = 104, dollW = 456, dollH = 1405;
+
+  const base = await loadImg('images/dress-dev/dev-doll-base.png');
+  ctx.drawImage(base, dollX, dollY, dollW, dollH);
+
+  const layerOrder = ['footwear', 'bottoms', 'tops', 'jackets', 'jewellery', 'accessories'];
+  for (const cat of layerOrder) {
+    if (equipped[cat]) {
+      const layerImg = await loadImg(equipped[cat]);
+      ctx.drawImage(layerImg, dollX, dollY, dollW, dollH);
+    }
+  }
+
+  const link = document.createElement('a');
+  link.download = 'dress-the-dev.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+window.exportDoll = exportDoll;
