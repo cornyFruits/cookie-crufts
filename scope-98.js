@@ -2,14 +2,15 @@
 import fs from 'fs';
 import path from 'path';
 
-// resolve 98.css directly from node_modules
 const cssPath = path.resolve('node_modules/98.css/dist/98.css');
-const css = fs.readFileSync(cssPath, 'utf-8');
+let css = fs.readFileSync(cssPath, 'utf-8');
+
+// strip out existing sourceMappingURL comment - weird Vite thing, had to fix
+css = css.replace(/\/\*#\s*sourceMappingURL=.*?\*\//g, '');
 
 const scoped = css.replace(
   /(^|\})\s*([^{}]+)\s*\{/g,
   (match, brace, selector) => {
-    // skip @media, @keyframes, @font-face lines, etc.
     if (selector.trim().startsWith('@')) return match;
     
     const prefixed = selector
@@ -21,5 +22,9 @@ const scoped = css.replace(
   }
 );
 
-// write to your local source or build folder
-fs.writeFileSync('98-scoped.css', scoped);
+if (!fs.existsSync('src')) {
+  fs.mkdirSync('src', { recursive: true });
+}
+
+fs.writeFileSync('src/98-scoped.css', scoped);
+console.log('Successfully created src/98-scoped.css!');
