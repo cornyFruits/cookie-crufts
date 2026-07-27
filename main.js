@@ -249,24 +249,29 @@ const closetItems = {
     {id: 'black-top', thumb: 'images/dress-dev/black-top-sidebar.png', onDoll: 'images/dress-dev/doll-black-top.png'}, 
     {id: 'burgundy-top', thumb: 'images/dress-dev/burgundy-top-sidebar.png', onDoll: 'images/dress-dev/doll-burgundy-top.png'}, 
     {id: 'green-top', thumb: 'images/dress-dev/green-top-sidebar.png', onDoll: 'images/dress-dev/doll-green-top.png'}, 
-    {id: 'navy-cardigan', thumb: 'images/dress-dev/navy-cardigan-sidebar.png', onDoll: 'images/dress-dev/doll-navy-cardigan.png'}, 
     {id: 'off-white-top', thumb: 'images/dress-dev/off-white-top-sidebar.png', onDoll: 'images/dress-dev/doll-off-white-top.png'}, 
     {id: 'orange-top', thumb: 'images/dress-dev/orange-top-sidebar.png', onDoll: 'images/dress-dev/doll-orange-top.png'}, 
     {id: 'pink-top', thumb: 'images/dress-dev/pink-top-sidebar.png', onDoll: 'images/dress-dev/doll-pink-top.png'}, 
     {id: 'sage-top', thumb: 'images/dress-dev/sage-top-sidebar.png', onDoll: 'images/dress-dev/doll-sage-top.png'}, 
     {id: 'highneck-top', thumb: 'images/dress-dev/highneck-top-sb.png', onDoll: 'images/dress-dev/doll-highneck-top.png'},
-    {id: 'blazer', thumb: 'images/dress-dev/blazer-sb.png', onDoll: 'images/dress-dev/doll-blazer.png'}
   ],
   accessories: [
     {id: 'burgundy-purse', thumb: 'images/dress-dev/burgundy-purse-sb.png', onDoll: 'images/dress-dev/doll-burgundy-purse.png'}, 
-    {id: 'green-purse', thumb: 'images/dress-dev/green-purse-sb.png', onDoll: 'images/dress-dev/doll-green-purse.png'}
+    {id: 'green-purse', thumb: 'images/dress-dev/green-purse-sb.png', onDoll: 'images/dress-dev/doll-green-purse.png'}, 
+    {id: 'none', thumb: null, label: 'NO ACCESSORY', onDoll: ''}
   ],
   jewellery: [
     {id: 'black-necklace-long', thumb: 'images/dress-dev/black-necklace-long-sb.png', onDoll: 'images/dress-dev/doll-black-necklace-long.png'}, 
-    {id: 'black-short-necklace', thumb: 'images/dress-dev/black-short-necklace-sidebar.png', onDoll: 'images/dress-dev/doll-black-short-necklace.png'}, 
+    {id: 'black-short-necklace', thumb: 'images/dress-dev/black-short-necklace-sidebar.png', onDoll: 'images/dress-dev/doll-short-black-necklace.png'}, 
     {id: 'green-bracelet', thumb: 'images/dress-dev/green-bracelet-sb.png', onDoll: 'images/dress-dev/doll-green-bracelet-rh.png'},
-    {id: 'burgundy-bracelet', thumb: 'images/dress-dev/burgundy-bracelet-sb.png', onDoll: 'images/dress-dev/doll-burgundy-bracelet-lh.png'}
+    {id: 'burgundy-bracelet', thumb: 'images/dress-dev/burgundy-bracelet-sb.png', onDoll: 'images/dress-dev/doll-burgundy-bracelet-lh.png'}, 
+    {id: 'none', thumb: null, label: 'NO JEWELLERY', onDoll: ''}
 
+  ], 
+  jackets: [
+    {id: 'navy-cardigan', thumb: 'images/dress-dev/navy-cardigan-sidebar.png', onDoll: 'images/dress-dev/doll-navy-cardigan.png'}, 
+    {id: 'blazer', thumb: 'images/dress-dev/blazer-sb.png', onDoll: 'images/dress-dev/doll-blazer.png'}, 
+    {id: 'none', thumb: null, label: 'NO JACKET', onDoll: ''}
   ]
 };
 
@@ -283,7 +288,7 @@ function renderCloset(category) {
   const items = closetItems[category] || [];
   closetGrid.innerHTML = items.map(item => `
     <button class="closet-item" data-item="${item.id}" onclick="equipItem('${item.id}', '${category}')">
-      <img src="${item.thumb}" alt="${item.id}">
+      ${item.thumb ? `<img src="${item.thumb}" alt="${item.id}">` : `<span class="none-x">${item.label}</span>`}
     </button>
   `).join('');
 }
@@ -293,8 +298,14 @@ window.equipItem = (itemId, category) => {
   if (!item) return; 
 
   const layer = document.getElementById(`layer-${category}`);
-  layer.src = item.onDoll;
-  layer.classList.remove('hidden');
+  // account for none item for jacket, accessories and jewellery
+  if (item.onDoll === '') {
+    layer.src = '';
+    layer.classList.add('hidden');
+  } else {
+    layer.src = item.onDoll;
+    layer.classList.remove('hidden');
+  }
 
   // highlight selected thmnl within this category only
   document.querySelectorAll(`.closet-item`).forEach(el => {
