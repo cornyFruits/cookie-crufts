@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
+    "98.css": "^0.1.21",
     "three": "^0.183.2"
   },
   "devDependencies": {

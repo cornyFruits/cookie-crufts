@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Crufts</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script type="module" crossorigin src="./assets/main-CgXvi-It.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/style-CkZEn1qv.js">
+  <link rel="stylesheet" crossorigin href="./assets/style-CQ2mzqQL.css">
+</head>
+<body>
+
+  <!-- click to start screen -->
+  <div id="start-screen">
+    <img src="images/single-cookie.png" alt="Cookie
+    " class="cookie-spin">
+    <p class="start-text">CLICK ANYWHERE TO START</p>
+    <p class="start-sub">drag to spin · scroll to zoom · best experienced on desktop</p>
+    <p class="start-credit">Designed and built by Krittika Sharma</p>
+
+  </div>
+  
+  <!-- navbar -->
+  <nav id="navbar" class="hidden">
+    <a href="index.html" class="nav-brand">Krittika Sharma</a>
+    <!-- hamburger menu for mobile -->
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-links">
+      <button onclick="openReadme()">README.TXT</button>
+      <a href="about.html" >ABOUT ME</a>
+      <a href="projects.html" >THE PAPER TRAIL</a>
+      <a href="https://www.linkedin.com/in/krittika-sharma-119b06245/" target="_blank">I WANNA KNOW YOU</a>
+      <a href="https://github.com/cornyfruits" target="_blank">GIT OUTTA HERE</a>
+      <a href="misc.html" class="misc-link">MISC</a>
+    </div>
+  </nav>
+
+  <!-- three.js canvas -->
+  <canvas id="three-canvas" class="hidden"></canvas>
+
+  <!-- dress the dev button -->
+<button id="dress-dev-btn" class="hidden" onclick="openDressDev()">DRESS THE DEV</button>
+
+<!-- dress the dev popup -->
+<div id="dress-dev-popup" class="hidden">
+  <div class="window" style="width: 300px">
+    <div class="title-bar">
+      <div class="title-bar-text">DRESS THE DEV</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close" onclick="closeDressDev()"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <p>There's so much room for activities!</p>
+    </div>
+  </div>
+</div>
+
+  <!-- README popup -->
+  <div id="readme-popup" class="hidden">
+    <div class="readme-inner">
+      <button onclick="closeReadme()" class="close-btn">[ X ]</button>
+      <div id="readme-text"></div>
+      <span class="cursor">█</span>
+    </div>
+  </div>
+
+</body>
+</html>

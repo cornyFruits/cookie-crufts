@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cookie Crufts</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/98.css">
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -42,6 +43,64 @@
 
   <!-- three.js canvas -->
   <canvas id="three-canvas" class="hidden"></canvas>
+
+  <!-- dress the dev button -->
+<button id="dress-dev-btn" class="hidden" onclick="openDressDev()">DRESS THE DEV</button>
+
+<!-- dress the dev popup --><!-- dress the dev popup -->
+<div id="dress-dev-popup" class="hidden">
+  <div class="window dress-dev-window">
+    <div class="title-bar">
+      <div class="title-bar-text">DRESS THE DEV</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close" onclick="closeDressDev()"></button>
+      </div>
+    </div>
+
+    <div class="window-body dress-dev-body">
+      <menu role="tablist">
+        <li role="tab" aria-selected="true" data-category="footwear"><a href="#">Footwear</a></li>
+        <li role="tab" data-category="bottoms"><a href="#">Bottoms</a></li>
+        <li role="tab" data-category="tops"><a href="#">Tops</a></li>
+        <li role="tab" data-category="jewellery"><a href="#">Jewellery</a></li>
+        <li role="tab" data-category="accessories"><a href="#">Accessories</a></li>
+      </menu>
+
+      <div class="dress-dev-panel">
+        <div class="dress-dev-panel-body">
+
+          <!-- left sidebar: clothing item slots -->
+          <div class="closet-sidebar">
+            <div class="closet-grid" id="closet-grid">
+              <button class="closet-item" data-item="rando-1"></button>
+              <button class="closet-item" data-item="rando-2"></button>
+              <button class="closet-item" data-item="rando-3"></button>
+              <button class="closet-item" data-item="rando-4"></button>
+              <button class="closet-item" data-item="rando-5"></button>
+              <button class="closet-item" data-item="rando-6"></button>
+              <button class="closet-item" data-item="rando-7"></button>
+              <button class="closet-item" data-item="rando-8"></button>
+              <button class="closet-item" data-item="rando-9"></button>
+            </div>
+          </div>
+
+          <!-- right side: character preview -->
+          <div class="closet-preview sunken-panel">
+            <img id="dev-character" src="images/dress-dev/dev-doll-base.png" alt="Dress the dev avatar">
+            <img id="layer-footwear" class="doll-layer hidden" src="" alt="">
+            <img id="layer-bottoms" class="doll-layer hidden" src="" alt="">
+            <img id="layer-tops" class="doll-layer hidden" src="" alt="">
+            <img id="layer-jewellery" class="doll-layer hidden" src="" alt="">
+            <img id="layer-accessories" class="doll-layer hidden" src="" alt="">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- README popup -->
   <div id="readme-popup" class="hidden">

@@ -42,7 +42,6 @@ const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
-
 // load cereal box (blender model) 
 const loader = new GLTFLoader();
 let boxModel;
@@ -98,9 +97,9 @@ function handleInteraction(event) {
   }
 }
 
-/* TODO: Add send-to-email functionality to this form
+/* TODO: add send-to-email functionality to this form
 function openSweepstakes(fieldName) {
-  // Clean up the name for the prompt (e.g., "name-input-form" becomes "Name")
+  // clean up the name for the prompt (e.g., "name-input-form" becomes "Name")
   const label = fieldName.replace('-input-form', '').toUpperCase();
   
   const userInput = prompt(`ENTER ${label} FOR THE KRITTIKA CLASSICS SWEEPSTAKES:`);
@@ -153,6 +152,7 @@ document.getElementById('start-screen').addEventListener('click', () => {
   document.getElementById('start-screen').classList.add('hidden');
   document.getElementById('navbar').classList.remove('hidden');
   canvas.classList.remove('hidden');
+  document.getElementById('dress-dev-btn').classList.remove('hidden');
 });
 
 // hamburger menu toggle for mobile
@@ -216,4 +216,96 @@ function closeReadme() {
 window.openReadme = openReadme;
 window.closeReadme = closeReadme;
 
+// handle dress-the-dev-modal
+window.openDressDev = () => {
+  document.getElementById('dress-dev-popup').classList.remove('hidden');
+};
+
+window.closeDressDev = () => {
+  document.getElementById('dress-dev-popup').classList.add('hidden');
+};
+
+// tab switching for dress-the-dev
+const dressTabs = document.querySelectorAll('#dress-dev-popup [role="tab"]');
+const closetGrid = document.getElementById('closet-grid');
+
+// closet data 
+const closetItems = {
+  footwear: [
+    {id: 'boots', thumb: 'images/dress-dev/boots-sidebar.png', onDoll: 'images/dress-dev/doll-boots.png'}, 
+    {id: 'sneakers', thumb: 'images/dress-dev/sneakers-sidebar.png', onDoll: 'images/dress-dev/doll-sneakers.png'}, 
+    {id: 'heels', thumb: 'images/dress-dev/heels-sidebar.png', onDoll: 'images/dress-dev/doll-heels.png'}
+  ],
+
+  bottoms: [
+    {id: 'black-skirt', thumb: 'images/dress-dev/black-skirt-sb.png', onDoll: 'images/dress-dev/doll-black-skirt.png'}, 
+    {id: 'brown-pants', thumb: 'images/dress-dev/brown-pants-sb.png', onDoll: 'images/dress-dev/doll-brown-pants.png'}, 
+    {id: 'grey-pants', thumb: 'images/dress-dev/grey-pants-sb.png', onDoll: 'images/dress-dev/doll-grey-pants.png'}, 
+    {id: 'grey-striped-skirt-sb', thumb: 'images/dress-dev/grey-striped-skirt-sb.png', onDoll: 'images/dress-dev/doll-grey-striped-skirt.png'}, 
+    {id: 'jeans', thumb: 'images/dress-dev/jeans-sb.png', onDoll: 'images/dress-dev/doll-jeans.png'}
+  ],
+
+  tops: [
+    {id: 'black-top', thumb: 'images/dress-dev/black-top-sidebar.png', onDoll: 'images/dress-dev/doll-black-top.png'}, 
+    {id: 'burgundy-top', thumb: 'images/dress-dev/burgundy-top-sidebar.png', onDoll: 'images/dress-dev/doll-burgundy-top.png'}, 
+    {id: 'green-top', thumb: 'images/dress-dev/green-top-sidebar.png', onDoll: 'images/dress-dev/doll-green-top.png'}, 
+    {id: 'navy-cardigan', thumb: 'images/dress-dev/navy-cardigan-sidebar.png', onDoll: 'images/dress-dev/doll-navy-cardigan.png'}, 
+    {id: 'off-white-top', thumb: 'images/dress-dev/off-white-top-sidebar.png', onDoll: 'images/dress-dev/doll-off-white-top.png'}, 
+    {id: 'orange-top', thumb: 'images/dress-dev/orange-top-sidebar.png', onDoll: 'images/dress-dev/doll-orange-top.png'}, 
+    {id: 'pink-top', thumb: 'images/dress-dev/pink-top-sidebar.png', onDoll: 'images/dress-dev/doll-pink-top.png'}, 
+    {id: 'sage-top', thumb: 'images/dress-dev/sage-top-sidebar.png', onDoll: 'images/dress-dev/doll-sage-top.png'}, 
+    {id: 'highneck-top', thumb: 'images/dress-dev/highneck-top-sb.png', onDoll: 'images/dress-dev/doll-highneck-top.png'},
+    {id: 'blazer', thumb: 'images/dress-dev/blazer-sb.png', onDoll: 'images/dress-dev/doll-blazer.png'}
+  ],
+  accessories: [
+    {id: 'burgundy-purse', thumb: 'images/dress-dev/burgundy-purse-sb.png', onDoll: 'images/dress-dev/doll-burgundy-purse.png'}, 
+    {id: 'green-purse', thumb: 'images/dress-dev/green-purse-sb.png', onDoll: 'images/dress-dev/doll-green-purse.png'}
+  ],
+  jewellery: [
+    {id: 'black-necklace-long', thumb: 'images/dress-dev/black-necklace-long-sb.png', onDoll: 'images/dress-dev/doll-black-necklace-long.png'}, 
+    {id: 'black-short-necklace', thumb: 'images/dress-dev/black-short-necklace-sidebar.png', onDoll: 'images/dress-dev/doll-black-short-necklace.png'}, 
+    {id: 'green-bracelet', thumb: 'images/dress-dev/green-bracelet-sb.png', onDoll: 'images/dress-dev/doll-green-bracelet-rh.png'},
+    {id: 'burgundy-bracelet', thumb: 'images/dress-dev/burgundy-bracelet-sb.png', onDoll: 'images/dress-dev/doll-burgundy-bracelet-lh.png'}
+
+  ]
+};
+
+dressTabs.forEach(tab => {
+  tab.addEventListener('click', (e) => {
+    e.preventDefault();
+    dressTabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+    tab.setAttribute('aria-selected', 'true');
+    renderCloset(tab.dataset.category);
+  });
+});
+
+function renderCloset(category) {
+  const items = closetItems[category] || [];
+  closetGrid.innerHTML = items.map(item => `
+    <button class="closet-item" data-item="${item.id}" onclick="equipItem('${item.id}', '${category}')">
+      <img src="${item.thumb}" alt="${item.id}">
+    </button>
+  `).join('');
+}
+
+window.equipItem = (itemId, category) => {
+  const item = closetItems[category].find(i => i.id === itemId);
+  if (!item) return; 
+
+  const layer = document.getElementById(`layer-${category}`);
+  layer.src = item.onDoll;
+  layer.classList.remove('hidden');
+
+  // highlight selected thmnl within this category only
+  document.querySelectorAll(`.closet-item`).forEach(el => {
+    if (el.dataset.item === itemId) {
+      el.classList.add('selected');
+    } else if (closetItems[category].some(i => i.id === el.dataset.item)) {
+      el.classList.remove('selected');
+    }
+  });
+};
+
+// render initial tab on load
+renderCloset('footwear');
 
