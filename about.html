@@ -6,7 +6,12 @@
   <title>About Me | KS</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-  <script type="module" defer src="/_vercel/insights/script.js"></script>
+  <script type="module">
+  const script = document.createElement('script');
+  script.src = '/_vercel/insights/script.js';
+  script.defer = true;
+  document.head.appendChild(script);
+</script>
 </head>
 <body class="scrollable-page">
 
