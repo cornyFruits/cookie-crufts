@@ -998,7 +998,7 @@ body.scrollable-page {
   max-width: 92vw;
 }
 
-.dress-dev-window .title-bar {
+#dress-dev-popup .dress-dev-window .title-bar {
   background: linear-gradient(90deg, #c30000, #c30000);
 }
 
