@@ -354,17 +354,20 @@ async function exportDoll() {
 
   const template = await loadImg('images/dress-dev/dress-dev-template.png');
   ctx.drawImage(template, 0, 0, canvas.width, canvas.height);
- 
+
   const dollX = 476, dollY = 104, dollW = 456, dollH = 1405;
+  
+  // make doll bigger
+  const DOLL_SCALE = 1.65; 
 
   const base = await loadImg('images/dress-dev/dev-doll-base.png');
-  ctx.drawImage(base, dollX, dollY, dollW, dollH);
+  drawContained(ctx, base, dollX, dollY, dollW, dollH, DOLL_SCALE);
 
   const layerOrder = ['footwear', 'bottoms', 'tops', 'jackets', 'jewellery', 'accessories'];
   for (const cat of layerOrder) {
     if (equipped[cat]) {
       const layerImg = await loadImg(equipped[cat]);
-      ctx.drawImage(layerImg, dollX, dollY, dollW, dollH);
+      drawContained(ctx, layerImg, dollX, dollY, dollW, dollH, DOLL_SCALE);
     }
   }
 
@@ -372,6 +375,34 @@ async function exportDoll() {
   link.download = 'dress-the-dev.png';
   link.href = canvas.toDataURL('image/png');
   link.click();
+}
+
+// helper func to fix vertical squish of doll exported png
+function drawContained(ctx, img, boxX, boxY, boxW, boxH, scale=1) {
+  const imgRatio = img.naturalWidth / img.naturalHeight;
+  const boxRatio = boxW / boxH;
+
+  let drawW, drawH;
+  if (imgRatio > boxRatio) {
+    // image wider than box; fit to width
+    drawW = boxW;
+    drawH = boxW / imgRatio;
+  } else {
+    // image taller than box; fit to height
+    drawH = boxH;
+    drawW = boxH * imgRatio;
+  }
+
+  drawW *= scale;
+  drawH *= scale;
+
+  // center image within the box
+  const centerX = boxX + boxW / 2;
+  const centerY = boxY + boxH / 2;
+  const offsetX = boxX + (boxW - drawW) / 2;
+  const offsetY = boxY + (boxH - drawH) / 2;
+
+  ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
 }
 
 window.exportDoll = exportDoll;
