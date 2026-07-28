@@ -590,7 +590,7 @@ body.scrollable-page {
 .meta-label {
   display: block;
   font-family: 'VT323', monospace;
-  font-size: 13px;
+  font-size: 14.5px;
   color: #FFD700;
   letter-spacing: 2px;
   margin-bottom: 4px;
@@ -845,6 +845,18 @@ body.scrollable-page {
   font-size: 12px;
   color: #888;
   border-top: 1px solid #d9d4cc;
+}
+
+
+/* --- misc section --- */
+.misc-disclaimer {
+  letter-spacing: 2px;
+  font-family: 'VT323', monospace;
+  color: #909090;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+  margin-top: -25px;
+  font-size: 14px;
 }
 
 .misc-intro {
