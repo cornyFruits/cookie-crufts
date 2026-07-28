@@ -233,15 +233,17 @@ const closetGrid = document.getElementById('closet-grid');
 const closetItems = {
   footwear: [
     {id: 'boots', thumb: 'images/dress-dev/boots-sidebar.png', onDoll: 'images/dress-dev/doll-boots.png'}, 
+    {id: 'black-boots', thumb: 'images/dress-dev/black-boots-sb.png', onDoll: 'images/dress-dev/doll-black-boots.png'}, 
     {id: 'sneakers', thumb: 'images/dress-dev/sneakers-sidebar.png', onDoll: 'images/dress-dev/doll-sneakers.png'}, 
     {id: 'heels', thumb: 'images/dress-dev/heels-sidebar.png', onDoll: 'images/dress-dev/doll-heels.png'}
   ],
 
   bottoms: [
     {id: 'black-skirt', thumb: 'images/dress-dev/black-skirt-sb.png', onDoll: 'images/dress-dev/doll-black-skirt.png'}, 
+    {id: 'grey-striped-skirt-sb', thumb: 'images/dress-dev/grey-striped-skirt-sb.png', onDoll: 'images/dress-dev/doll-grey-striped-skirt.png'}, 
+    {id: 'black-pants', thumb: 'images/dress-dev/black-pants-sb.png', onDoll: 'images/dress-dev/doll-black-pants.png'}, 
     {id: 'brown-pants', thumb: 'images/dress-dev/brown-pants-sb.png', onDoll: 'images/dress-dev/doll-brown-pants.png'}, 
     {id: 'grey-pants', thumb: 'images/dress-dev/grey-pants-sb.png', onDoll: 'images/dress-dev/doll-grey-pants.png'}, 
-    {id: 'grey-striped-skirt-sb', thumb: 'images/dress-dev/grey-striped-skirt-sb.png', onDoll: 'images/dress-dev/doll-grey-striped-skirt.png'}, 
     {id: 'jeans', thumb: 'images/dress-dev/jeans-sb.png', onDoll: 'images/dress-dev/doll-jeans.png'}
   ],
 
@@ -258,11 +260,13 @@ const closetItems = {
   accessories: [
     {id: 'burgundy-purse', thumb: 'images/dress-dev/burgundy-purse-sb.png', onDoll: 'images/dress-dev/doll-burgundy-purse.png'}, 
     {id: 'green-purse', thumb: 'images/dress-dev/green-purse-sb.png', onDoll: 'images/dress-dev/doll-green-purse.png'}, 
-    {id: 'none', thumb: null, label: 'NO ACCESSORY', onDoll: ''}
+    {id: 'navy-purse', thumb: 'images/dress-dev/navy-purse-sb.png', onDoll: 'images/dress-dev/doll-navy-purse.png'}, 
+    {id: 'none', thumb: null, label: 'NO ACCESSORY', onDoll: ''}, 
   ],
   jewellery: [
     {id: 'black-necklace-long', thumb: 'images/dress-dev/black-necklace-long-sb.png', onDoll: 'images/dress-dev/doll-black-necklace-long.png'}, 
     {id: 'black-short-necklace', thumb: 'images/dress-dev/black-short-necklace-sidebar.png', onDoll: 'images/dress-dev/doll-short-black-necklace.png'}, 
+    {id: 'layer-necklace', thumb: 'images/dress-dev/layer-necklace-sb.png', onDoll: 'images/dress-dev/doll-layer-necklace.png'},
     {id: 'green-bracelet', thumb: 'images/dress-dev/green-bracelet-sb.png', onDoll: 'images/dress-dev/doll-green-bracelet-rh.png'},
     {id: 'burgundy-bracelet', thumb: 'images/dress-dev/burgundy-bracelet-sb.png', onDoll: 'images/dress-dev/doll-burgundy-bracelet-lh.png'}, 
     {id: 'none', thumb: null, label: 'NO JEWELLERY', onDoll: ''}
@@ -372,7 +376,7 @@ async function exportDoll() {
   }
 
   const link = document.createElement('a');
-  link.download = 'dress-the-dev.png';
+  link.download = 'krittika-sharma.png';
   link.href = canvas.toDataURL('image/png');
   link.click();
 }

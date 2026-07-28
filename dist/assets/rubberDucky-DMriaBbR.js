@@ -1,1 +1,0 @@
-import"./style-CkZEn1qv.js";var e=document.getElementById(`hamburger`),t=document.querySelector(`.nav-links`);e&&e.addEventListener(`click`,e=>{e.stopPropagation(),t.classList.toggle(`active`)}),t.querySelectorAll(`a`).forEach(e=>{e.addEventListener(`click`,()=>t.classList.remove(`active`))}),window.openReadme=()=>{window.location.href=`/`};
