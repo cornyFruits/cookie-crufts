@@ -153,6 +153,7 @@ document.getElementById('start-screen').addEventListener('click', () => {
   document.getElementById('navbar').classList.remove('hidden');
   canvas.classList.remove('hidden');
   document.getElementById('dress-dev-btn').classList.remove('hidden');
+  document.getElementById('lowercase-btn').classList.remove('hidden');
 });
 
 // hamburger menu toggle for mobile
@@ -223,6 +224,46 @@ window.openDressDev = () => {
 
 window.closeDressDev = () => {
   document.getElementById('dress-dev-popup').classList.add('hidden');
+};
+
+// lowercase popup open and close
+window.openLowercase = () => {
+  document.getElementById('lowercase-popup').classList.remove('hidden');
+};
+
+window.closeLowercase = () => {
+  document.getElementById('lowercase-popup').classList.add('hidden');
+};
+
+// lowercase yes/no gate popup - in dress-dev-export-btn and lowercase-btn
+window.openLowercaseGate = () => {
+  gatePurpose = 'lowercase';
+  document.getElementById('lowercase-gate-popup').classList.remove('hidden');
+};
+
+window.openExportGate = () => {
+  gatePurpose = 'export';
+  document.getElementById('lowercase-gate-popup').classList.remove('hidden');
+};
+
+window.closeGate = () => {
+  document.getElementById('lowercase-gate-popup').classList.add('hidden');
+};
+
+// for lowercase: if worked at lowercase, then can access lowercase popup
+// for dress-dev-export-btn: if worked at lowercase, then use lowercase specific png template
+window.gateAnswer = (yes) => {
+  document.getElementById('lowercase-gate-popup').classList.add('hidden'); 
+  if (gatePurpose === 'lowercase') {
+    if (yes) {
+      openLowercase(); 
+    } else {
+      window.location.href = 'index.html';
+    }
+  } else if (gatePurpose === 'export') {
+      workedAtLowercase = yes;
+      exportDoll();
+  }
 };
 
 // tab switching for dress-the-dev
@@ -329,9 +370,27 @@ window.equipItem = (itemId, category) => {
 // render initial tab on load
 renderCloset('footwear');
 
+// dress-the-dev export button to go under clothes on mobile
+function positionExportBtn() {
+  const btn = document.getElementById('export-btn');
+  const sidebar = document.querySelector('.closet-sidebar');
+  const header = document.querySelector('.dress-dev-header');
+
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    sidebar.appendChild(btn); // move to bottom of sidebar on mobile
+  } else {
+    header.appendChild(btn); // move back next to tabs on desktop
+  }
+}
+
+positionExportBtn();
+window.addEventListener('resize', positionExportBtn);
+
 // dress-the-dev export button 
 const requiredCategories = ['bottoms', 'tops', 'footwear'];
 const equipped = {}; 
+let gatePurpose = null; 
+let workedAtLowercase = false; 
 
 function checkExportEligibility() {
   const exportBtn = document.getElementById('export-btn');
@@ -356,7 +415,12 @@ async function exportDoll() {
     });
   }
 
-  const template = await loadImg('images/dress-dev/dress-dev-template.png');
+  // if worked at lowercase, use lowercase specific template
+  const templatePath = workedAtLowercase 
+    ? 'images/lowercase/dress-dev-lowercase-template.png'
+    : 'images/dress-dev/dress-dev-template.png';
+  const template = await loadImg(templatePath);
+
   ctx.drawImage(template, 0, 0, canvas.width, canvas.height);
 
   const dollX = 476, dollY = 104, dollW = 456, dollH = 1405;
