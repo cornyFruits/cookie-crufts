@@ -1124,3 +1124,15 @@ body.scrollable-page {
   opacity: 0.35;
   cursor: not-allowed;
 }
+
+.bbq-faces-container {
+  width: 30%; 
+  height: 30%;
+  display: inline;
+  margin-left: -10px;
+}
+
+.bbq-faces {
+  width: 15%; 
+  margin-bottom: -75px;
+}
