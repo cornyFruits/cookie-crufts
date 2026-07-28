@@ -11,6 +11,7 @@ css = css.replace(/\/\*#\s*sourceMappingURL=.*?\*\//g, '');
 // strip all remaining CSS comments (including file header comment)
 // so the scoping regex below never mistakes a comment for part of a selector
 css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+css = css.replace(/@media\s*\(not\(hover\)\)/g, '@media not (hover)');
 
 const scoped = css.replace(
   /(^|\})\s*([^{}]+)\s*\{/g,
