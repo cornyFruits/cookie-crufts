@@ -276,7 +276,9 @@ const closetItems = {
     {id: 'boots', thumb: 'images/dress-dev/boots-sidebar.png', onDoll: 'images/dress-dev/doll-boots.png'}, 
     {id: 'black-boots', thumb: 'images/dress-dev/black-boots-sb.png', onDoll: 'images/dress-dev/doll-black-boots.png'}, 
     {id: 'sneakers', thumb: 'images/dress-dev/sneakers-sidebar.png', onDoll: 'images/dress-dev/doll-sneakers.png'}, 
-    {id: 'heels', thumb: 'images/dress-dev/heels-sidebar.png', onDoll: 'images/dress-dev/doll-heels.png'}
+    {id: 'heels', thumb: 'images/dress-dev/heels-sidebar.png', onDoll: 'images/dress-dev/doll-heels.png'}, 
+    {id: 'black-shoes', thumb: 'images/dress-dev/black-shoes-sb.png', onDoll: 'images/dress-dev/doll-black-shoes.png'}, 
+    {id: 'burgundy-shoes', thumb: 'images/dress-dev/burgundy-shoes-sb.png', onDoll: 'images/dress-dev/doll-burgundy-shoes.png'}
   ],
 
   bottoms: [
@@ -297,13 +299,16 @@ const closetItems = {
     {id: 'pink-top', thumb: 'images/dress-dev/pink-top-sidebar.png', onDoll: 'images/dress-dev/doll-pink-top.png'}, 
     {id: 'sage-top', thumb: 'images/dress-dev/sage-top-sidebar.png', onDoll: 'images/dress-dev/doll-sage-top.png'}, 
     {id: 'highneck-top', thumb: 'images/dress-dev/highneck-top-sb.png', onDoll: 'images/dress-dev/doll-highneck-top.png'},
+    {id: 'red-floral-top', thumb: 'images/dress-dev/red-floral-top-sb.png', onDoll: 'images/dress-dev/doll-red-floral-top.png'}
   ],
+
   accessories: [
     {id: 'burgundy-purse', thumb: 'images/dress-dev/burgundy-purse-sb.png', onDoll: 'images/dress-dev/doll-burgundy-purse.png'}, 
     {id: 'green-purse', thumb: 'images/dress-dev/green-purse-sb.png', onDoll: 'images/dress-dev/doll-green-purse.png'}, 
     {id: 'navy-purse', thumb: 'images/dress-dev/navy-purse-sb.png', onDoll: 'images/dress-dev/doll-navy-purse.png'}, 
     {id: 'none', thumb: null, label: 'NO ACCESSORY', onDoll: ''}, 
   ],
+
   jewellery: [
     {id: 'black-necklace-long', thumb: 'images/dress-dev/black-necklace-long-sb.png', onDoll: 'images/dress-dev/doll-black-necklace-long.png'}, 
     {id: 'black-short-necklace', thumb: 'images/dress-dev/black-short-necklace-sidebar.png', onDoll: 'images/dress-dev/doll-short-black-necklace.png'}, 
@@ -311,8 +316,8 @@ const closetItems = {
     {id: 'green-bracelet', thumb: 'images/dress-dev/green-bracelet-sb.png', onDoll: 'images/dress-dev/doll-green-bracelet-rh.png'},
     {id: 'burgundy-bracelet', thumb: 'images/dress-dev/burgundy-bracelet-sb.png', onDoll: 'images/dress-dev/doll-burgundy-bracelet-lh.png'}, 
     {id: 'none', thumb: null, label: 'NO JEWELLERY', onDoll: ''}
-
   ], 
+
   jackets: [
     {id: 'navy-cardigan', thumb: 'images/dress-dev/navy-cardigan-sidebar.png', onDoll: 'images/dress-dev/doll-navy-cardigan.png'}, 
     {id: 'blazer', thumb: 'images/dress-dev/blazer-sb.png', onDoll: 'images/dress-dev/doll-blazer.png'}, 
