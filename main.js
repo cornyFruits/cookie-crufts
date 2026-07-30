@@ -276,7 +276,8 @@ const closetItems = {
     {id: 'boots', thumb: 'images/dress-dev/boots-sidebar.png', onDoll: 'images/dress-dev/doll-boots.png'}, 
     {id: 'black-boots', thumb: 'images/dress-dev/black-boots-sb.png', onDoll: 'images/dress-dev/doll-black-boots.png'}, 
     {id: 'sneakers', thumb: 'images/dress-dev/sneakers-sidebar.png', onDoll: 'images/dress-dev/doll-sneakers.png'}, 
-    {id: 'heels', thumb: 'images/dress-dev/heels-sidebar.png', onDoll: 'images/dress-dev/doll-heels.png'}, 
+    {id: 'heels', thumb: 'images/dress-dev/heels-sidebar.png', onDoll: 'images/dress-dev/doll-heels.png'},
+    {id: 'green-heels', thumb: 'images/dress-dev/green-heels-sb.png', onDoll: 'images/dress-dev/doll-green-heels.png'},  
     {id: 'black-shoes', thumb: 'images/dress-dev/black-shoes-sb.png', onDoll: 'images/dress-dev/doll-black-shoes.png'}, 
     {id: 'burgundy-shoes', thumb: 'images/dress-dev/burgundy-shoes-sb.png', onDoll: 'images/dress-dev/doll-burgundy-shoes.png'}
   ],
