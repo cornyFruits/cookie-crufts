@@ -798,7 +798,7 @@ body.scrollable-page {
 /* ── project cards ── */
 .project-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, 250px);
   gap: 20px;
   margin-top: 8px;
 }
@@ -818,6 +818,7 @@ body.scrollable-page {
 .project-card:hover {
   background: #FFD700;
   color: #c30000;
+  border: 1px solid #c30000;
 }
 
 .project-card-title {
@@ -1444,4 +1445,28 @@ body.scrollable-page {
   gap: 10px;
   justify-content: center;
   margin-top: 12px;
+}
+
+/* projects sub-heading */
+.section-label {
+  font-family: 'VT323', monospace;
+  color: #c30000;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 6px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::before {
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: #c30000;
+}
+
+.section-label-spaced {
+  margin-top: 40px;
 }
