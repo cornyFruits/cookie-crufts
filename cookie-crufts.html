@@ -134,27 +134,27 @@
         <p>Graduates are increasingly treated as commodities in today's job market - filtered, ranked, and shelved by status, much like products in a supermarket aisle. Cookie Crufts takes that comparison literally: a portfolio built as a cereal box, aware of itself as packaging. The question underneath the whole project is simple: does creativity actually break that pattern, or is it just a more interesting way to be ignored?</p>
 
         <h3>THE PACKAGE</h3>
-        <p>Every part of a real cereal box became a place to hide meaning. A "best before" date reframes a graduate's shelf life. The ingredient list becomes a list of skills. The prize inside becomes the portfolio's actual content. The README file (accessible from a small terminal-style popup)functions as a short manifesto, laying out the premise directly for anyone who's curious.</p>
+        <p>Every part of a real cereal box became a place to hide meaning. A "best before" date reframes a graduate's shelf life. The ingredient list becomes a list of skills. The prize inside becomes the portfolio's actual content. The README file (accessible from a small terminal-style popup) functions as a short manifesto, laying out the premise directly for anyone who's curious.</p>
 
         <h3>THE EXPERIMENT, OFF-SCREEN</h3>
-        <p>The project didn't stay digital. Vintage-style physical coupon cards, designed to double as business cards, were handed out at the UNSW STEM careers fair, as a small guerrilla activation testing whether the concept could hold up face-to-face, not just on a screen. It led to visibility on LinkedIn with teach recruiters and an application to lowercase built specifically around this project as the centrepiece.</p>
+        <p>The project didn't stay digital. Vintage-style physical coupon cards, designed to double as business cards, were handed out at the UNSW STEM careers fair, as a small guerrilla activation campaign, testing whether the concept could hold up face-to-face, not just on a screen. It led to visibility on LinkedIn with tech recruiters, and an application to lowercase (a technical design studio) built specifically around this project as the centrepiece.</p>
       `,
         design:`
         <h3>REFERENCE & ILLUSTRATION</h3>
-        <p>The visual language pulls directly from 1970s cereal packaging - think Apple Jacks, Kellogs, Froot Loops - with grain texture, slab serif type, and saturated colour blocking. Every illustrated element, including Cookie Monster and all the artwork, was hand-drawn from scratch in Adobe Fresco rather than sourced or AI-generated, to keep the nostalgia feeling authentic rather than like pastiche.</p>
+        <p>The visual language pulls directly from 1970s cereal packaging (eg. Apple Jacks, Kellogs, Froot Loops), with grain texture, slab serif type, and saturated colour blocking. Every illustrated element, including Cookie Monster and all the artwork, was hand-drawn from scratch in Adobe Fresco rather than sourced or AI-generated, to keep the nostalgia feeling authentic rather than like pastiche.</p>
 
         <h3>PANEL LOGIC</h3>
         <p>Each face of the box carries a different purpose, the same way a real cereal box does: the front holds brand identity, the back holds games and a sweepstakes-style call to action, and the sides carry the "nutrition facts" and ingredient list, which are reframed as skills and experience. Typography hierarchy and grain texture were both chosen to make the digital object feel tactile, like something that could sit on an actual shelf.</p>
 
         <h3>COLOUR AND THE PHYSICAL CARD</h3>
-        <p>Red and yellow were chosen for their loud, appetite-triggering associations with real cereal branding, with Cookie Monster's blue deliberately breaking that palette as a salient focal point. That same design thinking carried over into the printed coupon cards: a two-sided layout with the site's core palette and a dashed "cut here" border, so the packaging concept extended into something a stranger could actually hold.</p>
+        <p>Red and yellow were chosen for their loud, appetite-triggering associations with real cereal branding, with Cookie Monster's blue deliberately breaking that palette as a salient focal point. That same design thinking carried over into the printed coupon cards: a two-sided layout featuring the site's core palette and a dashed "cut here" border, the packaging concept extending into something a stranger could actually hold.</p>
       `,
       build: `
       <h3>THE PIPELINE</h3>
-      <p>Assets were designed in Canva and Adobe Fresco, exported as PNG textures, then UV-mapped onto a 3D box model in Blender before being exported and brought into a Three.js scene. Three.js was chosen over no-code tools like Spline specifically for the level of control it gives over raycasting - being able to define exactly which parts of the model respond to clicks mattered more than speed of setup.</p>
+      <p>Assets were designed in Canva and Adobe Fresco, exported as PNG textures, then UV-mapped onto a 3D box model in Blender, before being exported and brought into a Three.js scene. Three.js was chosen over no-code tools like Spline specifically for the level of control it gives over raycasting - the goal was to have each feature be clickable (eg. dress-the-dev opens to modal), so defining exactly which parts of the model respond to clicks mattered more than speed of setup.</p>
 
       <h3>INTERACTION LAYER</h3>
-      <p>OrbitControls handle the drag-to-rotate and scroll-to-zoom behaviour, while raycasting converts 2D mouse coordinates into 3D space to detect clicks on specific mesh regions - the GitHub icon, the LinkedIn laptop, a hidden rickroll barcode. The raycasting is currently inaccurate and slightly buggy, and is being actively resolved. An lightly informative click-to-start screen sits in front of all of it, after user-testing revealed that most users did not know how to interact with the cereal box.</p>
+      <p>OrbitControls handle the drag-to-rotate and scroll-to-zoom behaviour, while raycasting converts 2D mouse coordinates into 3D space to detect clicks on specific mesh regions - the GitHub icon, the LinkedIn laptop, a hidden rickroll barcode. The raycasting is currently inaccurate and slightly buggy, and is being actively resolved. A lightly informative click-to-start screen sits in front of all of it, after user-testing revealed that without it, most users did not know how to interact with the cereal box.</p>
 
       <h3>THE README & SHIPPING</h3>
       <p>The README popup uses a recursive setTimeout to type its content out character by character, with a blinking CSS cursor for a CRT-terminal feel, aligning with the overall retro-digital maximalist aesthetic. The finished site is deployed on Vercel under a custom domain (krittika.dev), the same infrastructure that hosts the rest of the portfolio.</p>
@@ -169,18 +169,18 @@
         <p>Like a toy hidden in a real cereal box, the best thing about a person doesn't have to be visible on the front panel - it's found by digging in and getting your hands sticky. That idea shaped the whole feature: rather than just a static "about me" section, visitors build something themselves, which makes the portfolio memorable in a way that simply scrolling through text can't match.</p>
         
         <h3>A PERSONAL TOUCH</h3>
-        <p>Buried inside the export flow is a small, deliberate easter egg: a company-specific gate that swaps in a differently branded export template depending on the answer. It was built specifically with lowercase in mind; matching their brand blue, researching their values, and building something that shows genuine care rather than a generic application.</p>
+        <p>Buried inside the export flow is a small, deliberate easter egg: a company-specific gate that swaps in a differently branded export template depending on the answer. It was built specifically with lowercase (a technical design studio) in mind; matching their brand blue, researching their values, and building something that shows genuine care rather than a generic application.</p>
       `,
       design: `
         <h3>THE CHARACTER & WARDROBE</h3>
-        <p>The base doll was illustrated to emulate a Bratz doll-ified version of myself, a nod to the Y2K dress up games and a small but deliberate choice, since the game is meant to be a stand-in for the person behind the portfolio, not a generic avatar. Wardrobe items are organised into six categories: footwear, bottoms, tops, jackets, jewellery, accessories, mirroring the structure of an actual closet and replicating some of my own piecees.</p>
+        <p>The base doll was illustrated to emulate a Bratz doll-ified version of myself, a nod to the Y2K dress up games and a deliberate choice, since the game is meant to be a stand-in for the person behind the portfolio, not a generic avatar. Wardrobe items are organised into six categories: footwear, bottoms, tops, jackets, jewellery, accessories, mirroring the structure of an actual closet and replicating some of my own wardrobe.</p>
 
         <h3>THE INTERFACE</h3>
-        <p>The whole feature runs on 98.css, scoped so its Windows 98 styling never bleeds into the rest of the site,meaning two entirely different design languages (1970s cereal box, late-90s desktop OS) can sit on the same site without ever colliding. The retro OS window, complete with a beveled title bar and pixel font, was an homage to the Y2K dress up games aesthetic and an intentional way to layer a second nostalgic era on top of the first.
+        <p>The whole feature runs on 98.css, scoped after the Windows 98 styling bled into the rest of the site - now, two entirely different design languages (1970s cereal box, late-90s desktop OS) can sit on the same site without ever colliding. The retro OS window, complete with a beveled title bar and pixel font, was an homage to the Y2K dress up games aesthetic and an intentional way to layer a second nostalgic era on top of the first.
         </p>
 
         <h3>THE EXPORT</h3>
-        <p>Once fully dressed, the doll can be exported as a PNG, composited onto a pre-designed "ready to work" template. Currently, two versions of that template exist: a red-and-gold one matching the site's core palette, and a blue-and-white one matching lowercase's brand specifically, swapped in automatically depending on the locked gate modal answer.</p>
+        <p>Once fully dressed, the doll can be exported as a PNG, composited onto a pre-designed "ready to work" template. Currently, two versions of that template exist: a red-and-gold one matching the site's core palette, and a blue-and-white one matching lowercase's (a technical design studio) brand specifically, swapped in automatically depending on the locked gate ('do you work at lowercase?') answer.</p>
       `,
       build: `
         <h3>LAYERED RENDERING</h3>
@@ -207,8 +207,12 @@
           { src: 'images/crufts/cereal-coupons-concept-4.png', alt: 'A look at the finished physical coupon-business cards, put together on Canva' },
         ],
         design: [
-          { src: 'images/crufts/crufts-design-1.png', alt: 'The inspiration behind the Cookie Crufts cereal box design' },
-          { src: 'images/crufts/crufts-design-2.png', alt: 'A look at the design of the front panel of the box' },
+          { src: 'images/crufts/crufts-design-1.png', alt: 'A flattened out, 1970s Apple Jacks cereal box - the inspiration behind the Cookie Crufts cereal box layout and design'},
+          { src: 'images/crufts/crufts-early-it-2.png', alt: 'A look at an early illustration of Cookie Monster, done on Adobe Fresco' },
+          { src: 'images/crufts/crufts-early-it-1.png', alt: 'A look at an earlier illustration of Cookie Monster' },
+            { src: 'images/crufts/crufts-it-4.png', alt: 'A look at an early illustration of the grad cap featured on the front panel of the cereal box' },
+          { src: 'images/crufts/crufts-design-2.png', alt: 'A look at the final design of the front panel of the box' },
+          { src: 'images/crufts/dress-circuit-maze.png', alt: 'A look at the maze website generated circuit maze, the base of the actual illustration'},
           { src: 'images/crufts/crufts-design-3.png', alt: 'A look at one of the early design iterations of the back panel of the box' },
           { src: 'images/crufts/crufts-design-4.png', alt: 'A look at one of the early design iterations of the side, top and bottom panels of the box' },
           { src: 'images/crufts/crufts-design-5.png', alt: 'A look at the final design of the informational side panel of the box' },
@@ -225,10 +229,16 @@
           { src: 'images/crufts/dress-concept-1.jpg', alt: 'The inspiration behind the dress-the-dev concept' }
         ],
         design: [
-          { src: 'images/crufts/dress-design-1.png', alt: 'An inspiration for the dress-the-dev UI' }
+          { src: 'images/crufts/dev-doll-inspo.png', alt: 'An inspiration for the dress-the-dev base doll' }, 
+          { src: 'images/crufts/dress-design-1.png', alt: 'An inspiration for the dress-the-dev UI' },
+          { src: 'images/crufts/dev-doll-it-1.png', alt: 'A look at an early iteration of the dress-the-dev base doll illustration' }, 
+          { src: 'images/crufts/dev-doll-it-2.png', alt: 'A look at another early iteration of the dress-the-dev base doll illustration' }, 
+           { src: 'images/crufts/dev-doll-it-3.png', alt: 'A look at a later iteration of the dress-the-dev base doll illustration, with outlines of clothing items' }, 
         ],
         build: [
           { src: 'images/crufts/dress-build-1.jpg', alt: 'A look at the bug which caused the export button to extend past the window and clip off the side on mobile (now fixed)' },
+          { src: 'images/crufts/dress-export-png.png', alt: 'A look at the downloaded PNG triggered by the export button (click out of the gallery and click the -> DRESS THE DEV button to style me yourself!)' },
+          { src: 'images/crufts/dress-lowercase-png.png', alt: 'A look at the downloaded, lowercase-tailored (a technical design studio) PNG triggered by the export button' },
         ]
       }, 
     };
