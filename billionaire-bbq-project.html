@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billionaire BBQ | KS</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body class="scrollable-page">
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-brand">Krittika Sharma</a>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <button onclick="openReadme()">README.TXT</button>
+      <a href="about.html">ABOUT ME</a>
+      <a href="projects.html">THE PAPER TRAIL</a>
+      <a href="https://www.linkedin.com/in/krittika-sharma-119b06245/" target="_blank">I WANNA KNOW YOU</a>
+      <a href="https://github.com/cornyfruits" target="_blank">GIT OUTTA HERE</a>
+      <a href="misc.html" class="misc-link">MISC</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="about-page">
+      <h1 class="about-heading">LOADING...</h1>
+      <a href="billionaire-bbq.html" class="crufts-link" target="_blank">↗ VIEW PROJECT</a>
+    </div>
+
+    <footer class="site-footer">
+      Designed &amp; built by Krittika Sharma
+    </footer>
+  </main>
+
+  <script type="module">
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('active');
+      });
+    }
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+    window.openReadme = () => { window.location.href = "/"; };
+  </script>
+</body>
+</html>

@@ -154,6 +154,10 @@ document.getElementById('start-screen').addEventListener('click', () => {
   canvas.classList.remove('hidden');
   document.getElementById('dress-dev-btn').classList.remove('hidden');
   document.getElementById('lowercase-btn').classList.remove('hidden');
+  // auto-open dress dev if arriving via hash
+  if (window.location.hash === '#dress-the-dev') {
+    setTimeout(() => window.openDressDev(), 500); // small delay so model loads first
+  }
 });
 
 // hamburger menu toggle for mobile

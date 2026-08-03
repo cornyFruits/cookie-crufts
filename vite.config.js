@@ -14,6 +14,7 @@ export default defineConfig({
         projects: resolve(__dirname, 'projects.html'),
         cookieCrufts: resolve(__dirname, 'cookie-crufts.html'),
         rubberDucky: resolve(__dirname, 'rubber-ducky.html'),
+        billionaireBBQProject: resolve(__dirname, 'billionaire-bbq-project.html'),
         billionaireBBQ: resolve(__dirname, 'billionaire-bbq.html'),
       },
     },
