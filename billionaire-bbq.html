@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Billionaire BBQ | KS</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="bbq.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono&display=swap" rel="stylesheet">
 </head>
 <body class="scrollable-page">
 
@@ -20,26 +21,54 @@
   </nav>
 
   <main>
-    <div class="about-page">
-      <h1 class="about-heading">BILLIONAIRE BBQ</h1>
-      <h1 class="section-label">Want to roast some kebabbed billionaires? Come back soon!</h1>
-      <br>
-      <h2>LOADING...</h2>
+    <div class="bbq-page">   
+      <div class="hero-container">
+        <div class="hero-carousel">
+          
+          <!-- Text on the Right -->
+          <div class="hero-text-container">
+            <h1 class="hero-text">BILLIONAIRE BBQ</h1>
+            <p class="hero-small-text">Roast a billionaire today.</p>
+          </div>
 
-      <div class="bbq-faces-container">
-      <img class="bbq-faces" src="../images/bbq/bbq-deff-lamos.png" alt="deff lamos">
-      <img class="bbq-faces" src="../images/bbq/bbq-fark-suckerjurg.png" alt="fark suckerjurg">
-      <img class="bbq-faces" src="../images/bbq/bbq-felon-busk.png" alt="felon busk">
-      <img class="bbq-faces" src="../images/bbq/bbq-garles-coch.png" alt="gnarles coch">
-      <img class="bbq-faces" src="../images/bbq/bbq-kill-mates.png" alt="kill mates">
-      <img class="bbq-faces" src="../images/bbq/bbq-poopert-kurdom.png" alt="poopert kurdom">
-      <img class="bbq-faces" src="../images/bbq/bbq-ronald-mumps.png" alt="ronald mumps">
-      <img class="bbq-faces" src="../images/bbq/bbq-larry-meddlesome.png" alt="larry meddlesome">
-      <img class="bbq-faces" src="../images/bbq/bbq-ham-faultsman.png" alt="ham faultsman">
-      <img class="bbq-faces" src="../images/bbq/bbq-leema-blackhart.png" alt="leema blackhart">
-      <img class="bbq-faces" src="../images/bbq/bbq-kitchard-sacked.png" alt="kitchard sacked">
-      <img class="bbq-faces" src="../images/bbq/bbq-bernard-arnault.png" alt="bernard arnault">
+          <!-- Image on the Left -->
+          <img class="hero-image" src="images/bbq/bbqed-felon-busk.png" alt="Felon Busk BBQed">
+        </div>
       </div>
+
+      <!-- How It Works Section: Text lives directly in HTML -->
+      <div class="how-works-container">
+        <div class="how-works-card">
+          <div class="how-works-image">1</div>
+          <div class="how-works-text">
+            <h3>Pick your billionaire</h3>
+          </div>
+        </div>
+
+        <div class="how-works-card">
+          <div class="how-works-image">2</div>
+          <div class="how-works-text">
+            <h3>Pick your meat</h3>
+          </div>
+        </div>
+
+        <div class="how-works-card">
+          <div class="how-works-image">3</div>
+          <div class="how-works-text">
+            <h3>Roast your kebab</h3>
+          </div>
+        </div>
+
+        <div class="how-works-card">
+          <div class="how-works-image">4</div>
+          <div class="how-works-text">
+            <h3>Choose your condiment</h3>
+          </div>
+        </div>
+      </div>
+
+      <button class="get-started">GET STARTED</button>
+      <div class="bbq-bill-selection hidden"></div>
     </div>
 
     <footer class="site-footer">
@@ -61,5 +90,6 @@
     });
     window.openReadme = () => { window.location.href = "/"; };
   </script>
+  <script src="bbq.js"></script>
 </body>
 </html>

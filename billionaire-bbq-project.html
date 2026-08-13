@@ -25,29 +25,330 @@
   </nav>
 
   <main>
-    <div class="about-page">
-      <h1 class="about-heading">LOADING...</h1>
-      <a href="billionaire-bbq.html" class="crufts-link" target="_blank">↗ VIEW PROJECT</a>
-    </div>
+      <div class="about-page">
+        <h1 class="about-heading">BILLIONAIRE BBQ.</h1>
+        <!-- links div -->
+        <div class="crufts-links">
+        <a href="billionaire-bbq.html" class="crufts-link" target="_blank">↗ VIEW PROJECT</a>
+      </div>
 
+        <!-- intro div -->
+          <p class="crufts-intro">
+            A 3D interactive...</p>
+
+        <!-- feat buttons div - clicking reveals tabs -->
+        <div class="crufts-feats">
+           <button class="crufts-feat-btns" id="btn-crufts" onclick="openFeat('crufts')">BILLIONAIRE BBQ</button>
+        </div>
+
+        <!-- tabs div container -- no padding bottom with next div's padding top -->
+        <div class="crufts-tabs-container" id="crufts-tabs-container">
+          <!-- tabs -->
+          <div class="crufts-project-tabs">
+            <button class="crufts-tab-btn active" data-tab="concept" onclick="switchTab('concept')">CONCEPT</button>
+            <button class="crufts-tab-btn active" data-tab="design" onclick="switchTab('design')">DESIGN</button>
+            <button class="crufts-tab-btn active" data-tab="build" onclick="switchTab('build')">BUILD</button>
+          </div>
+
+          <div class="crufts-tab-panel active" id="tab-concept"> 
+          </div>
+
+          <div class="crufts-tab-panel" id="tab-design"> 
+          </div>
+
+          <div class="crufts-tab-panel" id="tab-build">             
+        </div>
+        </div>
+
+        <div class="crufts-gallery-section" id="crufts-gallery-section">
+          <div class="section-label">PHOTO GALLERY</div>
+          <div class="gallery-grid" id="gallery-grid">
+
+          </div>
+        </div>
+
+        <div class="skills-strip">
+        <span class="skills-label">SKILLS</span>
+        <div class="skills-ticker-wrap">
+          <div class="skills-ticker">
+            <span>JavaScript</span><span class="skills-sep">|</span>
+            <span>HTML</span><span class="skills-sep">|</span>
+            <span>CSS</span><span class="skills-sep">|</span>
+            <span>Three.js</span><span class="skills-sep">|</span>
+            <span>WebGL</span><span class="skills-sep">|</span>
+            <span>Blender</span><span class="skills-sep">|</span>
+            <span>UI/UX Design</span><span class="skills-sep">|</span>
+            <span>98.css</span><span class="skills-sep">|</span>
+            <span>Vite</span><span class="skills-sep">|</span>
+            <span>Vercel</span><span class="skills-sep">|</span>
+            <span>Adobe Fresco</span><span class="skills-sep">|</span>
+            <span>Canva</span><span class="skills-sep">|</span>
+            <span>Hand Illustration</span><span class="skills-sep">|</span>
+            <span>Typography</span><span class="skills-sep">|</span>
+            <!-- duplicate set for seamless loop -->
+             <span>JavaScript</span><span class="skills-sep">|</span>
+            <span>HTML</span><span class="skills-sep">|</span>
+            <span>CSS</span><span class="skills-sep">|</span>
+            <span>Three.js</span><span class="skills-sep">|</span>
+            <span>WebGL</span><span class="skills-sep">|</span>
+            <span>Blender</span><span class="skills-sep">|</span>
+            <span>UI/UX Design</span><span class="skills-sep">|</span>
+            <span>98.css</span><span class="skills-sep">|</span>
+            <span>Vite</span><span class="skills-sep">|</span>
+            <span>Vercel</span><span class="skills-sep">|</span>
+            <span>Adobe Fresco</span><span class="skills-sep">|</span>
+            <span>Canva</span><span class="skills-sep">|</span>
+            <span>Hand Illustration</span><span class="skills-sep">|</span>
+            <span>Typography</span><span class="skills-sep">|</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="crufts-padding"></div>
+</div>
     <footer class="site-footer">
       Designed &amp; built by Krittika Sharma
     </footer>
   </main>
 
-  <script type="module">
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    if (hamburger) {
-      hamburger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navLinks.classList.toggle('active');
-      });
+  <div id="image-modal" class="modal hidden">
+      <div class="modal-inner">
+        <button class="modal-close" onclick="closeModal()">[ X ]</button>
+        <div class="modal-image-wrap">
+          <button class="modal-chevron modal-chevron-left" id="chevron-left" onclick="navModal(-1)">‹</button>
+          <img id="modal-img" class="modal-img" src="" alt="">
+          <button class="modal-chevron modal-chevron-right" id="chevron-right" onclick="navModal(1)">›</button>
+        </div>
+        <div class="modal-caption" id="modal-caption"></div>
+      </div>
+    </div>
+
+  <script>
+    // ── tab text content per feat btn ──────────────────────────────────────────
+    const tabContent = {
+      crufts: {
+        concept:`
+        <h3>HEADING 1</h3>
+        <p>...</p>
+
+        <h3>HEADING 2</h3>
+        <p>...</p>
+
+        <h3>HEADING 3</h3>
+        <p>...</p>
+      `,
+        design:`
+        <h3>HEADING 1</h3>
+        <p>...</p>
+
+        <h3>HEADING 2</h3>
+        <p>...</p>
+
+        <h3>HEADING 3</h3>
+        <p>...</p>
+      `,
+      build: `
+      <h3>HEADING 1</h3>
+        <p>...</p>
+
+        <h3>HEADING 2</h3>
+        <p>...</p>
+
+        <h3>HEADING 3</h3>
+        <p>...</p>
+    `
+      }, 
+      dressDev: {
+        concept: `
+        <h3>HEADING 1</h3>
+        <p>...</p>
+
+        <h3>HEADING 2</h3>
+        <p>...</p>
+
+        <h3>HEADING 3</h3>
+        <p>...</p>
+      `,
+      design: `
+        <h3>HEADING 1</h3>
+        <p>...</p>
+
+        <h3>HEADING 2</h3>
+        <p>...</p>
+
+        <h3>HEADING 3</h3>
+        <p>...</p>
+      `,
+      build: `
+        <h3>HEADING 1</h3>
+        <p>...</p>
+
+        <h3>HEADING 2</h3>
+        <p>...</p>
+
+        <h3>HEADING 3</h3>
+        <p>...</p>
+      `
+      }
+    };
+
+    // ── gallery data per feat btn ──────────────────────────────────────────
+    const galleryData = {
+      crufts: {
+        concept: [
+          { src: 'images/crufts/crufts-concept.png', alt: 'Caption' },
+          
+        ],
+        design: [
+          { src: 'images/crufts/crufts-concept.png', alt: 'Caption' },
+        ],
+        build: [
+          { src: 'images/crufts/crufts-concept.png', alt: 'Caption' },
+        ]
+      }, 
+
+      dressDev: {
+        concept: [
+          { src: 'images/crufts/crufts-concept.png', alt: 'Caption' },
+        ],
+        design: [
+          { src: 'images/crufts/crufts-concept.png', alt: 'Caption' },
+        ],
+        build: [
+          { src: 'images/crufts/crufts-concept.png', alt: 'Caption' },
+        ]
+      }, 
+    };
+ 
+    // active state
+    let activeFeat = null;
+    let activeTab  = 'concept';
+    let galleryImages = [];
+    let modalIndex = 0;
+ 
+    // ── feat button click ─────────────────────────────────────────────────
+    function openFeat(feat) {
+      // if clicking the already-active feat, collapse everything
+      if (activeFeat === feat) {
+        activeFeat = null;
+        document.querySelectorAll('.crufts-feat-btns').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('crufts-tabs-container').classList.remove('visible');
+        document.getElementById('crufts-gallery-section').classList.remove('visible');
+        return;
     }
+    activeFeat = feat;
+
+    // update feat button active state
+    document.querySelectorAll('.crufts-feat-btns').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('btn-' + feat).classList.add('active');
+
+    // show tabs container
+    document.getElementById('crufts-tabs-container').classList.add('visible');
+
+    // reset to concept tab
+    switchTab('concept');
+  }
+ 
+    // ── tab button click ──────────────────────────────────────────────────
+    function switchTab(tab) {
+      activeTab = tab;
+ 
+      // update tab button active state
+      document.querySelectorAll('.crufts-tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tab);
+      });
+
+      // render tab content
+      renderTabContent(activeFeat || 'crufts', tab);
+ 
+      // show correct panel
+      document.querySelectorAll('.crufts-tab-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === 'tab-' + tab);
+      });
+ 
+      // show gallery and populate it
+      const gallerySection = document.getElementById('crufts-gallery-section');
+      gallerySection.classList.add('visible');
+      renderGallery(activeFeat || 'crufts', tab);
+    }
+ 
+  // ── tab text content rendering ─────────────────────────────────────────────────
+    function renderTabContent(feat, tab) {
+      const panel = document.getElementById('tab-' + tab);
+      panel.innerHTML = (tabContent[feat] && tabContent[feat][tab]) || '';
+    }
+
+    // ── gallery rendering ─────────────────────────────────────────────────
+    function renderGallery(feat, tab) {
+      galleryImages = (galleryData[feat] && galleryData[feat][tab]) || [];
+      const grid = document.getElementById('gallery-grid');
+      grid.innerHTML = galleryImages.map((img, i) => `
+        <img 
+          src="${img.src}" 
+          alt="${img.alt}" 
+          class="gallery-thumb" 
+          onclick="openModal(${i})"
+        >
+      `).join('');
+    }
+ 
+    // ── modal ─────────────────────────────────────────────────────────────
+    function openModal(index) {
+      modalIndex = index;
+      updateModal();
+      document.getElementById('image-modal').classList.remove('hidden');
+    }
+ 
+    function updateModal() {
+      const img = galleryImages[modalIndex];
+      document.getElementById('modal-img').src = img.src;
+      document.getElementById('modal-img').alt = img.alt;
+      document.getElementById('modal-caption').textContent = img.alt;
+    }
+ 
+    function navModal(dir) {
+      modalIndex = (modalIndex + dir + galleryImages.length) % galleryImages.length;
+      updateModal();
+    }
+ 
+    function closeModal() {
+      document.getElementById('image-modal').classList.add('hidden');
+    }
+ 
+    // close modal on backdrop click
+    document.getElementById('image-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+ 
+    // keyboard nav
+    document.addEventListener('keydown', e => {
+      const modal = document.getElementById('image-modal');
+      if (modal.classList.contains('hidden')) return;
+      if (e.key === 'ArrowRight') navModal(1);
+      if (e.key === 'ArrowLeft')  navModal(-1);
+      if (e.key === 'Escape')     closeModal();
+    });
+ 
+    // ── open dress-the-dev on main site ───────────────────────────────────
+    function openDressDevCase() {
+      // opens the main index page and triggers the modal
+        window.open('index.html#dress-the-dev', '_blank');
+    }
+
+    
+ 
+    // ── hamburger ─────────────────────────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.querySelector('.nav-links');
+ 
+    hamburger.addEventListener('click', e => {
+      e.stopPropagation();
+      navLinks.classList.toggle('active');
+    });
+ 
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => navLinks.classList.remove('active'));
     });
-    window.openReadme = () => { window.location.href = "/"; };
   </script>
 </body>
 </html>
