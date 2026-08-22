@@ -347,6 +347,7 @@
   padding: 16px 24px;
   border-top: 2px solid var(--bbq-orange);
   background: #f4f0eb;
+  font-family: 'Space Mono', monospace;
 }
 
 .bbq-btn {
