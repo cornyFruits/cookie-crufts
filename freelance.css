@@ -1,0 +1,341 @@
+body {
+      background: #f4f0eb;
+      overflow-y: auto;
+      font-family: 'Space Mono', monospace;
+      color: #1a1a1a;
+    }
+
+    /* ── page wrapper ── */
+    .freelance-page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 96px 32px 80px;
+    }
+
+    /* ── hero ── */
+    .fl-hero {
+      margin-bottom: 64px;
+      width: 100%;
+    }
+
+    .fl-eyebrow {
+      font-family: 'VT323', monospace;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: #c30000;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .fl-heading {
+      font-family: 'VT323', monospace;
+      font-size: clamp(48px, 8vw, 80px);
+      color: #c30000;
+      line-height: 1;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+
+    .fl-subheading {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #444;
+      width: 100%;
+    }
+
+    /* ── yellow banner ── */
+    .fl-banner {
+      background: #FFD700;
+      border-left: 6px solid #c30000;
+      padding: 20px 24px;
+      margin-bottom: 64px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: #1a1a1a;
+      font-family: 'VT323', monospace;
+    }
+
+    .fl-banner strong {
+      font-weight: 700;
+    }
+
+    /* ── section label ── */
+    .fl-section-label {
+      font-family: 'VT323', monospace;
+      font-size: 13px;
+      letter-spacing: 4px;
+      color: #c30000;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .fl-section-label::before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: #c30000;
+    }
+
+    /* ── services grid ── */
+    .fl-services {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+
+    .fl-service-card {
+      border: 2px solid #c30000;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .fl-service-title {
+      font-family: 'VT323', monospace;
+      font-size: 24px;
+      color: #c30000;
+      letter-spacing: 1px;
+    }
+
+    .fl-service-desc {
+      font-size: 12px;
+      line-height: 1.8;
+      color: #444;
+      flex: 1;
+    }
+
+    .fl-service-price {
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+      color: #1a1a1a;
+      border-top: 1px solid #d9d4cc;
+      padding-top: 10px;
+      margin-top: 4px;
+    }
+
+    /* ── clients ── */
+    .fl-clients {
+      margin-bottom: 64px;
+    }
+
+    .fl-client-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .fl-client-entry {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0 32px;
+      padding: 20px 0;
+      border-bottom: 1px solid #d9d4cc;
+    }
+
+    .fl-client-entry:first-child {
+      border-top: 1px solid #d9d4cc;
+    }
+
+    .fl-client-name a {
+      font-family: 'VT323', monospace;
+      font-size: 18px;
+      color: #c30000;
+      padding-top: 2px;
+      transition: color 0.2s ease;
+      text-decoration: none;
+    }
+
+    .fl-client-name a:hover {
+      color: #FFD700;
+    }
+
+    .fl-client-desc {
+      font-size: 12px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .fl-client-tag {
+      display: inline-block;
+      font-family: 'VT323', monospace;
+      font-size: 13px;
+      background: #c30000;
+      color: #FFD700;
+      padding: 2px 8px;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+
+    /* ── testimonials ── */
+    .fl-testimonials {
+      margin-bottom: 64px;
+    }
+
+    .fl-testimonial {
+      border-left: 4px solid #FFD700;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      background: #fff8e7;
+    }
+
+    .fl-testimonial-quote {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #1a1a1a;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .fl-testimonial-author {
+      font-family: 'VT323', monospace;
+      font-size: 16px;
+      color: #c30000;
+      letter-spacing: 1px;
+    }
+
+    .fl-testimonial-placeholder {
+      border: 2px dashed #d9d4cc;
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    /* ── process ── */
+    .fl-process {
+      margin-bottom: 64px;
+    }
+
+    .fl-process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      counter-reset: steps;
+    }
+
+    .fl-step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid #d9d4cc;
+      counter-increment: steps;
+    }
+
+    .fl-step:first-child {
+      border-top: 1px solid #d9d4cc;
+    }
+
+    .fl-step-num {
+      font-family: 'VT323', monospace;
+      font-size: 28px;
+      color: #FFD700;
+      background: #c30000;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .fl-step-title {
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+      color: #c30000;
+      margin-bottom: 4px;
+      letter-spacing: 1px;
+    }
+
+    .fl-step-desc {
+      font-size: 12px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    /* ── contact ── */
+    .fl-contact {
+      margin-bottom: 40px;
+    }
+
+    .fl-contact-box {
+      border: 3px dotted #c30000;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .fl-contact-intro {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #444;
+      max-width: 520px;
+    }
+
+    .fl-contact-email {
+      font-family: 'VT323', monospace;
+      font-size: 28px;
+      color: #c30000;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color 0.2s ease;
+    }
+
+    .fl-contact-email:hover {
+      color: #FFD700;
+    }
+
+    .fl-contact-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .fl-contact-link {
+      font-family: 'VT323', monospace;
+      font-size: 16px;
+      color: #c30000;
+      border: 1px solid #c30000;
+      padding: 4px 12px;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .fl-contact-link:hover {
+      background: #c30000;
+      color: #f4f0eb;
+    }
+
+    /* ── note ── */
+    .fl-note {
+      font-size: 11px;
+      color: #aaa;
+      font-style: italic;
+      margin-top: 8px;
+    }
+
+    /* ── mobile ── */
+    @media (max-width: 768px) {
+      .fl-client-entry {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .fl-services {
+        grid-template-columns: 1fr;
+      }
+
+      .fl-step {
+        grid-template-columns: 40px 1fr;
+      }
+    }
