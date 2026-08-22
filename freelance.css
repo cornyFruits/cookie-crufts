@@ -36,6 +36,7 @@
       line-height: 1.9;
       color: #444;
       width: 100%;
+      margin-bottom: -25px;
     }
 
     /* ── yellow banner ── */
@@ -200,9 +201,10 @@
       border: 2px dashed #d9d4cc;
       padding: 24px;
       text-align: center;
-      font-size: 12px;
+      font-size: 11px;
       color: #aaa;
       font-style: italic;
+      font-family: 'Space', monospace;
     }
 
     /* ── process ── */
