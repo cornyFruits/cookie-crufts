@@ -16,7 +16,7 @@ export default defineConfig({
         rubberDucky: resolve(__dirname, 'rubber-ducky.html'),
         billionaireBBQProject: resolve(__dirname, 'billionaire-bbq-project.html'),
         billionaireBBQ: resolve(__dirname, 'billionaire-bbq.html'),
-        freelance: resolve(__dirname, 'freelance.html'),
+        freelance: resolve(__dirname, 'freelance'),
       },
     },
   },
