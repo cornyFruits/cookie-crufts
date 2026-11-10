@@ -262,7 +262,7 @@ window.gateAnswer = (yes) => {
     if (yes) {
       openLowercase(); 
     } else {
-      window.location.href = 'index.html';
+      window.location.href = '/';
     }
   } else if (gatePurpose === 'export') {
       workedAtLowercase = yes;

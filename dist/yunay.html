@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Keeps Google from listing this page. It's also not linked from your menu. -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>Mission Log</title>
+
+  <!-- Fonts: Fredoka for headings and buttons, Nunito for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap">
+
+  <style>
+    /* ==========================================================
+       1. COLOURS
+       Change a colour here and it changes everywhere.
+       Each subject has its own colour (used on the left edge of
+       its card, the tick box, and the section headings).
+       ========================================================== */
+    :root {
+      --ink: #1d2340;        /* dark navy: text, borders, header */
+      --paper: #f4f8ff;      /* page background */
+      --card: #ffffff;       /* card background */
+      --line: #d9e2f5;       /* soft borders and empty progress track */
+
+      --english: #ff6fa8;
+      --maths: #3f7cff;
+      --science: #19c28a;
+      --history: #f5a623;
+      --geo: #8a5cf6;        /* geography */
+      --activity: #ff6b4a;
+      --critic: #e0457b;     /* Friday review task */
+
+      --fm: #ffe14d;         /* yellow: "FaceTime me" tag, buttons */
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 400 17px/1.55 Nunito, system-ui, sans-serif;
+    }
+
+    /* ==========================================================
+       2. HEADER
+       Navy block with two decorative circles (pink and yellow).
+       ========================================================== */
+    header {
+      background: var(--ink);
+      color: #fff;
+      padding: 28px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* big pink circle, top right */
+    header:after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: var(--english);
+      opacity: .9;
+    }
+
+    /* smaller yellow circle */
+    header:before {
+      content: "";
+      position: absolute;
+      right: 90px;
+      top: 70px;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: var(--fm);
+    }
+
+    /* keeps header text above the circles */
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font: 700 clamp(2.2rem, 8vw, 3.6rem)/1 Fredoka, sans-serif;
+      margin: 0 0 8px;
+    }
+
+    .hello {
+      margin: 0;
+      font-size: 1.1rem;
+      opacity: .9;
+    }
+
+    /* the "your name" field, styled to look like it's part of the sentence */
+    .hello input {
+      font: inherit;
+      font-weight: 800;
+      color: var(--fm);
+      background: none;
+      border: 0;
+      border-bottom: 2px dashed var(--fm);
+      width: 9ch;
+      padding: 0 2px;
+    }
+
+    /* main content slides up over the header slightly */
+    main {
+      max-width: 760px;
+      margin: -34px auto 60px;
+      padding: 0 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ==========================================================
+       3. DAY TABS (Mon to Fri)
+       ========================================================== */
+    nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      overflow-x: auto;           /* scrolls sideways on tiny screens */
+      padding: 2px 2px 6px;
+    }
+
+    nav button {
+      flex: 1;
+      min-width: 64px;
+      font: 600 1rem Fredoka, sans-serif;
+      padding: 10px 6px;
+      border-radius: 14px;
+      border: 2px solid var(--ink);
+      background: var(--card);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    /* the currently selected day */
+    nav button[aria-selected=true] {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    /* the little "2/4" under each day name */
+    nav small {
+      display: block;
+      font: 600 .72rem Nunito;
+      opacity: .7;
+    }
+
+    /* ==========================================================
+       4. DAY PROGRESS BAR
+       ========================================================== */
+    .bar {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 14px 16px;
+      border: 2px solid var(--ink);
+      box-shadow: 5px 5px 0 var(--ink);   /* the chunky offset shadow */
+      margin-bottom: 18px;
+    }
+
+    .bar h2 {
+      font: 600 1.4rem Fredoka, sans-serif;
+      margin: 0;
+    }
+
+    .bar p {
+      margin: 0;
+      font-weight: 800;
+    }
+
+    .track {
+      height: 16px;
+      background: var(--line);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    /* width is set by JavaScript (progress function) */
+    .fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--science), var(--maths));
+      border-radius: 99px;
+      transition: width .5s;
+    }
+
+    /* ==========================================================
+       5. SUBJECT DRAWERS
+       Each subject is a card. --c is the card's accent colour,
+       and it's swapped depending on data-s (the subject).
+       ========================================================== */
+    .task {
+      --c: var(--english);          /* default colour */
+      background: var(--card);
+      border: 2px solid var(--ink);
+      border-left: 12px solid var(--c);
+      border-radius: 18px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    /* per-subject colours */
+    .task[data-s=maths]     { --c: var(--maths); }
+    .task[data-s=science]   { --c: var(--science); }
+    .task[data-s=history]   { --c: var(--history); }
+    .task[data-s=geography] { --c: var(--geo); }
+    .task[data-s=activity]  { --c: var(--activity); }
+    .task[data-s=critic]    { --c: var(--critic); }
+
+    /* the always-visible top row: tick box + subject name */
+    .hd {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+    }
+
+    /* the button you click to open or close the drawer */
+    .tg {
+      flex: 1;
+      text-align: left;
+      background: none;
+      border: 0;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+    }
+
+    /* the little arrow on the right (a rotated square corner) */
+    .tg:after {
+      content: "";
+      margin-left: auto;
+      width: 10px;
+      height: 10px;
+      border: solid var(--ink);
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+      transition: transform .25s;
+    }
+
+    /* arrow flips when the drawer is open */
+    .task.open .tg:after {
+      transform: rotate(-135deg);
+    }
+
+    .name {                          /* "English", "Maths"... */
+      font: 600 1.35rem Fredoka, sans-serif;
+    }
+
+    .sub {                           /* task title, e.g. "Gratitude list" */
+      font-size: .95rem;
+      opacity: .75;
+    }
+
+    /* crossed-out name once the subject is ticked off */
+    .task.done .name {
+      text-decoration: line-through;
+      text-decoration-thickness: 3px;
+    }
+
+    /* ==========================================================
+       6. TICK BOXES
+       .tick = the big one on the subject
+       .ck   = the smaller ones in checklists
+       ========================================================== */
+    .tick,
+    .ck {
+      appearance: none;              /* removes the browser's default checkbox */
+      flex: none;
+      width: 34px;
+      height: 34px;
+      border: 3px solid var(--ink);
+      border-radius: 10px;
+      background: #fff;
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+      margin: 0;
+    }
+
+    .ck {
+      width: 26px;
+      height: 26px;
+      border-width: 2px;
+      border-radius: 8px;
+    }
+
+    /* filled with the subject colour when ticked */
+    .tick:checked,
+    .ck:checked {
+      background: var(--c);
+    }
+
+    /* the white tick mark */
+    .tick:checked:after,
+    .ck:checked:after {
+      content: "\2713";
+      color: #fff;
+      font: 700 22px/1 Fredoka;
+    }
+
+    .ck:checked:after {
+      font-size: 17px;
+    }
+
+    /* visible outline for keyboard users */
+    .tick:focus-visible,
+    .ck:focus-visible,
+    button:focus-visible,
+    textarea:focus-visible,
+    input:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--maths);
+      outline-offset: 2px;
+    }
+
+    /* yellow "FaceTime me" badge */
+    .tag {
+      font: 600 .85rem Fredoka;
+      background: var(--fm);
+      color: var(--ink);
+      border-radius: 99px;
+      padding: 1px 10px;
+    }
+
+    /* ==========================================================
+       7. INSIDE A DRAWER
+       ========================================================== */
+    .body {
+      padding: 2px 18px 18px 18px;
+      border-top: 2px dashed var(--line);
+    }
+
+    /* each labelled section: intro, context, activity, etc. */
+    .sec {
+      margin-top: 14px;
+    }
+
+    .sec h4 {                        /* section label, in the subject colour */
+      font: 600 1rem Fredoka, sans-serif;
+      color: var(--c);
+      margin: 0 0 3px;
+      filter: brightness(.8);        /* darkens it a touch so it's readable */
+    }
+
+    .sec p {
+      margin: 0;
+    }
+
+    .words {                         /* spelling list */
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    /* checklist rows */
+    .items label {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 4px 0;
+      cursor: pointer;
+    }
+
+    /* yellow buttons: worksheet download + send button */
+    .dl,
+    .send button {
+      font: 600 1rem Fredoka;
+      background: var(--fm);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      border-radius: 12px;
+      padding: 8px 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* normal links (e.g. the reading link) */
+    .sec a:not(.dl) {
+      color: var(--maths);
+      font-weight: 800;
+    }
+
+    /* answer boxes */
+    textarea {
+      width: 100%;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      padding: 10px;
+      font: inherit;
+      resize: vertical;
+      background: #fbfcff;
+    }
+
+    textarea:focus {
+      border-color: var(--c);        /* border takes the subject colour */
+    }
+
+    /* ==========================================================
+       8. "SEND ME YOUR WORK" BLOCK
+       ========================================================== */
+    .send {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 20px;
+      padding: 16px;
+      margin-top: 22px;
+    }
+
+    .send h3 {
+      font: 600 1.2rem Fredoka;
+      margin: 0 0 4px;
+    }
+
+    .send p {
+      margin: 0 0 12px;
+      opacity: .85;
+    }
+
+    /* respect people who've turned animations off on their device */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================================
+       PAGE STRUCTURE
+       The tabs, progress bar and subject drawers are all empty
+       here. JavaScript fills them in from the DAYS list below.
+       ========================================================== -->
+  <header>
+    <div class="wrap">
+      <h1>Mission Log</h1>
+      <p class="hello">
+        Good to see you,
+        <input id="name" placeholder="your name" aria-label="Your name" maxlength="20">.
+        Pick a day, open a subject, tick it off.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <nav id="tabs" role="tablist" aria-label="Days"></nav>
+
+    <div class="bar">
+      <h2 id="dayTitle"></h2>
+      <p id="dayCount"></p>
+      <div class="track"><div class="fill" id="fill"></div></div>
+    </div>
+
+    <section id="tasks"></section>
+
+    <div class="send">
+      <h3>Send me your work</h3>
+      <p>Your answers save on this device as you type. When you’re finished for the day, download your file and message it to me.</p>
+      <button id="dl">Download today’s answers</button>
+    </div>
+  </main>
+
+  <script>
+    /* ==========================================================
+       A. THE CONTENT  (this is the bit you edit each week)
+
+       Each day has a list of "tasks" (subjects). Each task can
+       use any of these fields. Leave one out and that section
+       simply won't appear.
+
+         s    subject. One of: english, maths, science, history,
+              geography, activity, critic. Sets name and colour.
+         h    title of the task, e.g. "Gratitude list"
+         fm   put fm:1 to show the yellow "FaceTime me" badge
+         i    "What this is": a short intro
+         c    "Context": background info
+         l    reading link: ["https://...", "Link text"]
+         a    "Activity": what to actually do
+         sp   spelling words (one string, comma separated)
+         ck   checklist: ["step one", "step two"]
+         ckh  checklist heading (default is "Checklist")
+         ws   worksheet file to download, e.g. "worksheets/x.pdf"
+         bx   answer boxes: [["Label", rows, "placeholder"], ...]
+              rows = how tall the box is. placeholder is optional.
+
+       Day fields:  d = tab name, n = full name, t = day theme.
+       ========================================================== */
+
+    // Saved progress is stored under this name. If you copy this
+    // file for a new week, CHANGE THIS so progress doesn't carry over.
+    const STORE = "ck-homeschool-v2";
+
+    const DAYS = [
+
+      /* ---------------------------- MONDAY ---------------------------- */
+      {
+        d: "Mon",
+        n: "Monday",
+        t: "Gratitude and guts",
+        tasks: [
+          {
+            s: "english",
+            h: "Gratitude list",
+            i: "Warm-up writing. Gratitude is noticing the good stuff that’s easy to miss.",
+            a: "Write three things you’re grateful for today, with a sentence about why each one matters.",
+            ck: ["Think of three things", "Write why for each one", "Read it out loud once"],
+            bx: [
+              ["My three things", 5, "1.\n2.\n3."]
+            ]
+          },
+          {
+            s: "maths",
+            h: "Times tables sprint",
+            i: "Speed and accuracy for the 6, 7, 8 and 9 times tables.",
+            a: "Do the 20 mixed questions on the worksheet. Time yourself.",
+            ws: "worksheets/times-tables.pdf",   // upload this PDF to your site
+            bx: [
+              ["My time and score", 2, "Time: \nScore: /20"],
+              ["Ones I got wrong, with the right answers", 3]
+            ]
+          },
+          {
+            s: "science",
+            h: "Sink or float",
+            i: "You’re a scientist today. Predict first, test second.",
+            c: "Things sink when they’re denser than water, not just when they’re heavy.",
+            a: "Pick 8 things from around the house. Predict which sink or float, then test them in a bowl or the bath.",
+            ck: ["Choose 8 objects", "Write my predictions first", "Test each one", "Take a photo of my results"],
+            bx: [
+              ["Question and hypothesis", 3],
+              ["Materials and method", 4],
+              ["Results", 4],
+              ["Conclusion", 4, "Was my hypothesis right? What surprised me?"]
+            ]
+          },
+          {
+            s: "activity",
+            h: "Park mission",
+            a: "Go to the park. Find three different leaf shapes and sketch each one. Then do 10 minutes of something that makes you puff.",
+            ck: ["Find three leaf shapes", "Sketch them", "10 minutes of puffing"],
+            bx: [
+              ["What I found", 3]
+            ]
+          }
+        ]
+      },
+
+      /* ---------------------------- TUESDAY --------------------------- */
+      {
+        d: "Tue",
+        n: "Tuesday",
+        t: "Women who changed Australia",
+        tasks: [
+          {
+            s: "english",
+            h: "Persuasive paragraph",
+            i: "Persuasive writing convinces people with reasons, not volume.",
+            c: "Today’s question: should kids get a say in what they learn?",
+            a: "Write one strong paragraph with a clear opinion, two reasons and a punchy ending.",
+            ck: ["Pick my side", "Write two reasons", "Write a punchy ending", "Check spelling and punctuation"],
+            bx: [
+              ["My paragraph", 8]
+            ]
+          },
+          {
+            s: "maths",
+            h: "Fraction fix-up",
+            i: "Equivalent fractions are different names for the same amount.",
+            a: "Finish the worksheet, then try the challenge.",
+            ws: "worksheets/fractions.pdf",
+            bx: [
+              ["Fractions equal to 1/2 and to 2/3", 3],
+              ["Challenge: 3/4 of 24 and 2/5 of 50 (show working)", 3],
+              ["Worksheet answers", 5]
+            ]
+          },
+          {
+            s: "history",
+            h: "Edith Cowan: the first",
+            i: "Some people have to go first so others can follow.",
+            c: "In 1921 Edith Cowan became the first woman elected to an Australian parliament.",
+            l: ["https://en.wikipedia.org/wiki/Edith_Cowan", "Read about Edith Cowan"],
+            ckh: "Reading checklist",
+            ck: ["Read the article", "Write down 3 facts"],
+            bx: [
+              ["What did she do first?", 2],
+              ["Why was that a big deal back then?", 3],
+              ["What would I say to her?", 3]
+            ]
+          },
+          {
+            s: "activity",
+            h: "Bake with maths",
+            a: "Bake or cook anything. Halve or double the recipe and work out the new amounts.",
+            ck: ["Pick a recipe", "Halve or double it", "Cook it", "Take a photo"],
+            bx: [
+              ["My new amounts", 4]
+            ]
+          }
+        ]
+      },
+
+      /* --------------------------- WEDNESDAY -------------------------- */
+      {
+        d: "Wed",
+        n: "Wednesday",
+        t: "Maps and spelling",
+        tasks: [
+          {
+            s: "english",
+            fm: 1,                                  // shows the FaceTime badge
+            h: "Spelling test",
+            i: "Practising in small bursts works better than one big cram.",
+            sp: "because, believe, necessary, separate, definitely, environment, government, library, February, queue",
+            ckh: "Spelling checklist",
+            ck: ["Look, cover, write, check for 15 minutes", "Rewrite the tricky ones 3 times", "FaceTime Ricky for the test"],
+            bx: [
+              ["Words I found tricky", 3]
+            ]
+          },
+          {
+            s: "maths",
+            h: "Money maths",
+            i: "Real-life maths: budgets, totals and change.",
+            a: "You have $20. Plan a lunch for three people from a menu you make up. Add up the cost and work out your change.",
+            bx: [
+              ["My menu and prices", 5],
+              ["Total and change (show working)", 3]
+            ]
+          },
+          {
+            s: "geography",
+            h: "Draw Australia",
+            i: "Can you see the whole country in your head?",
+            a: "Draw Australia from memory. Label every state, territory and capital city. Check it against an atlas.",
+            ck: ["Draw from memory", "Label states and territories", "Add capital cities", "Fix mistakes in a different colour"],
+            bx: [
+              ["Which ones did I forget?", 2]
+            ]
+          },
+          {
+            s: "activity",
+            h: "Make a comic",
+            a: "Draw a 6 panel comic about a day in the life of your pet, a toy or a pigeon.",
+            ck: ["Plan 6 panels", "Draw them", "Add speech bubbles"],
+            bx: [
+              ["My comic in two sentences", 2]
+            ]
+          }
+        ]
+      },
+
+      /* ---------------------------- THURSDAY -------------------------- */
+      {
+        d: "Thu",
+        n: "Thursday",
+        t: "Elements and engineering",
+        tasks: [
+          {
+            s: "english",
+            h: "Story opener",
+            i: "A first paragraph has one job: make us need the second one.",
+            a: "Write the first paragraph of a story that starts with a strange noise in the night.",
+            ck: ["Plan my idea", "Write a draft", "Read it aloud and fix it"],
+            bx: [
+              ["My first paragraph", 8]
+            ]
+          },
+          {
+            s: "maths",
+            h: "Measure your room",
+            i: "Area is the space inside. Perimeter is the distance around.",
+            a: "Measure your bedroom floor in metres, then work out the area and perimeter.",
+            ws: "worksheets/area-perimeter.pdf",
+            bx: [
+              ["My measurements", 3, "Length: \nWidth: "],
+              ["Area and perimeter (show working)", 4]
+            ]
+          },
+          {
+            s: "science",
+            fm: 1,
+            h: "Periodic table song",
+            i: "Elements are the ingredients of everything.",
+            a: "Learn the first ten elements by singing the periodic table song. Then FaceTime me and sing it.",
+            ck: ["Listen to the song", "Sing along 3 times", "Write the ten from memory", "FaceTime Ricky and sing it"],
+            bx: [
+              ["The first ten from memory", 6, "1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n10."]
+            ]
+          },
+          {
+            s: "activity",
+            h: "Build a bridge",
+            a: "Build a bridge from paper, cardboard or Lego. How many coins can it hold?",
+            ck: ["Design it on paper", "Build it", "Test it with coins"],
+            bx: [
+              ["Coins held and what I’d change", 3]
+            ]
+          }
+        ]
+      },
+
+      /* ----------------------------- FRIDAY --------------------------- */
+      {
+        d: "Fri",
+        n: "Friday",
+        t: "Critic’s corner",
+        tasks: [
+          {
+            s: "critic",                             // shows as "English", pinker colour
+            h: "Review something",
+            i: "A good critic explains why, not just whether they liked it.",
+            a: "Pick a show, book, song or game and write a review.",
+            ck: ["Pick something", "Give it a star rating", "Write one good thing and one bad thing", "Check my spelling"],
+            bx: [
+              ["Title and star rating out of 5", 1],
+              ["What it did well", 3],
+              ["What it did badly", 3],
+              ["Who should watch it", 2]
+            ]
+          },
+          {
+            s: "maths",
+            h: "Puzzle time",
+            i: "Making puzzles is harder than solving them.",
+            a: "Make up 5 maths puzzles for me to solve. Put the answers in a separate box.",
+            bx: [
+              ["My 5 puzzles", 8],
+              ["Answers", 4]
+            ]
+          },
+          {
+            s: "history",
+            h: "Who’s missing?",
+            i: "Plenty of women changed history and got left out of the textbooks.",
+            a: "Find an article about a woman from history you’ve never heard of.",
+            ckh: "Reading checklist",
+            ck: ["Find an article", "Read it", "Note the key facts"],
+            bx: [
+              ["Her name and what she did", 4],
+              ["Why do I think she was left out?", 4],
+              ["Link to the article", 1]
+            ]
+          },
+          {
+            s: "activity",
+            h: "Kindness mission",
+            a: "Do one secret kind thing for someone.",
+            bx: [
+              ["What I did and how it felt", 4]
+            ]
+          }
+        ]
+      }
+    ];
+
+    /* ==========================================================
+       B. THE CODE  (you shouldn't need to touch anything below
+       unless you want to change how the page behaves)
+       ========================================================== */
+
+    // Display names for each subject code
+    const SUB = {
+      english: "English",
+      maths: "Maths",
+      science: "Science",
+      history: "History",
+      geography: "Geography",
+      activity: "Activity",
+      critic: "English"
+    };
+
+    /* S holds everything the child has done, saved on their device:
+         name  their name
+         done  which subjects are ticked
+         ck    which checklist items are ticked
+         ans   what they've typed in each answer box          */
+    let S = { name: "", done: {}, ck: {}, ans: {} };
+
+    let cur = 0;     // index of the selected day (0 = Monday)
+    let open = -1;   // index of the open drawer (-1 = none)
+
+    // Load saved progress. The try/catch means the page still works
+    // if the browser blocks storage (e.g. private browsing).
+    try {
+      S = Object.assign(S, JSON.parse(localStorage.getItem(STORE) || "{}"));
+    } catch (e) {}
+
+    // Save progress
+    const save = () => {
+      try { localStorage.setItem(STORE, JSON.stringify(S)); } catch (e) {}
+    };
+
+    // Shortcut for document.getElementById
+    const $ = (id) => document.getElementById(id);
+
+    // Makes text safe to put inside HTML (stops stray < > " breaking the page)
+    const esc = (s) =>
+      String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+    // Builds the unique save-key for a subject, e.g. day 2, subject 1 -> "2.1"
+    const key = (dayIndex, subjectIndex) => dayIndex + "." + subjectIndex;
+
+    // How many subjects are ticked on a given day
+    const count = (dayIndex) =>
+      DAYS[dayIndex].tasks.filter((t, i) => S.done[key(dayIndex, i)]).length;
+
+    // Wraps content in a labelled section inside a drawer
+    const sec = (heading, content) =>
+      `<div class="sec"><h4>${heading}</h4>${content}</div>`;
+
+    /* ---------- progress(): updates the bar and the day tabs ---------- */
+    function progress() {
+      const day = DAYS[cur];
+      const done = count(cur);
+      const total = day.tasks.length;
+
+      $("dayTitle").textContent = day.n + ": " + day.t;
+      $("dayCount").textContent = done == total ? "All done. Legend." : done + " of " + total + " subjects done";
+      $("fill").style.width = Math.round((done / total) * 100) + "%";
+
+      // Rebuild the tabs so each shows its own "2/4" count
+      $("tabs").innerHTML = DAYS.map((d, i) =>
+        `<button role="tab" aria-selected="${i == cur}" data-i="${i}">${d.d}<small>${count(i)}/${d.tasks.length}</small></button>`
+      ).join("");
+    }
+
+    /* ---------- render(): draws the subject drawers for the selected day ---------- */
+    function render() {
+      open = -1;
+
+      $("tasks").innerHTML = DAYS[cur].tasks.map((t, si) => {
+        const k = key(cur, si);
+        let body = "";
+
+        // Build each section, but only if the task has that field.
+        // The order here is the order they appear in the drawer.
+        if (t.i) body += sec("What this is", `<p>${t.i}</p>`);
+
+        if (t.c || t.l) {
+          body += sec("Context",
+            (t.c ? `<p>${t.c}</p>` : "") +
+            (t.l ? `<p><a href="${t.l[0]}" target="_blank" rel="noopener">${t.l[1]}</a></p>` : "")
+          );
+        }
+
+        if (t.a) body += sec("Activity", `<p>${t.a}</p>`);
+
+        if (t.sp) body += sec("Spelling words", `<p class="words">${t.sp}</p>`);
+
+        if (t.ck) {
+          body += sec(t.ckh || "Checklist",
+            `<div class="items">` +
+            t.ck.map((item, j) =>
+              `<label><input type="checkbox" class="ck" data-k="${k}" data-j="${j}" ${S.ck[k + ".c" + j] ? "checked" : ""}>${item}</label>`
+            ).join("") +
+            `</div>`
+          );
+        }
+
+        if (t.ws) body += sec("Worksheet", `<a class="dl" href="${t.ws}" download>Download the worksheet</a>`);
+
+        // One textarea per answer box, each with its own label and saved text
+        (t.bx || []).forEach((box, j) => {
+          body += sec(box[0],
+            `<textarea rows="${box[1]}" data-a="${k}.b${j}" placeholder="${esc(box[2] || "Type here")}" aria-label="${esc(box[0])}">${esc(S.ans[k + ".b" + j] || "")}</textarea>`
+          );
+        });
+
+        // The full drawer: tick box + title row, then the (hidden) body
+        return `
+          <article class="task${S.done[k] ? " done" : ""}" data-s="${t.s}" data-si="${si}">
+            <div class="hd">
+              <input type="checkbox" class="tick" data-k="${k}" ${S.done[k] ? "checked" : ""} aria-label="${SUB[t.s]} done">
+              <button class="tg" aria-expanded="false">
+                <span class="name">${SUB[t.s]}</span>
+                <span class="sub">${t.h}</span>
+                ${t.fm ? '<span class="tag">FaceTime me</span>' : ""}
+              </button>
+            </div>
+            <div class="body" hidden>${body}</div>
+          </article>`;
+      }).join("");
+
+      progress();
+    }
+
+    /* ---------- EVENTS ---------- */
+
+    // Clicking a day tab: switch day and redraw
+    $("tabs").onclick = (e) => {
+      const b = e.target.closest("button");
+      if (b) {
+        cur = +b.dataset.i;
+        render();
+      }
+    };
+
+    // Clicking a subject title: open it and close all the others.
+    // Clicking the one that's already open just closes it.
+    $("tasks").onclick = (e) => {
+      const toggle = e.target.closest(".tg");
+      if (!toggle) return;
+
+      const card = toggle.closest(".task");
+      const si = +card.dataset.si;
+      const wasOpen = open == si;
+
+      // close everything
+      document.querySelectorAll(".task").forEach((x) => {
+        x.classList.remove("open");
+        x.querySelector(".body").hidden = true;
+        x.querySelector(".tg").setAttribute("aria-expanded", "false");
+      });
+      open = -1;
+
+      // reopen this one (unless it was the one being closed)
+      if (!wasOpen) {
+        card.classList.add("open");
+        card.querySelector(".body").hidden = false;
+        toggle.setAttribute("aria-expanded", "true");
+        open = si;
+      }
+    };
+
+    // Ticking any box (subject tick or checklist item)
+    $("tasks").onchange = (e) => {
+      const box = e.target;
+      const card = box.closest(".task");
+
+      if (box.classList.contains("tick")) {
+        // Subject tick: mark the whole subject done or not
+        S.done[box.dataset.k] = box.checked;
+        card.classList.toggle("done", box.checked);
+
+      } else if (box.classList.contains("ck")) {
+        // Checklist item: save it, then auto-tick the subject if every
+        // item is ticked (and untick it if any item isn't)
+        S.ck[box.dataset.k + ".c" + box.dataset.j] = box.checked;
+
+        const allDone = [...card.querySelectorAll(".ck")].every((x) => x.checked);
+        const subjectTick = card.querySelector(".tick");
+        subjectTick.checked = allDone;
+        S.done[subjectTick.dataset.k] = allDone;
+        card.classList.toggle("done", allDone);
+      }
+
+      save();
+      progress();
+    };
+
+    // Typing in an answer box: save as they type
+    $("tasks").oninput = (e) => {
+      if (e.target.dataset.a) {
+        S.ans[e.target.dataset.a] = e.target.value;
+        save();
+      }
+    };
+
+    // The name field in the header
+    $("name").value = S.name || "";
+    $("name").oninput = (e) => {
+      S.name = e.target.value;
+      save();
+    };
+
+    /* ---------- DOWNLOAD: builds a text file of today's answers ---------- */
+    $("dl").onclick = () => {
+      const day = DAYS[cur];
+
+      // Heading, then one block per subject: [x] ticked or [ ] not,
+      // its checklist items, then each answer box with its label.
+      const text =
+        `Work from ${S.name || "me"}: ${day.n}\n\n` +
+        day.tasks.map((t, si) => {
+          const k = key(cur, si);
+          return (
+            `[${S.done[k] ? "x" : " "}] ${SUB[t.s]}: ${t.h}\n` +
+            (t.ck || []).map((item, j) => `   [${S.ck[k + ".c" + j] ? "x" : " "}] ${item}\n`).join("") +
+            (t.bx || []).map((box, j) => `\n${box[0]}:\n${(S.ans[k + ".b" + j] || "(blank)").trim()}\n`).join("")
+          );
+        }).join("\n---\n\n");
+
+      // Turn the text into a file and trigger the download.
+      // File name looks like "maya-wed-work.txt".
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
+      link.download =
+        (S.name || "my").replace(/\W+/g, "-").toLowerCase() + "-" + day.d.toLowerCase() + "-work.txt";
+      link.click();
+    };
+
+    // Draw the page for the first time
+    render();
+  </script>
+</body>
+</html>
