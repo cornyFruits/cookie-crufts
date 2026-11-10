@@ -30,7 +30,7 @@ export default defineConfig({
         cookieCrufts: resolve(import.meta.dirname, 'cookie-crufts.html'),
         rubberDucky: resolve(import.meta.dirname, 'rubber-ducky.html'),
         billionaireBBQProject: resolve(import.meta.dirname, 'billionaire-bbq-project.html'),
-        billionaireBBQ: resolve(import.meta.dirname, ''),
+        billionaireBBQ: resolve(import.meta.dirname, 'billionaireBBQ.html'),
         freelance: resolve(import.meta.dirname, 'freelance.html'), 
         yunay: resolve(import.meta.dirname, 'yunay.html'), 
       },
