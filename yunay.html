@@ -7,12 +7,11 @@
   <!-- Keeps Google from listing this page. It's also not linked from your menu. -->
   <meta name="robots" content="noindex, nofollow">
 
-  <title>Mission Log</title>
+  <title>Yunay's Work</title>
 
-  <!-- Fonts: Fredoka for headings and buttons, Nunito for body text -->
+  <!-- Fonts: Unkempt for headings and buttons, Monserrat for body text -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap">
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unkempt:wght@400;700&display=swap">
   <style>
     /* ==========================================================
        1. COLOURS
@@ -26,15 +25,15 @@
       --card: #ffffff;       /* card background */
       --line: #d9e2f5;       /* soft borders and empty progress track */
 
-      --english: #ff6fa8;
-      --maths: #3f7cff;
-      --science: #19c28a;
-      --history: #f5a623;
-      --geo: #8a5cf6;        /* geography */
-      --activity: #ff6b4a;
-      --critic: #e0457b;     /* Friday review task */
+      --history: #8F2D56;
+      --science: #76BED0;
+      --maths: #788C59;
+      --english: #FCBF49;
+      --geo: #57467B;        /* geography */
+      --activity: #E16036;
+      --critic: #61210F;     /* Friday review task */
 
-      --fm: #ffe14d;         /* yellow: "FaceTime me" tag, buttons */
+      --fm: #FCBF49;         /* yellow: "FaceTime me" tag, buttons */
     }
 
     * {
@@ -45,7 +44,7 @@
       margin: 0;
       background: var(--paper);
       color: var(--ink);
-      font: 400 17px/1.55 Nunito, system-ui, sans-serif;
+      font: 400 15px/1.55 Montserrat, system-ui, sans-serif;
     }
 
     /* ==========================================================
@@ -60,31 +59,6 @@
       overflow: hidden;
     }
 
-    /* big pink circle, top right */
-    header:after {
-      content: "";
-      position: absolute;
-      right: -60px;
-      top: -60px;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: var(--english);
-      opacity: .9;
-    }
-
-    /* smaller yellow circle */
-    header:before {
-      content: "";
-      position: absolute;
-      right: 90px;
-      top: 70px;
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: var(--fm);
-    }
-
     /* keeps header text above the circles */
     .wrap {
       max-width: 760px;
@@ -94,7 +68,7 @@
     }
 
     h1 {
-      font: 700 clamp(2.2rem, 8vw, 3.6rem)/1 Fredoka, sans-serif;
+      font: 700 clamp(2.2rem, 8vw, 3.6rem)/1 Unkempt, sans-serif;
       margin: 0 0 8px;
     }
 
@@ -139,7 +113,7 @@
     nav button {
       flex: 1;
       min-width: 64px;
-      font: 600 1rem Fredoka, sans-serif;
+      font: 600 1rem Unkempt, sans-serif;
       padding: 10px 6px;
       border-radius: 14px;
       border: 2px solid var(--ink);
@@ -148,16 +122,22 @@
       cursor: pointer;
     }
 
+    nav button:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+
     /* the currently selected day */
     nav button[aria-selected=true] {
       background: var(--ink);
       color: #fff;
+      border-color: var(--fm);
     }
 
     /* the little "2/4" under each day name */
     nav small {
       display: block;
-      font: 600 .72rem Nunito;
+      font: 600 .72rem Montserrat;
       opacity: .7;
     }
 
@@ -174,7 +154,7 @@
     }
 
     .bar h2 {
-      font: 600 1.4rem Fredoka, sans-serif;
+      font: 600 1.4rem Unkempt, sans-serif;
       margin: 0;
     }
 
@@ -264,7 +244,7 @@
     }
 
     .name {                          /* "English", "Maths"... */
-      font: 600 1.35rem Fredoka, sans-serif;
+      font: 600 1.35rem Unkempt, sans-serif;
     }
 
     .sub {                           /* task title, e.g. "Gratitude list" */
@@ -316,7 +296,7 @@
     .ck:checked:after {
       content: "\2713";
       color: #fff;
-      font: 700 22px/1 Fredoka;
+      font: 700 22px/1 Unkempt;
     }
 
     .ck:checked:after {
@@ -336,7 +316,7 @@
 
     /* yellow "FaceTime me" badge */
     .tag {
-      font: 600 .85rem Fredoka;
+      font: 600 .85rem Unkempt;
       background: var(--fm);
       color: var(--ink);
       border-radius: 99px;
@@ -357,7 +337,7 @@
     }
 
     .sec h4 {                        /* section label, in the subject colour */
-      font: 600 1rem Fredoka, sans-serif;
+      font: 600 1.15rem Unkempt, sans-serif;
       color: var(--c);
       margin: 0 0 3px;
       filter: brightness(.8);        /* darkens it a touch so it's readable */
@@ -384,7 +364,7 @@
     /* yellow buttons: worksheet download + send button */
     .dl,
     .send button {
-      font: 600 1rem Fredoka;
+      font: 600 1rem Unkempt;
       background: var(--fm);
       color: var(--ink);
       border: 2px solid var(--ink);
@@ -428,7 +408,7 @@
     }
 
     .send h3 {
-      font: 600 1.2rem Fredoka;
+      font: 600 1.2rem Unkempt;
       margin: 0 0 4px;
     }
 
@@ -453,11 +433,9 @@
        ========================================================== -->
   <header>
     <div class="wrap">
-      <h1>Mission Log</h1>
+      <h1>Yunay's Work</h1>
       <p class="hello">
-        Good to see you,
-        <input id="name" placeholder="your name" aria-label="Your name" maxlength="20">.
-        Pick a day, open a subject, tick it off.
+        Welcome Yunay Ramji! Click on a day, tick your tasks off, and have fun!!
       </p>
     </div>
   </header>
@@ -475,7 +453,7 @@
 
     <div class="send">
       <h3>Send me your work</h3>
-      <p>Your answers save on this device as you type. When you’re finished for the day, download your file and message it to me.</p>
+      <p>Finished? Well done, pooli! Click the button below to download today's answer file, and message it to me.</p>
       <button id="dl">Download today’s answers</button>
     </div>
   </main>
@@ -508,7 +486,7 @@
 
     // Saved progress is stored under this name. If you copy this
     // file for a new week, CHANGE THIS so progress doesn't carry over.
-    const STORE = "ck-homeschool-v2";
+    const STORE = "yunay-homeschool-wk1";
 
     const DAYS = [
 
@@ -516,11 +494,11 @@
       {
         d: "Mon",
         n: "Monday",
-        t: "Gratitude and guts",
+        t: "Funday!",
         tasks: [
           {
             s: "english",
-            h: "Gratitude list",
+            h: "Gratitude",
             i: "Warm-up writing. Gratitude is noticing the good stuff that’s easy to miss.",
             a: "Write three things you’re grateful for today, with a sentence about why each one matters.",
             ck: ["Think of three things", "Write why for each one", "Read it out loud once"],
@@ -530,36 +508,25 @@
           },
           {
             s: "maths",
-            h: "Times tables sprint",
-            i: "Speed and accuracy for the 6, 7, 8 and 9 times tables.",
-            a: "Do the 20 mixed questions on the worksheet. Time yourself.",
-            ws: "worksheets/times-tables.pdf",   // upload this PDF to your site
+            h: "Worksheets",
+            i: "Mixed questions.",
+            a: "Do the mixed questions on the worksheet.",
+            ws: "",   // upload this PDF to your site
             bx: [
-              ["My time and score", 2, "Time: \nScore: /20"],
               ["Ones I got wrong, with the right answers", 3]
             ]
           },
           {
             s: "science",
-            h: "Sink or float",
-            i: "You’re a scientist today. Predict first, test second.",
-            c: "Things sink when they’re denser than water, not just when they’re heavy.",
-            a: "Pick 8 things from around the house. Predict which sink or float, then test them in a bowl or the bath.",
-            ck: ["Choose 8 objects", "Write my predictions first", "Test each one", "Take a photo of my results"],
-            bx: [
-              ["Question and hypothesis", 3],
-              ["Materials and method", 4],
-              ["Results", 4],
-              ["Conclusion", 4, "Was my hypothesis right? What surprised me?"]
-            ]
+            h: "N/A",
           },
           {
             s: "activity",
-            h: "Park mission",
-            a: "Go to the park. Find three different leaf shapes and sketch each one. Then do 10 minutes of something that makes you puff.",
-            ck: ["Find three leaf shapes", "Sketch them", "10 minutes of puffing"],
+            h: "N/A",
+            a: "N/A",
+            ck: ["N/A"],
             bx: [
-              ["What I found", 3]
+              ["N/A", 1]
             ]
           }
         ]
@@ -569,52 +536,48 @@
       {
         d: "Tue",
         n: "Tuesday",
-        t: "Women who changed Australia",
+        t: "Chewsday (nom nom)",
         tasks: [
           {
             s: "english",
-            h: "Persuasive paragraph",
-            i: "Persuasive writing convinces people with reasons, not volume.",
-            c: "Today’s question: should kids get a say in what they learn?",
-            a: "Write one strong paragraph with a clear opinion, two reasons and a punchy ending.",
-            ck: ["Pick my side", "Write two reasons", "Write a punchy ending", "Check spelling and punctuation"],
+            fm: 1,
+            h: "Spelling test",
+            i: "A spelling test! Call me on Facetime and we'll do it together.",
+            
             bx: [
-              ["My paragraph", 8]
+              ["My spelling test", 8]
             ]
           },
           {
             s: "maths",
-            h: "Fraction fix-up",
-            i: "Equivalent fractions are different names for the same amount.",
-            a: "Finish the worksheet, then try the challenge.",
-            ws: "worksheets/fractions.pdf",
+            h: "Worksheets",
+            i: "Mixed questions.",
+            a: "Do the mixed questions on the worksheet.",
+            ws: "",   // upload this PDF to your site
             bx: [
-              ["Fractions equal to 1/2 and to 2/3", 3],
-              ["Challenge: 3/4 of 24 and 2/5 of 50 (show working)", 3],
-              ["Worksheet answers", 5]
+              ["Ones I got wrong, with the right answers", 3]
             ]
           },
           {
             s: "history",
-            h: "Edith Cowan: the first",
-            i: "Some people have to go first so others can follow.",
-            c: "In 1921 Edith Cowan became the first woman elected to an Australian parliament.",
-            l: ["https://en.wikipedia.org/wiki/Edith_Cowan", "Read about Edith Cowan"],
+            h: "The kandama",
+            i: "The history behind the kendama, a traditional Japanese toy.",
+            c: "Read this article and answer the questions below (by yourself, no AI (stay smart)).",
+            l: ["https://kendamausa.com/what-is-kendama/", "Read about the kendama"],
             ckh: "Reading checklist",
-            ck: ["Read the article", "Write down 3 facts"],
+            ck: ["Read the article", "Answer the questions below."],
             bx: [
-              ["What did she do first?", 2],
-              ["Why was that a big deal back then?", 3],
-              ["What would I say to her?", 3]
+              ["Describe the original design of the earliest kendama?", 2],
+              ["How did the kendama evolve over time?", 3],
+              ["Describe three tricks you can do with the kendama, so someone who doesn't know them can read your instructions and understand.", 3]
             ]
           },
           {
             s: "activity",
-            h: "Bake with maths",
-            a: "Bake or cook anything. Halve or double the recipe and work out the new amounts.",
-            ck: ["Pick a recipe", "Halve or double it", "Cook it", "Take a photo"],
+            h: "Kindness",
+            a: "Do something kind for someone today. It can be a small thing, like helping with a chore without being asked, or making a card for someone.",
             bx: [
-              ["My new amounts", 4]
+              ["Write down what you did, for whom, how they reacted and how it made you feel.", 4]
             ]
           }
         ]
@@ -649,13 +612,18 @@
             ]
           },
           {
-            s: "geography",
-            h: "Draw Australia",
-            i: "Can you see the whole country in your head?",
-            a: "Draw Australia from memory. Label every state, territory and capital city. Check it against an atlas.",
-            ck: ["Draw from memory", "Label states and territories", "Add capital cities", "Fix mistakes in a different colour"],
+            
+            s: "science",
+            h: "Sink or float",
+            i: "You’re a scientist today. Predict first, test second.",
+            c: "Things sink when they’re denser than water, not just when they’re heavy.",
+            a: "Pick 8 things from around the house. Predict which sink or float, then test them in a bowl or the bath.",
+            ck: ["Choose 8 objects", "Write my predictions first", "Test each one", "Take a photo of my results"],
             bx: [
-              ["Which ones did I forget?", 2]
+              ["Question and hypothesis", 3],
+              ["Materials and method", 4],
+              ["Results", 4],
+              ["Conclusion", 4, "Was my hypothesis right? What surprised me?"]
             ]
           },
           {
@@ -825,6 +793,15 @@
     const count = (dayIndex) =>
       DAYS[dayIndex].tasks.filter((t, i) => S.done[key(dayIndex, i)]).length;
 
+      // Day 0 (Monday) unlocks on START, day 1 the next morning, and so on.
+      const START = "2026-11-09";   // the Monday of this week, as YYYY-MM-DD
+
+      const isUnlocked = (i) => {
+        const [y, m, d] = START.split("-").map(Number);
+        const unlockAt = new Date(y, m - 1, d + i);   // midnight, device time
+        return new Date() >= unlockAt;
+      };
+
     // Wraps content in a labelled section inside a drawer
     const sec = (heading, content) =>
       `<div class="sec"><h4>${heading}</h4>${content}</div>`;
@@ -841,7 +818,9 @@
 
       // Rebuild the tabs so each shows its own "2/4" count
       $("tabs").innerHTML = DAYS.map((d, i) =>
-        `<button role="tab" aria-selected="${i == cur}" data-i="${i}">${d.d}<small>${count(i)}/${d.tasks.length}</small></button>`
+        `<button role="tab" aria-selected="${i == cur}" data-i="${i}" ${isUnlocked(i) ? "" : "disabled"}>
+          ${d.d}<small>${isUnlocked(i) ? count(i) + "/" + d.tasks.length : "locked"}</small>
+        </button>`
       ).join("");
     }
 
@@ -977,13 +956,6 @@
       }
     };
 
-    // The name field in the header
-    $("name").value = S.name || "";
-    $("name").oninput = (e) => {
-      S.name = e.target.value;
-      save();
-    };
-
     /* ---------- DOWNLOAD: builds a text file of today's answers ---------- */
     $("dl").onclick = () => {
       const day = DAYS[cur];
@@ -1009,6 +981,9 @@
         (S.name || "my").replace(/\W+/g, "-").toLowerCase() + "-" + day.d.toLowerCase() + "-work.txt";
       link.click();
     };
+
+    // Start on the latest unlocked day (so Wednesday opens on Wednesday)
+    for (let i = 0; i < DAYS.length; i++) if (isUnlocked(i)) cur = i;
 
     // Draw the page for the first time
     render();
