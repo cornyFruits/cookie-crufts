@@ -29,11 +29,12 @@
       --science: #76BED0;
       --maths: #788C59;
       --english: #FCBF49;
-      --geo: #57467B;        /* geography */
+      --geo: #57467B;        
       --activity: #E16036;
-      --play: #61210F;     /* Friday review task */
+      --play: #61210F;     
+      --review: #C23681;
 
-      --fm: #FCBF49;         /* yellow: "FaceTime me" tag, buttons */
+      --fm: #FCBF49;         /* ft button */
     }
 
     * {
@@ -175,7 +176,7 @@
     .fill {
       height: 100%;
       width: 0;
-      background: linear-gradient(90deg, var(--science), var(--maths));
+      background: linear-gradient(90deg, #FCBF49, #C23681);
       border-radius: 99px;
       transition: width .5s;
     }
@@ -202,6 +203,7 @@
     .task[data-s=geography] { --c: var(--geo); }
     .task[data-s=activity]  { --c: var(--activity); }
     .task[data-s=play]    { --c: var(--play); }
+    .task[data-s=review]    { --c: var(--review); }
 
     /* the always-visible top row: tick box + subject name */
     .hd {
@@ -396,6 +398,36 @@
       border-color: var(--c);        /* border takes the subject colour */
     }
 
+    /* subtitle under the day title */
+  .daysub {
+    font: 400 1rem Unkempt, sans-serif;
+    opacity: .85;
+    margin: 4px 0 8px;
+  }
+  
+  .daysub:empty { display: none; }
+
+  /* word of the day */
+  #wotd:not(:empty) {
+    background: var(--fm);
+    border: 2px solid var(--ink);
+    border-radius: 18px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+  }
+
+  #wotd small {
+    font: 600 .85rem Unkempt, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+
+  #wotd h3 {
+    font: 700 1.6rem Unkempt, sans-serif;
+    margin: 2px 0;
+  }
+  #wotd p { margin: 4px 0 0; }
+
     /* ==========================================================
        8. "SEND ME YOUR WORK" BLOCK
        ========================================================== */
@@ -445,10 +477,11 @@
 
     <div class="bar">
       <h2 id="dayTitle"></h2>
+      <p id="daySub" class="daysub"></p>
       <p id="dayCount"></p>
       <div class="track"><div class="fill" id="fill"></div></div>
     </div>
-
+    <div id="wotd"></div>     
     <section id="tasks"></section>
 
     <div class="send">
@@ -467,10 +500,10 @@
        simply won't appear.
 
          s    subject. One of: english, maths, science, history,
-              geography, activity, play. Sets name and colour.
+              geography, activity, play, review. Sets name and colour.
          h    title of the task, e.g. "Gratitude list"
          fm   put fm:1 to show the yellow "FaceTime me" badge
-         i    "What this is": a short intro
+         i    "What": a short intro
          c    "Context": background info
          l    reading link: ["https://...", "Link text"]
          a    "Activity": what to actually do
@@ -588,14 +621,22 @@
         d: "Wed",
         n: "Wednesday",
         t: "A great day!",
+        sub: "Spread the tasks out throughout the day, and take breaks in between. Remember this is meant to nourish your brain and it isn't a race. Don't forget to have fun Ramji!",
+        wotd: {
+          w: "Agog",
+          say: "ah-gog",
+          pos: "adjective",
+          def: "Full of intense interest or excitement about something.",
+          ex: "Avyaan was agog as he stepped into the aviary and saw all his favourite birds flying, hopping and twittering around him."
+        }, 
         tasks: [
           {
             s: "english",
-            fm: 1,                                  // shows the FaceTime badge
+            fm: 1, // show ft badge                               
             h: "Spelling and reading",
             i: "A spelling test with Kunni Didi! Call her anytime from 11am. Then, read a book of your choice for 30 minutes.",
             ckh: "Spelling checklist",
-            ck: ["Facetime Kunni Didi", "Complete the spelling test on paper", "Rewrite the tricky words thrice each", "Read a book for 30 minutes"],
+            ck: ["Facetime Kunni Didi", "Complete the spelling test on paper", "Rewrite the tricky words thrice each", "Read a book for 30 minutes", "Use the word of the day (defined above) in a sentence today"],
             bx: [
               ["Words I found tricky", 3]
             ], 
@@ -644,7 +685,20 @@
             h: "Games, games, games!!",
             a: "Play any game(s) you like! Scrabble, Kendama, NYT Games with the cousins, chess etc. Have fun Ramji!",
           }, 
-
+          {
+            s: "review",
+            h: "Review today's work",
+            i: "Reflect on your work today.",
+            a: "Reflect, think and thoughtfully answer the questions below.",
+            bx: [
+              ["Which activity did you enjoy doing the most today? Why?", 3], 
+              ["Which activity didn't you enjoy as much? Why?", 3], 
+              ["Which activity did you spend the most time on today? Elaborate.", 3], 
+              ["Describe the most interesting thing you learnt today", 3], 
+              ["What was your favourite part about today? It can be anything!", 3], 
+              ["Do you have any feedback for me? It could be about an an activity I wrote, or something you want to see more of in your schedule :)", 4], 
+            ]
+          }, 
 
         ]
       },
@@ -706,7 +760,7 @@
         t: "Play",
         tasks: [
           {
-            s: "play",                             // shows as "English", pinker colour
+            s: "play",                             
             h: "Review something",
             i: "A good critic explains why, not just whether they liked it.",
             a: "Pick a show, book, song or game and write a review.",
@@ -766,7 +820,8 @@
       history: "History",
       geography: "Geography",
       activity: "Activity",
-      play: "Play"
+      play: "Play", 
+      review: "Review",
     };
 
     /* S holds everything the child has done, saved on their device:
@@ -824,7 +879,17 @@
       const total = day.tasks.length;
 
       $("dayTitle").textContent = day.n + ": " + day.t;
-      $("dayCount").textContent = done == total ? "All done. Legend." : done + " of " + total + " subjects done";
+      $("dayCount").textContent = done == total ? "All done! Proud of ya." : done + " of " + total + " completed";
+      $("daySub").innerHTML = day.sub || "";
+
+      const w = day.wotd;
+      $("wotd").innerHTML = w
+        ? `<small>Word of the day</small>
+          <h3>${w.w} <span style="font-weight:400;font-size:1rem">(${w.pos}) · ${w.say}</span></h3>
+          <p>${w.def}</p>
+          <p><em>${w.ex}</em></p>`
+        : "";
+
       $("fill").style.width = Math.round((done / total) * 100) + "%";
 
       // Rebuild the tabs so each shows its own "2/4" count
@@ -955,6 +1020,10 @@
         card.classList.toggle("done", allDone);
       }
 
+      if (count(cur) === DAYS[cur].tasks.length) {
+        confetti();
+      }
+
       save();
       progress();
     };
@@ -969,6 +1038,7 @@
 
     /* ---------- DOWNLOAD: builds a text file of today's answers ---------- */
     $("dl").onclick = () => {
+      confetti();
       const day = DAYS[cur];
 
       // Heading, then one block per subject: [x] ticked or [ ] not,
@@ -995,6 +1065,50 @@
 
     // Start on the latest unlocked day (so Wednesday opens on Wednesday)
     for (let i = 0; i < DAYS.length; i++) if (isUnlocked(i)) cur = i;
+
+    // confetti once everything is ticked! 
+    function confetti() {
+    // skip it for anyone who's turned animations off
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const c = document.createElement("canvas");
+    c.style.cssText = "position:fixed;inset:0;pointer-events:none;z-index:999";
+    c.width = innerWidth;
+    c.height = innerHeight;
+    document.body.appendChild(c);
+
+    const g = c.getContext("2d");
+    const colours = ["#ff6fa8", "#3f7cff", "#19c28a", "#f5a623", "#8a5cf6", "#ffe14d"];
+
+    // 150 pieces, starting above the top of the screen
+    const bits = Array.from({ length: 150 }, () => ({
+      x: Math.random() * c.width,
+      y: -20 - Math.random() * c.height * 0.5,
+      w: 6 + Math.random() * 6,
+      h: 10 + Math.random() * 8,
+      vx: -1 + Math.random() * 2,        // sideways drift
+      vy: 2 + Math.random() * 3,         // fall speed
+      r: Math.random() * 6.28,
+      vr: -0.15 + Math.random() * 0.3,   // spin
+      col: colours[Math.floor(Math.random() * colours.length)]
+    }));
+
+    (function tick() {
+      g.clearRect(0, 0, c.width, c.height);
+      let alive = false;
+      bits.forEach((b) => {
+        b.x += b.vx; b.y += b.vy; b.r += b.vr;
+        if (b.y < c.height + 20) alive = true;
+        g.save();
+        g.translate(b.x, b.y);
+        g.rotate(b.r);
+        g.fillStyle = b.col;
+        g.fillRect(-b.w / 2, -b.h / 2, b.w, b.h);
+        g.restore();
+      });
+      alive ? requestAnimationFrame(tick) : c.remove();   // cleans itself up
+    })();
+  }
 
     // Draw the page for the first time
     render();
