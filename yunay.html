@@ -31,7 +31,7 @@
       --english: #FCBF49;
       --geo: #57467B;        /* geography */
       --activity: #E16036;
-      --critic: #61210F;     /* Friday review task */
+      --play: #61210F;     /* Friday review task */
 
       --fm: #FCBF49;         /* yellow: "FaceTime me" tag, buttons */
     }
@@ -201,7 +201,7 @@
     .task[data-s=history]   { --c: var(--history); }
     .task[data-s=geography] { --c: var(--geo); }
     .task[data-s=activity]  { --c: var(--activity); }
-    .task[data-s=critic]    { --c: var(--critic); }
+    .task[data-s=play]    { --c: var(--play); }
 
     /* the always-visible top row: tick box + subject name */
     .hd {
@@ -467,7 +467,7 @@
        simply won't appear.
 
          s    subject. One of: english, maths, science, history,
-              geography, activity, critic. Sets name and colour.
+              geography, activity, play. Sets name and colour.
          h    title of the task, e.g. "Gratitude list"
          fm   put fm:1 to show the yellow "FaceTime me" badge
          i    "What this is": a short intro
@@ -587,54 +587,65 @@
       {
         d: "Wed",
         n: "Wednesday",
-        t: "Maps and spelling",
+        t: "A great day!",
         tasks: [
           {
             s: "english",
             fm: 1,                                  // shows the FaceTime badge
-            h: "Spelling test",
-            i: "Practising in small bursts works better than one big cram.",
-            sp: "because, believe, necessary, separate, definitely, environment, government, library, February, queue",
+            h: "Spelling and reading",
+            i: "A spelling test with Kunni Didi! Call her anytime from 11am. Then, read a book of your choice for 30 minutes.",
             ckh: "Spelling checklist",
-            ck: ["Look, cover, write, check for 15 minutes", "Rewrite the tricky ones 3 times", "FaceTime Ricky for the test"],
+            ck: ["Facetime Kunni Didi", "Complete the spelling test on paper", "Rewrite the tricky words thrice each", "Read a book for 30 minutes"],
             bx: [
               ["Words I found tricky", 3]
-            ]
+            ], 
           },
           {
             s: "maths",
-            h: "Money maths",
-            i: "Real-life maths: budgets, totals and change.",
-            a: "You have $20. Plan a lunch for three people from a menu you make up. Add up the cost and work out your change.",
+            h: "Worksheets and puzzles",
+            i: "Worksheets on algebra, fractions and decimals, plus a practical puzzle.",
+            a: "Complete the worksheets and write your answers down in the relevant textbox below. Then, get a matchbox and use the matches to complete <a href='https://www.mathsisfun.com/puzzles/a-perfect-match.html' target='_blank' rel='noopener'>this puzzle</a>. Don't look at the answer until you've solved it yourself!",
+            ws: "worksheets/yunay-maths-wed.pdf", 
             bx: [
-              ["My menu and prices", 5],
-              ["Total and change (show working)", 3]
+              ["Math Worksheet", 5],
+              ["Decimals Worksheet", 5],
+              ["Fractions Worksheet", 5], 
+              ["Describe the strategy you used to solve the matchstick puzzle.", 5]
             ]
           },
           {
-            
             s: "science",
-            h: "Sink or float",
-            i: "You’re a scientist today. Predict first, test second.",
-            c: "Things sink when they’re denser than water, not just when they’re heavy.",
-            a: "Pick 8 things from around the house. Predict which sink or float, then test them in a bowl or the bath.",
-            ck: ["Choose 8 objects", "Write my predictions first", "Test each one", "Take a photo of my results"],
+            h: "Bilingual brains and penguins",
+            i: "Let's learn about how cool bilingual brains are and how they work! Watch <a href='https://www.youtube.com/watch?v=MMmOLN5zBLY' target='_blank' rel='noopener'>the benefits of a bilingual brain video</a>. Then, <a href='https://www.youtube.com/watch?v=q3uXXh1sHcI' target='_blank' rel='noopener'>this video</a> on a cute, baby penguin trying to make friends (awwww).",
+            a: "Watch both the videos and then answer the questions below. Make sure you give fully sentenced, thoughtful answers, include relevant details.",
             bx: [
-              ["Question and hypothesis", 3],
-              ["Materials and method", 4],
-              ["Results", 4],
-              ["Conclusion", 4, "Was my hypothesis right? What surprised me?"]
+              ["What is the difference between monolingual, bilingual and multilingual?", 3],
+              ["Name and describe the different types of bilinguals.", 3],
+              ["Why do children learn languages more easily? Include relevant theories and details.", 4],
+              ["What are three benefits of being bilingual?", 4],
+              ["What is the dorsolateral prefrontal cortex and what does it do?", 4],
+              ["How do you feel about being bilingual?", 4],
+              ["Describe the personalities of the snow chick and the rest of the baby penguins in the colony.", 4],
+              ["What is one new thing you learned from this video?", 4],
+              ["Reflect on the experiences of humans and penguins. Think about our social behaviours, similarities, differences, whether you ever felt like the snow chick and if you think penguins have the same emotions as us too. Your response should be a thoughtful, well-structured paragraph.", 4],
             ]
           },
           {
             s: "activity",
-            h: "Make a comic",
-            a: "Draw a 6 panel comic about a day in the life of your pet, a toy or a pigeon.",
-            ck: ["Plan 6 panels", "Draw them", "Add speech bubbles"],
+            h: "Go outside!",
+            a: "Get out of the apartment and do something fun! Maybe a walk in the park, Publix - anything that gets you outside. Notice the little things around you and what activates each of your senses: sight, sound, smell, taste and touch. Take a photo of something you see that makes you smile. Take a deep breath and enjoy yourself <3",
+            ck: ["Went outside", "Noticed the little things and my sensations", "Took a photo of something that made me smile"],
             bx: [
-              ["My comic in two sentences", 2]
+              ["My observations and thoughts, and something I am grateful for.", 2]
             ]
-          }
+          }, 
+          {
+            s: "play",
+            h: "Games, games, games!!",
+            a: "Play any game(s) you like! Scrabble, Kendama, NYT Games with the cousins, chess etc. Have fun Ramji!",
+          }, 
+
+
         ]
       },
 
@@ -692,10 +703,10 @@
       {
         d: "Fri",
         n: "Friday",
-        t: "Critic’s corner",
+        t: "Play",
         tasks: [
           {
-            s: "critic",                             // shows as "English", pinker colour
+            s: "play",                             // shows as "English", pinker colour
             h: "Review something",
             i: "A good critic explains why, not just whether they liked it.",
             a: "Pick a show, book, song or game and write a review.",
@@ -755,7 +766,7 @@
       history: "History",
       geography: "Geography",
       activity: "Activity",
-      critic: "English"
+      play: "Play"
     };
 
     /* S holds everything the child has done, saved on their device:
@@ -834,7 +845,7 @@
 
         // Build each section, but only if the task has that field.
         // The order here is the order they appear in the drawer.
-        if (t.i) body += sec("What this is", `<p>${t.i}</p>`);
+        if (t.i) body += sec("What", `<p>${t.i}</p>`);
 
         if (t.c || t.l) {
           body += sec("Context",

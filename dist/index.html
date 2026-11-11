@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cookie Crufts</title>
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/main-BPp0xRXJ.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/style-CFFpfXe0.js">
-  <link rel="stylesheet" crossorigin href="./assets/style-BnP3D5HR.css">
+  <script type="module" crossorigin src="./assets/main-Cp7ivuDy.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-P2Xu9kJm.js">
   <link rel="stylesheet" crossorigin href="./assets/main-B1nlQHQt.css">
+  <link rel="stylesheet" crossorigin href="./assets/style-C9oofxub.css">
 </head>
 <body>
 
@@ -46,10 +46,160 @@
   <!-- three.js canvas -->
   <canvas id="three-canvas" class="hidden"></canvas>
 
+  <!-- lowercase. button -->
+  <button id="lowercase-btn" class="hidden" onclick="openLowercaseGate()">for lowercase</button>
+
+  <!-- lowercase. popup -->
+  <div id="lowercase-popup" class="hidden win98-scope">
+    <div class="window lowercase-window">
+      <div class="title-bar">
+        <div class="title-bar-text">lowercase - message (plain text)</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close" onclick="closeLowercase()"></button>
+        </div>
+      </div>
+
+      <div class="window-body lowercase-body-wrap">
+
+        <!-- menu bar -->
+        <div class="lowercase-menu-bar">
+          <span><u>f</u>ile</span>
+          <span><u>e</u>dit</span>
+          <span><u>v</u>iew</span>
+          <span><u>i<i></i></u>nsert</span>
+          <span><u>f</u>ormat</span>
+          <span><u>t</u>ools</span>
+          <span><u>a</u>ctions</span>
+          <span><u>t</u>able</span>
+          <span><u>w</u>indow</span>
+          <span><u>h</u>elp</span>
+        </div>
+
+        <!-- icon toolbar -->
+        <div class="lowercase-toolbar">
+          <button class="icon-btn icon-btn-wide">
+            <img  class="icon-placeholder" src="images/lowercase/send.png" alt=""> send
+          </button>
+          <div class="vertical-bar"></div>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/floppy.png" alt=""></button>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/printer.png" alt=""></button>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/ab.png" alt=""></button>
+          <div class="vertical-bar"></div>
+          <button class="icon-btn"><span class="icon-placeholder">✂️</span></button>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/papers.png" alt=""></button>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/post-it.png" alt=""></button>
+          <div class="vertical-bar"></div>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/paint.png" alt=""></button>
+          <button class="icon-btn"><span class="icon-placeholder">📎</span></button>
+          <div class="vertical-bar"></div>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/open-book.png" alt=""></button>
+          <div class="vertical-bar"></div>
+          <button class="icon-btn icon-btn-wide">
+            options...
+          </button>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/question.png" alt=""></button>
+        </div>
+
+        <!-- formatting bar -->
+        <div class="lowercase-format-bar">
+          <select class="format-select format-select-wide">
+            <option>normal</option>
+            <option>abnormal</option>
+            <option>pedestrian</option>
+            <option>whimsical</option>
+          </select>
+          <select class="format-select format-select-wide">
+            <option>arial</option>
+            <option>times new roman</option>
+            <option>roboto</option>
+            <option>calibri</option>
+          </select>
+          <select class="format-select format-select-narrow">
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+          </select>
+          <div class="vertical-bar"></div>
+          <button class="icon-btn format-icon-btn"><b>b</b></button>
+          <button class="icon-btn format-icon-btn"><i>i</i></button>
+          <button class="icon-btn format-icon-btn"><u>u</u></button>
+          <div class="vertical-bar"></div>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/left-align.png" alt=""></button>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/center-align.png" alt=""></button>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/right-align.png" alt=""></button>
+          <button class="icon-btn"><img  class="icon-placeholder" src="images/lowercase/justify.png" alt=""></button>
+        </div>
+
+        <!-- to / cc / subject, add read only to make inactive-->
+        <div class="lowercase-header-fields">
+          <div class="field-row lowercase-field">
+            <button class="lowercase-field-btn">to<u>.</u>..</button>
+            <input type="text" value="hiring@lowercase.club">
+          </div>
+          <div class="field-row lowercase-field">
+            <button class="lowercase-field-btn"><u>c</u>c...</button>
+            <input type="text" value="">
+          </div>
+          <div class="field-row lowercase-field lowercase-subject-row">
+            <label class="lowercase-subject-label">sub<u>j</u>ect:</label>
+            <input type="text" value="a little something extra, made just for you">
+          </div>
+        </div>
+
+        <div class="sunken-panel lowercase-message-body">
+          <p>welcome to your window [of opportunity], lowercase :)</p>
+          <p>i've always thought the smallest details are where all the meaning hides. looks like you build with the same belief &lt;3 </p>
+          <p>a hand-picked few things for you to enjoy:</p>
+          <div class="link-list">
+            <ul>
+              <li><p><a href="index" target="_blank">the craft</a></p></li>
+              <li><p><a href="about" target="_blank">the experience</a></p></li>
+              <li><p><a href="misc" target="_blank">the proof of personality</a> [incl. are.na]</p></li>
+              <li><p>and finally, a treat: <a href="#" onclick="closeLowercase(); document.getElementById('dress-dev-btn').click(); return false;" target="_blank">dress-the-dev</a></p></li>
+            </ul>
+            
+          </div>
+          <p>let's talk about anything [at <a href="mailto:krittika.sharma07@gmail.com">krittika@gmail.com</a>]!</p>
+          <p>live, love and hehe, </p>
+          <p>krittika</p>
+        </div>
+
+        <div class="status-bar lowercase-status-bar">
+          <div class="status-bar-field"></div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+  <!-- lowercase yes/no popup -->
+  <div id="lowercase-gate-popup" class="hidden win98-scope">
+    <div class="window gate-window">
+      <div class="title-bar">
+        <div class="title-bar-text">verify</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" onclick="closeGate()"></button>
+        </div>
+      </div>
+      <div class="window-body gate-body">
+        <img class="gate-lock" src="images/lowercase/padlock.png" alt="padlock-icon">
+        <p>do you work at lowercase?</p>
+        <div class="gate-buttons">
+          <button onclick="gateAnswer(true)">yes</button>
+          <button onclick="gateAnswer(false)">no</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
   <!-- dress the dev button -->
 <button id="dress-dev-btn" class="hidden" onclick="openDressDev()">DRESS THE DEV</button>
 
-<!-- dress the dev popup --><!-- dress the dev popup -->
+<!-- dress the dev popup -->
 <div id="dress-dev-popup" class="hidden win98-scope">
   <div class="window dress-dev-window">
     <div class="title-bar">
@@ -71,7 +221,7 @@
           <li role="tab" data-category="jewellery"><a href="#">Jewellery</a></li>
           <li role="tab" data-category="accessories"><a href="#">Accessories</a></li>
         </menu>
-        <button id="export-btn" class="export-icon-btn" disabled onclick="exportDoll()">
+        <button id="export-btn" class="export-icon-btn" disabled onclick="openExportGate()">
     <img src="images/dress-dev/export-icon.png" alt="Export">
   </button>
       </div>
@@ -94,13 +244,13 @@
             </div>
           </div>
 
-          <!-- right side: character preview -->
+          <!-- right side: character preview, items at the top layer underneath, accessories layer on top of everything else-->
           <div class="closet-preview sunken-panel">
             <img id="dev-character" src="images/dress-dev/dev-doll-base.png" alt="Dress the dev avatar">
             <img id="layer-footwear" class="doll-layer hidden" src="" alt="">
-            <img id="layer-jewellery" class="doll-layer hidden" src="" alt="">
             <img id="layer-bottoms" class="doll-layer hidden" src="" alt="">
             <img id="layer-tops" class="doll-layer hidden" src="" alt="">
+            <img id="layer-jewellery" class="doll-layer hidden" src="" alt="">
             <img id="layer-jackets" class="doll-layer hidden" src="" alt="">
             <img id="layer-accessories" class="doll-layer hidden" src="" alt="">
           </div>
