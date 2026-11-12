@@ -109,6 +109,7 @@
       margin-bottom: 14px;
       overflow-x: auto;           /* scrolls sideways on tiny screens */
       padding: 2px 2px 6px;
+      flex-wrap: nowrap;
     }
 
     nav button {
@@ -121,6 +122,7 @@
       background: var(--card);
       color: var(--ink);
       cursor: pointer;
+      white-space: nowrap;
     }
 
     nav button:disabled {
@@ -449,6 +451,90 @@
       opacity: .85;
     }
 
+    #saveStatus {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: inline-block;
+      width: fit-content;
+      max-width: 190px;
+      color: #fff;
+      padding: 6px 12px;
+      margin: 0;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,.15);
+    }
+
+    /* LOGIN OVERLAY */
+
+#login {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  background: rgba(29, 35, 64, 0.25);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+}
+
+#login[hidden] {
+  display: none;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 42px 30px;
+  text-align: center;
+
+  background: var(--card);
+  color: var(--ink);
+  border: 2px solid var(--line);
+  border-radius: 24px;
+  box-shadow: 0 18px 60px rgba(29, 35, 64, 0.2);
+}
+
+.login-card h2 {
+  font: 700 2.3rem/1.1 Unkempt, sans-serif;
+  margin: 0 0 12px;
+}
+
+.login-card p {
+  margin: 0 0 24px;
+}
+
+#googleLogin {
+  width: 100%;
+  padding: 15px 20px;
+
+  border: 0;
+  border-radius: 14px;
+
+  background: var(--ink);
+  color: white;
+
+  font: 700 16px Montserrat, sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+#googleLogin:hover {
+  background: var(--fm);
+  transform: translateY(-2px);
+}
+
+#loginError {
+  color: #c23636;
+  margin: 14px 0 0;
+}
+
     /* respect people who've turned animations off on their device */
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
@@ -468,6 +554,9 @@
       <h1>Yunay's Work</h1>
       <p class="hello">
         Welcome Yunay Ramji! Click on a day, tick your tasks off, and have fun!!
+      </p>
+      <p id="saveStatus" aria-live="polite">
+        Loading saved work...
       </p>
     </div>
   </header>
@@ -491,6 +580,21 @@
     </div>
   </main>
 
+  
+  <div id="login">
+  <div class="login-card">
+    <h2>Welcome to Yunay's Work!</h2>
+    <p>Sign in to see what he's up to this week ❤️</p>
+
+    <button id="googleLogin">
+      Sign in
+    </button>
+
+    <p id="loginError"></p>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     /* ==========================================================
        A. THE CONTENT  (this is the bit you edit each week)
@@ -519,7 +623,39 @@
 
     // Saved progress is stored under this name. If you copy this
     // file for a new week, CHANGE THIS so progress doesn't carry over.
-    const STORE = "yunay-homeschool-wk1";
+  // Supabase connection
+const STORE = "yunay-homeschool-wk1";
+
+const SUPABASE_URL = "https://gwzfmrrfjcfxqqbconin.supabase.co";
+const SUPABASE_KEY = "sb_publishable_VDAL4OtyZmhIVWUSUKqWOA_jvBRapyD";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY,
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true
+    }
+  }
+);
+
+// Google sign-in
+document.getElementById("googleLogin").onclick =
+async () => {
+  const { error } = await db.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: window.location.origin + window.location.pathname
+    }
+  });
+
+  if (error) {
+    document.getElementById("loginError").textContent =
+      "Sign-in failed. Please try again.";
+  }
+};
 
     const DAYS = [
 
@@ -708,37 +844,59 @@
         d: "Thu",
         n: "Thursday",
         t: "Elements and engineering",
+        sub: "Spread the tasks out throughout the day, and take breaks in between. Remember this is meant to nourish your brain and it isn't a race. Don't forget to have fun Ramji!",
+        wotd: {
+          w: "Bumbershoot",
+          say: "bumber-SH-oot",
+          pos: "noun",
+          def: "Informal, old-fashioned American word for umbrella.",
+          ex: "Avyaan was agog as he stepped into the aviary and saw all his favourite birds flying, hopping and twittering around him."
+        }, 
         tasks: [
           {
             s: "english",
             h: "Story opener",
             i: "A first paragraph has one job: make us need the second one.",
             a: "Write the first paragraph of a story that starts with a strange noise in the night.",
-            ck: ["Plan my idea", "Write a draft", "Read it aloud and fix it"],
+            ck: ["Plan my idea", "Write a draft", "Read for 30 minutes", "Review spelling test words I got wrong yesterday"],
             bx: [
               ["My first paragraph", 8]
             ]
           },
           {
             s: "maths",
-            h: "Measure your room",
-            i: "Area is the space inside. Perimeter is the distance around.",
-            a: "Measure your bedroom floor in metres, then work out the area and perimeter.",
+            h: "Word problems and mind exercising",
+            i: "Word problems force you to think harder about your strategy and mind exercises keep your mind sharp!",
+            a: "Complete the worksheet word problems, answering the relevant questions below as you go. Make sure to read the strategy pages properly before doing the questions; they are there to help you! Then, complete the NYT Sudoku (Easy) by yourself (reminder of the sudoku rules ).",
             ws: "worksheets/area-perimeter.pdf",
             bx: [
               ["My measurements", 3, "Length: \nWidth: "],
               ["Area and perimeter (show working)", 4]
             ]
           },
+          
           {
             s: "science",
             fm: 1,
             h: "Periodic table song",
-            i: "Elements are the ingredients of everything.",
-            a: "Learn the first ten elements by singing the periodic table song. Then FaceTime me and sing it.",
-            ck: ["Listen to the song", "Sing along 3 times", "Write the ten from memory", "FaceTime Ricky and sing it"],
+            i: "The elements in the periodic table are the ingredients of everything.",
+            a: "Learn the first seven elements by watching and then memorising the <a href='https://www.youtube.com/watch?v=rz4Dd1I_fX0' target='_blank'>periodic table song</a>. At the end of the day, FaceTime me and sing it.",
+            ck: ["Listen to the song", "Sing along 3 times", "Write down the first seven below", "FaceTime Kunni Didi and sing it"],
             bx: [
-              ["The first ten from memory", 6, "1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n10."]
+              ["Write down the first seven elements, including their symbols", 6, "1. Hydrogen, H \n2.\n3.\n4.\n5.\n6.\n7."]
+            ]
+          },
+          {
+            s: "history",
+            h: "Who’s missing?",
+            i: "Plenty of women changed history and got left out of the textbooks.",
+            a: "Find an article about a woman from history you’ve never heard of.",
+            ckh: "Reading checklist",
+            ck: ["Find an article", "Read it", "Note the key facts"],
+            bx: [
+              ["Her name and what she did", 4],
+              ["Why do I think she was left out?", 4],
+              ["Link to the article", 1]
             ]
           },
           {
@@ -749,7 +907,26 @@
             bx: [
               ["Coins held and what I’d change", 3]
             ]
-          }
+          }, 
+          {
+            s: "play",
+            h: "Games, games, games!!",
+            a: "Play any game(s) you like! Scrabble, Kendama, NYT Games with the cousins, chess etc. Have fun Ramji!",
+          }, 
+          {
+            s: "review",
+            h: "Review today's work",
+            i: "Reflect on your work today.",
+            a: "Reflect, think and thoughtfully answer the questions below.",
+            bx: [
+              ["Which activity did you enjoy doing the most today? Why?", 3], 
+              ["Which activity didn't you enjoy as much? Why?", 3], 
+              ["Which activity did you spend the most time on today? Elaborate.", 3], 
+              ["Describe the most interesting thing you learnt today", 3], 
+              ["What was your favourite part about today? It can be anything!", 3], 
+              ["Do you have any feedback for me? It could be about an an activity I wrote, or something you want to see more of in your schedule :)", 4], 
+            ]
+          }, 
         ]
       },
 
@@ -758,6 +935,14 @@
         d: "Fri",
         n: "Friday",
         t: "Play",
+        sub: "Spread the tasks out throughout the day, and take breaks in between. Remember this is meant to nourish your brain and it isn't a race. Don't forget to have fun Ramji!",
+        wotd: {
+          w: "Cachinnate",
+          say: "KAK-uh-nayt",
+          pos: "transitive verb",
+          def: "To laugh loudly, in an unrestrained, explosive way.",
+          ex: "The kids were supposed to be in bed, but I heard them cachinnating down the hall well past midnight."
+        }, 
         tasks: [
           {
             s: "play",                             
@@ -812,6 +997,7 @@
        unless you want to change how the page behaves)
        ========================================================== */
 
+       
     // Display names for each subject code
     const SUB = {
       english: "English",
@@ -834,16 +1020,117 @@
     let cur = 0;     // index of the selected day (0 = Monday)
     let open = -1;   // index of the open drawer (-1 = none)
 
-    // Load saved progress. The try/catch means the page still works
-    // if the browser blocks storage (e.g. private browsing).
-    try {
-      S = Object.assign(S, JSON.parse(localStorage.getItem(STORE) || "{}"));
-    } catch (e) {}
+    // changed to use backend
+    async function loadWeeklyWork(userId, weekId) {
+      const { data, error } = await db
+        .from("weekly_work")
+        .select("work, updated_at")
+        .eq("user_id", userId)
+        .eq("week_id", weekId)
+        .maybeSingle();
+
+      if (error) {
+        throw error;
+      }
+
+      if (data) {
+        S = {
+          name: "",
+          done: {},
+          ck: {},
+          ans: {},
+          ...data.work
+        };
+      } else {
+        S = {
+          name: "",
+          done: {},
+          ck: {},
+          ans: {}
+        };
+      }
+
+      return data;
+    }
 
     // Save progress
-    const save = () => {
-      try { localStorage.setItem(STORE, JSON.stringify(S)); } catch (e) {}
-    };
+    let saveTimer;
+let saveQueue = Promise.resolve();
+let saveVersion = 0;
+let currentUser = null;
+
+const WEEK_ID = "2026-11-09";
+
+function scheduleSave() {
+  saveVersion++;
+
+  // Keep a local emergency copy as well.
+  try {
+    localStorage.setItem(
+      "yunay-emergency-backup",
+      JSON.stringify(S)
+    );
+  } catch (e) {
+    // Cloud saving remains the primary mechanism.
+  }
+
+  showSaveStatus("Saving...");
+
+  clearTimeout(saveTimer);
+
+  saveTimer = setTimeout(
+    flushCloudSave,
+    500
+  );
+}
+
+function flushCloudSave() {
+  if (!currentUser) return;
+  const version = saveVersion;
+
+  const snapshot = JSON.parse(
+    JSON.stringify(S)
+  );
+
+  const userId = currentUser.id;
+  const weekId = WEEK_ID;
+
+  saveQueue = saveQueue.then(async () => {
+    const { error } = await db
+      .from("weekly_work")
+      .upsert(
+        {
+          user_id: userId,
+          week_id: weekId,
+          work: snapshot
+        },
+        {
+          onConflict: "user_id,week_id"
+        }
+      );
+
+    if (error) {
+      throw error;
+    }
+
+    if (version === saveVersion) {
+      showSaveStatus("Saved ✓");
+    }
+  });
+
+  saveQueue = saveQueue.catch(error => {
+    console.error("Cloud save failed:", error);
+    showSaveStatus("Save failed: " + error.message);
+  });
+
+  return saveQueue;
+}
+
+
+function showSaveStatus(message) {
+  document.getElementById("saveStatus")
+    .textContent = message;
+}
 
     // Shortcut for document.getElementById
     const $ = (id) => document.getElementById(id);
@@ -1024,7 +1311,7 @@
         confetti();
       }
 
-      save();
+      scheduleSave();
       progress();
     };
 
@@ -1032,9 +1319,24 @@
     $("tasks").oninput = (e) => {
       if (e.target.dataset.a) {
         S.ans[e.target.dataset.a] = e.target.value;
-        save();
+        scheduleSave();
       }
     };
+
+    document.addEventListener(
+  "visibilitychange",
+  () => {
+    if (document.visibilityState === "hidden") {
+      clearTimeout(saveTimer);
+      flushCloudSave();
+    }
+  }
+);
+
+window.addEventListener("pagehide", () => {
+  clearTimeout(saveTimer);
+  flushCloudSave();
+});
 
     /* ---------- DOWNLOAD: builds a text file of today's answers ---------- */
     $("dl").onclick = () => {
@@ -1109,9 +1411,54 @@
       alive ? requestAnimationFrame(tick) : c.remove();   // cleans itself up
     })();
   }
+  window.addEventListener("online", () => {
+  clearTimeout(saveTimer);
+  flushCloudSave();
+});
 
-    // Draw the page for the first time
+    // authenticated start up 
+    async function startApp() {
+  const login = document.getElementById("login");
+  const main = document.querySelector("main");
+
+  try {
+    const { data, error } = await db.auth.getSession();
+
+    if (error) throw error;
+
+    if (!data.session) {
+      main.hidden = false;
+      login.hidden = false;
+      return;
+    }
+
+    currentUser = data.session.user;
+
+    const weekData = await loadWeeklyWork(
+      currentUser.id,
+      WEEK_ID
+    );
+
+    login.hidden = true;
+    main.hidden = false;
+
+    showSaveStatus(
+      weekData ? "All saved work loaded ✓" : "New week – ready to begin"
+    );
+
     render();
+
+  } catch (error) {
+    console.error(error);
+    main.hidden = true;
+    login.hidden = false;
+
+    document.getElementById("loginError").textContent =
+      "We couldn't load your work. Please check your connection and try again. Your work has not been deleted.";
+  }
+}
+
+startApp();
   </script>
 </body>
 </html>
