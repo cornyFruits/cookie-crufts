@@ -349,6 +349,7 @@
 
     .sec p {
       margin: 0;
+      white-space: pre-line;
     }
 
     .words {                         /* spelling list */
@@ -535,6 +536,16 @@
   margin: 14px 0 0;
 }
 
+.context-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: 14px;
+  margin: 12px 0;
+}
+
     /* respect people who've turned animations off on their device */
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
@@ -614,7 +625,7 @@
          sp   spelling words (one string, comma separated)
          ck   checklist: ["step one", "step two"]
          ckh  checklist heading (default is "Checklist")
-         ws   worksheet file to download, e.g. "worksheets/x.pdf"
+         ws   downloadable worksheet file, e.g. "worksheets/x.pdf"
          bx   answer boxes: [["Label", rows, "placeholder"], ...]
               rows = how tall the box is. placeholder is optional.
 
@@ -843,35 +854,39 @@ async () => {
       {
         d: "Thu",
         n: "Thursday",
-        t: "Elements and engineering",
+        t: "A lovely day on a fixed website!",
         sub: "Spread the tasks out throughout the day, and take breaks in between. Remember this is meant to nourish your brain and it isn't a race. Don't forget to have fun Ramji!",
         wotd: {
           w: "Bumbershoot",
           say: "bumber-SH-oot",
           pos: "noun",
           def: "Informal, old-fashioned American word for umbrella.",
-          ex: "Avyaan was agog as he stepped into the aviary and saw all his favourite birds flying, hopping and twittering around him."
+          ex: "Mr. Twiddle grabbed his bumbershoot from the closet and hurriedly put on his winter coat, slightly dreading, but ready to brave the pelting rain outside."
         }, 
         tasks: [
           {
             s: "english",
-            h: "Story opener",
-            i: "A first paragraph has one job: make us need the second one.",
-            a: "Write the first paragraph of a story that starts with a strange noise in the night.",
-            ck: ["Plan my idea", "Write a draft", "Read for 30 minutes", "Review spelling test words I got wrong yesterday"],
+            h: "Creative writing",
+            i: "Put your writing cap on! It's time to get those creative juices flowing and write a fabulous, intriguing short story.",
+            a: "Choose one item from each of the categories listed below. You must use each appropriately. Then write a descriptive, captivating and well-structured short story.\n ===============================================================================\n <b>Genre:</b> Fantasy | Action/Quest | Horror | Comedy | Your choice! \n <b>Protagonist:</b> Avyaan in pirate clothes | Grandpa-aged lobster wearing a tophat | S cared astronaut | Brand-new pencil | Harry Potter \n <b>Protagonist's trait:</b> Has an aggressive case of the hiccups | Pink hair that smells like bubblegum | Always snacking on chips | Scared of the ocean | Eyes that can shoot fire \n <b>Location:</b> Chatkaaz dining table | Pacific ocean | Our house | Hawaiian cave | Trampoline park \n  <b>Sidekick:</b> Annoying, colourful parrot | 4-year-old Vyansi | Baby penguin with a squeaky voice | Vintage wooden chair | Magical hairbrush\n   <b>Must include:</b> A smelly warthog who farts every hour | Detailed description of the protagonist's clothes | Your choice!\n   <b>Problem:</b> Ask someone for an example of a problem and use that in your story \n ===============================================================================" ,
+            ck: ["Plan my story and protagonist arc", "Write the short story", "Read for 30 minutes", "Review spelling test words I got wrong yesterday"],
             bx: [
-              ["My first paragraph", 8]
+              ["List your chosen items from each category", 7, "Genre: Comedy \nProtagonist: ...\n..."],
+              ["Write a story which: is longer than one paragraph, accurately uses all chosen category items effectively to tell an engaging, interesting and descriptive story, captivates the reader, is well-structured, has a beginning, a struggle and a climax, and shows how the protagonist has grown in some way (could be a big or small progression).", 20]
             ]
           },
           {
             s: "maths",
-            h: "Word problems and mind exercising",
+            h: "Word problems and mind exercises",
             i: "Word problems force you to think harder about your strategy and mind exercises keep your mind sharp!",
-            a: "Complete the worksheet word problems, answering the relevant questions below as you go. Make sure to read the strategy pages properly before doing the questions; they are there to help you! Then, complete the NYT Sudoku (Easy) by yourself (reminder of the sudoku rules ).",
-            ws: "worksheets/area-perimeter.pdf",
+            a: "Complete the worksheet word problems, documenting your reasoning and answers below. You don't have to use the strategies given in the worksheet, but read through them properly before doing the questions; they are there to help you! Then, complete the <a href='https://www.nytimes.com/puzzles/sudoku' 'target=_blank'>NYT Sudoku (Easy)</a> by yourself (here's a reminder of the <a href='https://sudoku.com/sudoku-rules/' 'target=_blank'>sudoku rules</a> if you need it - scroll to the very bottom).",
+            ws: "worksheets/yunay-maths-thurs.pdf",
             bx: [
-              ["My measurements", 3, "Length: \nWidth: "],
-              ["Area and perimeter (show working)", 4]
+              ["Snail Olympics: Logic & Reasoning #99", 5],
+              ["Mama Meatball: Logic & Reasoning #100", 5], 
+              ["Bonks Zoo: Fractions & Decimals #24", 5], 
+              ["Magico: Fractions & Decimals #25", 5], 
+              ["Which strategies did you use for these problems? Did you learn any new strategies?", 3]
             ]
           },
           
@@ -879,34 +894,38 @@ async () => {
             s: "science",
             fm: 1,
             h: "Periodic table song",
-            i: "The elements in the periodic table are the ingredients of everything.",
-            a: "Learn the first seven elements by watching and then memorising the <a href='https://www.youtube.com/watch?v=rz4Dd1I_fX0' target='_blank'>periodic table song</a>. At the end of the day, FaceTime me and sing it.",
-            ck: ["Listen to the song", "Sing along 3 times", "Write down the first seven below", "FaceTime Kunni Didi and sing it"],
+            i: "Learning some elements from the periodic table.",
+            c: "An element is a pure, building block of everything in the universe. Every single thing you can think of (water, toys, boy farts, Yunay) is made up of elements. The periodic table is a big chart that organises all 118 known elements (that's right, there are probably ones we haven't discovered yet!) by their tiny parts called protons (from the lightest element with 1 proton, up to the heaviest element with 118 protons).",
+            a: "Learn the first seven elements by watching and then memorising the <a href='https://www.youtube.com/watch?v=rz4Dd1I_fX0' target='_blank'>periodic table song</a> (till 0:15 min). At the end of the day, FaceTime me and sing it.",
+            ck: ["Listen to the song", "Sing along 3 times", "Write down the first seven below", "FaceTime Kunni Didi and sing them"],
             bx: [
-              ["Write down the first seven elements, including their symbols", 6, "1. Hydrogen, H \n2.\n3.\n4.\n5.\n6.\n7."]
-            ]
+              ["Write down the first seven elements, including their symbols and an example of something made up by them (use -ai at the end your Google search to avoid the AI overview!).", 6, "1. Hydrogen, H, found in water \n2.\n3.\n4.\n5.\n6.\n7."]
+            ],
           },
           {
             s: "history",
-            h: "Who’s missing?",
-            i: "Plenty of women changed history and got left out of the textbooks.",
-            a: "Find an article about a woman from history you’ve never heard of.",
-            ckh: "Reading checklist",
-            ck: ["Find an article", "Read it", "Note the key facts"],
+            h: "Hawaiian history 🌺",
+            i: "Let's learn about dark history of the overthrow of Hawaii (our favourite place in the entire world!). This focuses on Queen Liliʻuokalani, the last queen of Hawaii, and how she fought the US annexation of the islands.",
+            c: "When writing a historical response, it is important to: include <b>evidence</b> from sources (eg. dates, facts, quotes, details), clearly <b>state your claim</b> (eg. 'Trump is a horrible president'), include <b>context</b> of the event you are describing (eg. 'someone in jail' vs 'someone wrongfully jailed for speaking out against the invasion of their country') and make sure to consider <b>cause</b> and <b>effect</b> (explaining why an event happened and what its short-term and long-term consequences are).\n Not every response requires all of these things, so make sure to read the question carefully and then decide which ones you think are necessary to include for a strong response.",
+            a: "Watch <a href='https://www.youtube.com/watch?v=C2bjjwv4134' target='_blank'>this video</a> on the dark history of the overthrow of Hawaii and thoughtfully answer the questions below.",
+            ck: ["Watch the video", "Note down any key details you might want to include in your responses", "Answer the questions below "],
             bx: [
-              ["Her name and what she did", 4],
-              ["Why do I think she was left out?", 4],
-              ["Link to the article", 1]
+              ["Define annexation. Use Google and write the answer in your own words.", 2],
+              ["Who were the American missionaires who first arrived in Hawaii and what did they do?", 4],
+              ["Explain how the Missionary Party was formed and what they did to the Hawaiian rulers.", 4],
+              ["Name three things the Bayonet Constitution stipulated.", 3, "1.\n2.\n3."],
+              ["Was Queen  Liliʻuokalani's resilient? Include three examples and the context (background of the event you are referring to), action and outcome in your response.", 7],
+              ["How do you feel about this period of Hawaiian history? Did you recognise any names or facts from the video?", 5],
             ]
           },
           {
             s: "activity",
-            h: "Build a bridge",
-            a: "Build a bridge from paper, cardboard or Lego. How many coins can it hold?",
-            ck: ["Design it on paper", "Build it", "Test it with coins"],
-            bx: [
-              ["Coins held and what I’d change", 3]
-            ]
+            h: "Acorn crafts!",
+            i: "Making cute, creative crafts with acorns and foliage in Atlanta!",
+            c: "Here are some ideas to inspire you - you don't have to copy these exactly, so go creatively crazy pooli!",
+            img: "images/yunay/acorn-crafts.png",
+            a: "Go outside to the courtyard or to the park and collect acorns, and other fallen foliage. As you walk around, take some deep breaths and enjoy the walk! Use what you've collected to create something, like woodland fairy folk or funny faces on the ground (eg. the acorns could be the eyes?). Be creative! Take a photo and send them to me when you're done.",
+            ck: ["Collect acorns and foliage", "Craft creations", "Take photo and send to Kunni Didi"],
           }, 
           {
             s: "play",
@@ -916,15 +935,15 @@ async () => {
           {
             s: "review",
             h: "Review today's work",
-            i: "Reflect on your work today.",
-            a: "Reflect, think and thoughtfully answer the questions below.",
+            i: "Reflect on your work today. This should take no more than ten minutes.",
+            a: "Reflect, think and answer the questions below.",
             bx: [
               ["Which activity did you enjoy doing the most today? Why?", 3], 
               ["Which activity didn't you enjoy as much? Why?", 3], 
               ["Which activity did you spend the most time on today? Elaborate.", 3], 
               ["Describe the most interesting thing you learnt today", 3], 
               ["What was your favourite part about today? It can be anything!", 3], 
-              ["Do you have any feedback for me? It could be about an an activity I wrote, or something you want to see more of in your schedule :)", 4], 
+              ["Do you have any feedback for me? It could be about an activity I wrote, or something you want to see more of in your schedule :)", 4], 
             ]
           }, 
         ]
@@ -1199,9 +1218,10 @@ function showSaveStatus(message) {
         // The order here is the order they appear in the drawer.
         if (t.i) body += sec("What", `<p>${t.i}</p>`);
 
-        if (t.c || t.l) {
+        if (t.c || t.l || t.img) {
           body += sec("Context",
             (t.c ? `<p>${t.c}</p>` : "") +
+            (t.img ? `<img class="context-img" src="${t.img}" alt="Context image">` : "") +
             (t.l ? `<p><a href="${t.l[0]}" target="_blank" rel="noopener">${t.l[1]}</a></p>` : "")
           );
         }
@@ -1454,7 +1474,7 @@ window.addEventListener("pagehide", () => {
     login.hidden = false;
 
     document.getElementById("loginError").textContent =
-      "We couldn't load your work. Please check your connection and try again. Your work has not been deleted.";
+      "We couldn't load your work. Please check your connection and try again. Don't worry, your work hasn't been deleted!";
   }
 }
 
