@@ -658,7 +658,7 @@ async () => {
   const { error } = await db.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: "https://krittika.dev/yunay"
+      redirectTo: 'https://krittika.dev/yunay'
     }
   });
 
@@ -953,8 +953,8 @@ async () => {
       {
         d: "Fri",
         n: "Friday",
-        t: "Play",
-        sub: "Spread the tasks out throughout the day, and take breaks in between. Remember this is meant to nourish your brain and it isn't a race. Don't forget to have fun Ramji!",
+        t: "More like Fri-YAY!",
+        sub: "Spread the tasks out throughout the day, read the instructions and questions carefully and take breaks in between. Remember this is meant to nourish your brain qand it isn't a race. Don't forget to have fun Ramji!",
         wotd: {
           w: "Cachinnate",
           say: "KAK-uh-nayt",
@@ -964,49 +964,87 @@ async () => {
         }, 
         tasks: [
           {
-            s: "play",                             
-            h: "Review something",
-            i: "A good critic explains why, not just whether they liked it.",
-            a: "Pick a show, book, song or game and write a review.",
-            ck: ["Pick something", "Give it a star rating", "Write one good thing and one bad thing", "Check my spelling"],
+            s: "english",                             
+            h: "Spelling and descriptive writing",
+            i: "Learn how to pinpoint incorrect spellings and develop your descriptive writing skills! Handwrite your answers for the first five sentences OR go to Settings > General > Keyboard and toggle off Auto-Correction, Check Spelling and Predictive Text.",
+            a: "For the first five sentences, spot the incorrectly spelt word(s) and write it correctly. For the last five sentences practice 'show, don't tell' and your descriptive writing. Turn each 'telling' sentence into three to four 'showing' sentences.",
+            ck: ["Answer spelling questions", "Complete descriptive writing responses", "Read for 15 minutes"],
             bx: [
-              ["Title and star rating out of 5", 1],
-              ["What it did well", 3],
-              ["What it did badly", 3],
-              ["Who should watch it", 2]
+              ["The tiny parlor could barely accomodate the whole family, so Grandpa sat on the stairs.", 1],
+              ["Mr Hale spoke with condesencion, as if the children knew nothing about his buisness.", 1],
+              ["A lone kayote crept through the desserted town while an old radio played creening in the distance.", 1],
+              ["Once we became acuainted, the guard’s proteksion felt plesent instead of scary.", 1], 
+              ["My cousin dericivly called me Magnito after the embarrassing moment when every fridge magnet stuck to my jacket.", 1], 
+              ["'The old house was scary.' Change this sentence to a descriptive, 'showing' one. Consider and include all five senses in your response.", 4], 
+              ["'She was nervous before the big test.' Change this sentence to a descriptive, 'showing' one. Consider and include body reactions and thoughts.", 4], 
+              ["'The storm was really strong.' Change this sentence to a descriptive, 'showing' one. Consider and include movement, sound and a comparison (metaphor or simile).", 4], 
+              ["'My dog was so happy to see me.' Change this sentence to a descriptive, 'showing' one. Consider and include the actions and body language of the dog.", 4], 
+              ["'The teacher was angry.' Change this sentence to a descriptive, 'showing' one. Consider and include details on the characters voice, face, small movements and how the class reacts.", 4], 
+              ["Describe the last 60 seconds before a big race or performance, from the character’s point of view. Write a descriptive paragraph, remembering the 'show, don't tell' framework we practiced above.", 8], 
             ]
           },
-          {
+           {
             s: "maths",
-            h: "Puzzle time",
-            i: "Making puzzles is harder than solving them.",
-            a: "Make up 5 maths puzzles for me to solve. Put the answers in a separate box.",
+            h: "Word problems and algebra",
+            i: "Some strategies for word problems:\n - Read twice and underline what’s actually being asked \n - Draw a diagram or table \n - Work backwards when you know the end result \n - Convert units first (minutes to hours, for example) \n - Do one step at a time, then check if your answer is sensible.\n \n Some algebra tips: \n  - An equation is a balance. Whatever you do to one side, do to the other.\n - Undo operations in reverse order: deal with the + or − first, then the × or ÷.\n - When there are letters on both sides, subtract the smaller one from both sides first so the letters end up on one side only.\n - Always check by substituting your answer back in.",
+            a: "Solve the algebraic equations and then the word problems, <u>documenting your reasoning</u> and answers for them below.",
             bx: [
-              ["My 5 puzzles", 8],
-              ["Answers", 4]
+              ["1. A skateboard costs $160. It’s 25% off, then Jake uses a $16 voucher on the reduced price. What does he pay, and what percentage of the original price is that?", 5],
+              ["2. Blue and yellow paint mix in the ratio 3:5 to make green. Zara has already poured 1.2 L of blue into a bucket and wants 4.8 L of green in total. How much more blue and how much yellow does she need?", 5], 
+              ["3. Liam rides 4.5 km to school. He rides the first 3 km at 15 km/h, then the last 1.5 km uphill at 6 km/h. If he leaves at 8:10 am, what time does he arrive? What’s his average speed for the whole trip?", 5], 
+              ["4. A rectangular garden is twice as long as it is wide, and its perimeter is 54 m. A 1 m wide path goes around the outside. Pavers cost $12 per m². How much will the path cost?", 5], 
+              ["5. Sam spends 1/4 of his savings on a game, then 2/5 of what’s left on a jacket. He has $63 remaining. How much did he start with?", 5], 
+              ["6. Ava’s average over 4 tests is 72. After the 5th test, her average is 75. What did she score on the 5th? What does she need on the 6th to bring her average to 78?", 5], 
+              ["Which strategies did you use for these problems? Did you learn any new strategies?", 3], 
+              ["1. Solve for x. 2x + 9 = 31", 4],
+              ["2. Solve for n. 6n − 8 = 34", 4],
+              ["3. Solve for y. 5y + 3 = 2y + 18", 4],
+              ["4. Solve for a. 9a − 4 = 4a + 26", 4],
             ]
           },
           {
-            s: "history",
-            h: "Who’s missing?",
-            i: "Plenty of women changed history and got left out of the textbooks.",
-            a: "Find an article about a woman from history you’ve never heard of.",
-            ckh: "Reading checklist",
-            ck: ["Find an article", "Read it", "Note the key facts"],
+            s: "geography",
+            h: "The Artic vs. the Antartic",
+            i: "How can you tell the two poles apart? Where are the penguins? What about the bears? The Arctic pole is located in the Northern Hemisphere within the deep Arctic Ocean, while the Antarctic pole is smack in the middle of the ice-covered Antarctica. Let's learn about how enterprising people and organisms have found ways to reside around both poles despite the frigid temperatures.",
+            a: "Watch <a href='https://www.ted.com/embed/camille_seaman_the_arctic_vs_the_antarctic' target='_blank'>this video</a> on the Artic vs. the Antartic and thoughtfully answer the questions below.",
+            ck: ["Watch the video", "Note down any key details you might want to include in your responses", "Answer the questions below"],
             bx: [
-              ["Her name and what she did", 4],
-              ["Why do I think she was left out?", 4],
-              ["Link to the article", 1]
+              ["One pole is an ocean surrounded by land and the other is land surrounded by ocean. Which is which?", 1],
+              ["Which pole is colder on average? Provide one reason why.", 4],
+              ["Name one animal that lives at the Arctic but not Antarctica, and one that lives in Antarctica but not the Arctic.", 1],
+              ["Which pole has people living there year-round, and which doesn’t? What do you think explains the difference?", 3],
+              ["How do both polar regions help climate control the planet?", 3],
+              ["Name three new facts you learnt from this video, which you haven't mentioned in your answers above.", 3, "1.\n2.\n3."],
+              ["Imagine polar bears were released in Antarctica. What do you think would happen to the ecosystem, and why? Use at least two things you learned about how the two poles differ.", 6],
             ]
           },
           {
             s: "activity",
-            h: "Kindness mission",
-            a: "Do one secret kind thing for someone.",
+            h: "Prank someone",
+            a: "Secretly prank someone today. Make sure it isn't physically hurtful and to document your plotting and execution below. [Special to Vyansi for this activity idea].",
             bx: [
-              ["What I did and how it felt", 4]
+              ["Explain your plotting, planning and execution here. Describe you goal, inspiration, set-up, target, how it played out and the outcome/reaction.", 5]
             ]
-          }
+          }, 
+          {
+            s: "play",
+            h: "Games and go outside!",
+            a: "Go outside for a walk or to the park to play and play any game(s) you like throughout the day! Scrabble, Kendama, NYT Games with the cousins, chess etc. Have fun Ramji!",
+          }, 
+          {
+            s: "review",
+            h: "Review today's work",
+            i: "Reflect on your work today. This should take no more than ten minutes.",
+            a: "Reflect, think and answer the questions below.",
+            bx: [
+              ["Which activity did you enjoy doing the most today? Why?", 3], 
+              ["Which activity didn't you enjoy as much? Why?", 3], 
+              ["Which activity did you spend the most time on today? Elaborate.", 3], 
+              ["Describe the most interesting thing you learnt today", 3], 
+              ["What was your favourite part about today? It can be anything!", 3], 
+              ["Do you have any feedback for me? It could be about an activity I wrote, or something you want to see more of in your schedule :)", 4], 
+            ]
+          }, 
         ]
       }
     ];
