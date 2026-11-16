@@ -144,6 +144,14 @@
       opacity: .7;
     }
 
+    #weeks button {
+      flex: none;
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-size: .95rem;
+    }
+    #weeks { margin-bottom: 8px; }
+
     /* ==========================================================
        4. DAY PROGRESS BAR
        ========================================================== */
@@ -546,6 +554,43 @@
   margin: 12px 0;
 }
 
+.feedback {
+  border: 3px solid var(--feedback-colour);
+  border-radius: 18px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  background: var(--card);
+}
+
+.feedback.correct {
+  --feedback-colour: #31966A;
+}
+
+.feedback.incorrect {
+  --feedback-colour: #D94A4A;
+}
+
+.feedback.pending {
+  --feedback-colour: #D69B28;
+}
+
+.feedback h3 {
+  font: 700 1.4rem Unkempt, sans-serif;
+  color: var(--feedback-colour);
+  margin: 0 0 6px;
+}
+
+.feedback p {
+  margin: 4px 0;
+}
+
+.feedback .sample {
+  background: var(--paper);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 10px;
+}
+
     /* respect people who've turned animations off on their device */
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
@@ -573,6 +618,7 @@
   </header>
 
   <main>
+    <nav id="weeks" role="tablist" aria-label="Weeks"></nav>
     <nav id="tabs" role="tablist" aria-label="Days"></nav>
 
     <div class="bar">
@@ -658,7 +704,7 @@ async () => {
   const { error } = await db.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: 'https://krittika.dev/yunay'
+      redirectTo: window.location.origin + "/yunay"
     }
   });
 
@@ -668,7 +714,7 @@ async () => {
   }
 };
 
-    const DAYS = [
+    const WEEK1 = [
 
       /* ---------------------------- MONDAY ---------------------------- */
       {
@@ -873,7 +919,13 @@ async () => {
             bx: [
               ["List your chosen items from each category", 7, "Genre: Comedy \nProtagonist: ...\n..."],
               ["Write a story which: is longer than one paragraph, accurately uses all chosen category items effectively to tell an engaging, interesting and descriptive story, captivates the reader, is well-structured, has a beginning, a struggle and a climax, and shows how the protagonist has grown in some way (could be a big or small progression).", 20]
-            ]
+            ], 
+            feedback: {
+              status: "correct",
+              title: "✓ Fantastic work!",
+              text: "You used excellent descriptive language. Well done!",
+              sample: "Remember to vary your sentence openings."
+            }
           },
           {
             s: "maths",
@@ -887,7 +939,13 @@ async () => {
               ["Bonks Zoo: Fractions & Decimals #24", 5], 
               ["Magico: Fractions & Decimals #25", 5], 
               ["Which strategies did you use for these problems? Did you learn any new strategies?", 3]
-            ]
+            ],
+            feedback: {
+              status: "correct",
+              title: "Brilliant work!",
+              text: "You used fantastic descriptive language. Your story was engaging and well structured.",
+              sample: "Try using a wider variety of sentence openings in your next story."
+            }
           },
           
           {
@@ -1049,6 +1107,108 @@ async () => {
       }
     ];
 
+    const WEEK2 = [
+      {
+        d: "Mon",
+        n: "Monday",
+        t: "🎶 Just another manic monday 🎶",
+        sub: "Do the dance activity first! Spread the tasks out throughout the day, and take breaks in between. Remember this is meant to nourish your brain and it isn't a race. Don't forget to have fun Ramji!",
+        wotd: {
+          w: "Neophyte",
+          say: "NEE-uh-fyte",
+          pos: "noun",
+          def: "A person who is new to a subject, skill or belief.",
+          ex: "A neophyte at ice skating, Vyansi's passion for the sport was contagious."
+        }, 
+        tasks: [
+          {
+            s: "english",
+            fm: 1, // show ft badge                               
+            h: "Spelling and reading",
+            i: "A spelling test with Kunni Didi! Call her anytime from 11am. Then, read a book of your choice for 30 minutes.",
+            ckh: "Spelling checklist",
+            ck: ["Facetime Kunni Didi", "Complete the spelling test on paper", "Rewrite the tricky words thrice each", "Read a book for 30 minutes", "Use the word of the day (defined above) in a sentence today"],
+            bx: [
+              ["Words I found tricky", 3]
+            ], 
+          },
+          {
+            s: "maths",
+            h: "Word problems",
+            i: "Some strategies for word problems:\n - Read twice and underline what’s actually being asked, then work out one step at a time (write each one down) \n - When a problem gives you a difference (eg. $60 more), a fraction of a fraction, or an 'in X years' clue, turn it into parts, a drawing or an equation first \n - Check your answer by plugging it back in, and ask whether it makes sense (eg. you can’t buy 17.9 boxes).\n",
+            a: "Solve the word problems, <u>documenting your reasoning</u> and answers for them below.",
+            bx: [
+              ["1. Movie tickets cost $18.50 for adults and $11.25 for children. A group buys 3 adult and 5 child tickets and gets 20% off the total. How much change do they get from $100?", 5],
+              ["2. Mia, Noah and Ella share prize money in the ratio 2 : 3 : 7. Ella gets $60 more than Noah. What was the total prize, and how much did each person get?", 5], 
+              ["3. A classroom floor is 8.5 m by 6 m. It’s covered with square carpet tiles measuring 50 cm × 50 cm. The school buys 5% extra tiles for wastage. Tiles come in boxes of 12 at $48 per box. How many boxes do they buy, and what’s the cost?", 5], 
+              ["4. Two cyclists start 60 km apart and ride towards each other at the same time. One rides at 14 km/h and the other at 16 km/h. How long until they meet, and how far has each ridden?", 5], 
+              ["5. At 6 am in Thredbo it’s −4°C. The temperature rises 2.5°C every hour until noon, then falls 3°C every hour. What’s the temperature at noon, and at what time does it reach −2°C again?", 5], 
+              ["6. Zoe’s mum is 3 times as old as Zoe. In 12 years’ time, she’ll be twice as old as Zoe. How old are they now?", 5], 
+              ["Which strategies did you use for these problems? Did you learn anything new?", 3], 
+            ]
+          },
+          {    s: "science",
+            fm: 1,
+            h: "Periodic table song and morse code!",
+            i: "Learning some more elements from the periodic table, and morse code (a form of communication).",
+            c: "An element is a pure, building block of everything in the universe. Every single thing you can think of (water, toys, boy farts, Yunay) is made up of elements. The periodic table is a big chart that organises all 118 known elements (that's right, there are probably ones we haven't discovered yet!) by their tiny parts called protons (from the lightest element with one proton, up to the heaviest element with 118 protons).\n Morse code is a secret language of dots and dashes (or 'dits' and 'dahs') that lets people send messages using things like sounds, flashes of light, taps and more. It was invented in the 1830s by Samuel Morse and his assistant Alfred Vail. They created it to work with the telegraph, a machine that sent electrical clicks over long wires across cities and countries before phones or the internet existed. It works by converting letters and numbers into a special combination of short and long signals: \n - Dot: A short tap, click etc or a one second flash of light \n - Dash: A long tap, click etc or a three second flash of light \n - A short pause goes between dots and dashes, a medium pause separates letters, and a long pause separates words.",
+            a: "Learn the first eighteen elements by watching and then memorising the <a href='https://www.youtube.com/watch?v=rz4Dd1I_fX0' target='_blank'>periodic table song</a>. At the end of the day, FaceTime me and sing it. Then, watch <a href='https://www.youtube.com/watch?v=9kGvhjSX9h4' target='_blank'>this video</a> on morse code and complete the activities below.",
+            ck: ["Listen to the song", "Sing along at least twice", "Write down the next eleven below", "FaceTime Kunni Didi and sing them", "Watch the morse code video", "Complete the morse code activities"],
+            bx: [
+              ["Write down the next eleven elements, including their symbols and an example of something made up by them (use -ai at the end your Google search to avoid the AI overview!).", 6, "8. Oxygen, O, found in water \n9.\n10.\n11.\n12.\n13.\n14.\n15.\n16.\n17.\n18."], 
+              ["Learn morse code <a href='https://morse.withgoogle.com/learn/' target='_blank'> here</a>, spending a total of fifteen minutes learning as much as you can. Using this website or the legend in the video, spell your name in morse code. Remember to include spaces so it's legible!", 2], 
+              ["Communicate with someone using morse code today; it can be using your mouth, eyes, knocking, clicking a pen - get creative and discover what you can use to communicate in morse code! Watch <a href='https://www.youtube.com/watch?v=8zfNfilNOIE' target='_blank'> this</a> for inspiration. Describe what you did.", 2], 
+              ["Ask me a question using morse code - it can be very short. Write it here, making sure to include the correct amount of space between letters, and words.", 2], 
+              ["What do you think of morse code? In what situations do you think it is the best form of communication? Be specific please!", 4]
+            ],
+          },
+          {
+            s: "activity",
+            h: "Dance and go outside!",
+            a: "Press play on <a href='https://www.youtube.com/watch?v=cEwYoVXMV8E' target='_blank'> this song</a>  and dance! Then, get out of the apartment and do something fun! Maybe a walk in the park, Publix - anything that gets you outside. Notice the little things around you and what activates each of your senses: sight, sound, smell, taste and touch. Take a photo of something you see that makes you smile. Take a deep breath and enjoy yourself <3",
+            ck: ["Went outside", "Noticed the little things and my sensations", "Took a photo of something that made me smile"],
+            bx: [
+              ["My observations and thoughts, and something I am grateful for.", 2]
+            ]
+          }, 
+          {
+            s: "play",
+            h: "Games, games, games!!",
+            a: "Play any game(s) you like! Squirrel Tag, Scrabble, Kendama, NYT Games with the cousins, chess etc. Have fun Ramji!",
+          }, 
+          {
+            s: "review",
+            h: "Review today's work",
+            i: "Reflect on your work today.",
+            a: "Reflect, think and thoughtfully answer the questions below.",
+            bx: [
+              ["Which activity did you enjoy doing the most today? Why?", 3], 
+              ["Which activity didn't you enjoy as much? Why?", 3], 
+              ["Which activity did you spend the most time on today? Elaborate.", 3], 
+              ["Describe the most interesting thing you learnt today", 3], 
+              ["What was your favourite part about today? It can be anything!", 3], 
+              ["Do you have any feedback for me? It could be about an an activity I wrote, or something you want to see more of in your schedule :)", 4], 
+            ]
+          }, 
+
+        ]
+      },
+      { d: "Tue", n: "Tuesday",   t: "...", tasks: [] },
+      { d: "Wed", n: "Wednesday", t: "...", tasks: [] },
+      { d: "Thu", n: "Thursday",  t: "...", tasks: [] },
+      { d: "Fri", n: "Friday",    t: "...", tasks: [] },
+    ];
+
+    // id = that week's Monday (YYYY-MM-DD). It's also the database key.
+    const WEEKS = [
+      { id: "2026-11-09", label: "Week 1", days: WEEK1 },
+      { id: "2026-11-16", label: "Week 2", days: WEEK2 },
+    ];
+
+    let wk = 0;
+    let DAYS = WEEKS[0].days;
+
+
     /* ==========================================================
        B. THE CODE  (you shouldn't need to touch anything below
        unless you want to change how the page behaves)
@@ -1112,11 +1272,11 @@ async () => {
 
     // Save progress
     let saveTimer;
-let saveQueue = Promise.resolve();
-let saveVersion = 0;
-let currentUser = null;
-
-const WEEK_ID = "2026-11-09";
+    let saveQueue = Promise.resolve();
+    let saveVersion = 0;
+    let currentUser = null;
+    let WEEK_ID = WEEKS[0].id;
+    let lastSavedVersion = 0;
 
 function scheduleSave() {
   saveVersion++;
@@ -1173,6 +1333,8 @@ function flushCloudSave() {
     if (version === saveVersion) {
       showSaveStatus("Saved ✓");
     }
+    lastSavedVersion = version;
+
   });
 
   saveQueue = saveQueue.catch(error => {
@@ -1203,14 +1365,27 @@ function showSaveStatus(message) {
     const count = (dayIndex) =>
       DAYS[dayIndex].tasks.filter((t, i) => S.done[key(dayIndex, i)]).length;
 
-      // Day 0 (Monday) unlocks on START, day 1 the next morning, and so on.
-      const START = "2026-11-09";   // the Monday of this week, as YYYY-MM-DD
+    const mondayOf = (i) => {
+      const [y, m, d] = WEEKS[i].id.split("-").map(Number);
+      return new Date(y, m - 1, d);
+    };
 
-      const isUnlocked = (i) => {
-        const [y, m, d] = START.split("-").map(Number);
-        const unlockAt = new Date(y, m - 1, d + i);   // midnight, device time
-        return new Date() >= unlockAt;
-      };
+    const PREVIEW = false;   // true = preview when writing
+
+    const weekUnlocked = (i) => true;                         // week buttons always clickable
+    const weekStarted  = (i) => new Date() >= mondayOf(i);    // used to pick the opening week
+
+    const isUnlocked = (i) => {
+      if (PREVIEW) return true;
+      const m = mondayOf(wk);
+      return new Date() >= new Date(m.getFullYear(), m.getMonth(), m.getDate() + i);
+    };
+
+    const unlockDate = (i) => {
+      const m = mondayOf(wk);
+      return new Date(m.getFullYear(), m.getMonth(), m.getDate() + i)
+        .toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "short" });
+    };
 
     // Wraps content in a labelled section inside a drawer
     const sec = (heading, content) =>
@@ -1219,14 +1394,17 @@ function showSaveStatus(message) {
     /* ---------- progress(): updates the bar and the day tabs ---------- */
     function progress() {
       const day = DAYS[cur];
+      const locked = !isUnlocked(cur);
       const done = count(cur);
       const total = day.tasks.length;
 
-      $("dayTitle").textContent = day.n + ": " + day.t;
-      $("dayCount").textContent = done == total ? "All done! Proud of ya." : done + " of " + total + " completed";
-      $("daySub").innerHTML = day.sub || "";
+      $("dayTitle").textContent = locked ? day.n + " 🔒" : day.n + ": " + day.t;
+      $("dayCount").textContent = locked
+        ? "Unlocks on " + unlockDate(cur)
+        : (total && done == total ? "All done! Proud of ya." : done + " of " + total + " completed");
+      $("daySub").innerHTML = locked ? "" : (day.sub || "");
 
-      const w = day.wotd;
+      const w = locked ? null : day.wotd;
       $("wotd").innerHTML = w
         ? `<small>Word of the day</small>
           <h3>${w.w} <span style="font-weight:400;font-size:1rem">(${w.pos}) · ${w.say}</span></h3>
@@ -1234,7 +1412,7 @@ function showSaveStatus(message) {
           <p><em>${w.ex}</em></p>`
         : "";
 
-      $("fill").style.width = Math.round((done / total) * 100) + "%";
+      $("fill").style.width = (locked || !total ? 0 : Math.round((done / total) * 100)) + "%";
 
       // Rebuild the tabs so each shows its own "2/4" count
       $("tabs").innerHTML = DAYS.map((d, i) =>
@@ -1242,11 +1420,19 @@ function showSaveStatus(message) {
           ${d.d}<small>${isUnlocked(i) ? count(i) + "/" + d.tasks.length : "locked"}</small>
         </button>`
       ).join("");
+      renderWeeks();
     }
 
     /* ---------- render(): draws the subject drawers for the selected day ---------- */
     function render() {
       open = -1;
+
+      if (!isUnlocked(cur)) {
+      $("tasks").innerHTML =
+        `<p style="text-align:center;padding:30px 10px">🔒 This day unlocks on ${unlockDate(cur)}. Come back then!</p>`;
+      progress();
+      return;
+    }
 
       $("tasks").innerHTML = DAYS[cur].tasks.map((t, si) => {
         const k = key(cur, si);
@@ -1287,6 +1473,24 @@ function showSaveStatus(message) {
           );
         });
 
+        // FEEDBACK
+if (t.feedback) {
+  body += `
+    <div class="feedback ${t.feedback.status}">
+      <h3>${esc(t.feedback.title)}</h3>
+      <p>${esc(t.feedback.text)}</p>
+      ${t.feedback.sample ? `
+        <div class="sample">
+          <strong>Remember</strong>
+          <p>${esc(t.feedback.sample)}</p>
+        </div>
+      ` : ""} 
+    </div>
+  `;
+}
+
+
+
         // The full drawer: tick box + title row, then the (hidden) body
         return `
           <article class="task${S.done[k] ? " done" : ""}" data-s="${t.s}" data-si="${si}">
@@ -1300,10 +1504,57 @@ function showSaveStatus(message) {
             </div>
             <div class="body" hidden>${body}</div>
           </article>`;
+
+          
       }).join("");
 
       progress();
     }
+
+    function renderWeeks() {
+
+  $("weeks").innerHTML = WEEKS.map((w, i) =>
+    `<button role="tab" aria-selected="${i == wk}" data-i="${i}" ${weekUnlocked(i) ? "" : "disabled"}>${w.label}</button>`
+  ).join("");
+}
+
+let switching = false;
+async function switchWeek(i) {
+  if (i === wk || switching || !weekUnlocked(i)) return;
+  switching = true;
+  const prev = wk;
+  try {
+    // finish saving the week she's leaving, and don't switch if that fails
+    clearTimeout(saveTimer);
+    await flushCloudSave();
+    if (lastSavedVersion !== saveVersion) {
+      showSaveStatus("Couldn't save yet, so staying on this week");
+      return;
+    }
+
+    wk = i; DAYS = WEEKS[wk].days; WEEK_ID = WEEKS[wk].id;
+    showSaveStatus("Loading...");
+    const data = await loadWeeklyWork(currentUser.id, WEEK_ID);
+    showSaveStatus(data ? "Saved work loaded ✓" : "New week, ready to begin");
+
+    cur = 0;
+    for (let d = 0; d < DAYS.length; d++) if (isUnlocked(d)) cur = d;
+    render();
+    scrollTo({ top: 0, behavior: "smooth" });
+  } catch (e) {
+    console.error(e);
+    // load failed: go back so her typing can't land in the wrong week
+    wk = prev; DAYS = WEEKS[prev].days; WEEK_ID = WEEKS[prev].id;
+    showSaveStatus("Couldn't load that week. Check your connection.");
+  } finally {
+    switching = false;
+  }
+}
+
+$("weeks").onclick = (e) => {
+  const b = e.target.closest("button");
+  if (b && !b.disabled) switchWeek(+b.dataset.i);
+};
 
     /* ---------- EVENTS ---------- */
 
@@ -1418,13 +1669,15 @@ window.addEventListener("pagehide", () => {
       // File name looks like "maya-wed-work.txt".
       const link = document.createElement("a");
       link.href = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
-      link.download =
-        (S.name || "my").replace(/\W+/g, "-").toLowerCase() + "-" + day.d.toLowerCase() + "-work.txt";
+      link.download = (S.name || "my").replace(/\W+/g, "-").toLowerCase() + "-wk" + (wk + 1) + "-" + day.d.toLowerCase() + "-work.txt";
       link.click();
     };
 
-    // Start on the latest unlocked day (so Wednesday opens on Wednesday)
-    for (let i = 0; i < DAYS.length; i++) if (isUnlocked(i)) cur = i;
+      // Open on the latest week that has started, and its latest unlocked day
+      for (let i = 0; i < WEEKS.length; i++) if (weekStarted(i)) wk = i;
+      DAYS = WEEKS[wk].days;
+      WEEK_ID = WEEKS[wk].id;
+      for (let d = 0; d < DAYS.length; d++) if (isUnlocked(d)) cur = d;
 
     // confetti once everything is ticked! 
     function confetti() {
