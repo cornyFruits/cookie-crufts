@@ -1385,8 +1385,69 @@ async () => {
 
         ]
       },
-      { d: "Wed", n: "Wednesday", t: "...", tasks: [] },
-      { d: "Thu", n: "Thursday",  t: "...", tasks: [] },
+      { d: "Wed", 
+        n: "Wednesday", 
+        t: "Did you know Wednesday got its name from the Germanic god Odin?",
+        sub: "Spread the tasks out throughout the day, and take breaks in between. Remember this is meant to nourish your brain and it isn't a race. Have lots of fun Ramji!",
+        wotd: {
+          w: "Corker",
+          say: "kawr-ker",
+          pos: "noun (informal)",
+          def: "An excellent or astonishing person or thing.",
+          ex: "Every episode of DWTS was good, but the semi-finale results were quite a corker!"
+        }, 
+        tasks: [
+          {
+            s: "english",
+            fm: 1,                          
+            h: "Spelling and reading",
+            i: "A fifty-word spelling test with Kunni Didi! Then, read a book of your choice for 30 minutes.",
+            ckh: "Spelling checklist",
+            ck: ["Complete the spelling test on paper", "Rewrite the tricky words thrice each", "Read a book for 30 minutes", "Use the word of the day (defined above) in a sentence today"],
+            bx: [
+              ["Words I found tricky", 3]
+            ], 
+          },
+          {
+            s: "science",
+            h: "Earworms",
+            i: "A spelling test with Kunni Didi! Call her anytime from 11am. Then, read a book of your choice for 30 minutes.",
+            ckh: "Spelling checklist",
+            ck: ["Facetime Kunni Didi", "Complete the spelling test on paper", "Rewrite the tricky words thrice each", "Read a book for 30 minutes", "Use the word of the day (defined above) in a sentence today"],
+            bx: [
+              ["Words I found tricky", 3]
+            ], 
+          },
+        ] 
+    },
+      { d: "Thu", 
+      n: "Thursday",  
+      t: "...", 
+      tasks: [
+        {
+          s: "science",
+          h: "Earworms",
+           i: "Let's learn about earworms! Watch <a href='https://ed.ted.com/lessons/earworms-those-songs-that-get-stuck-in-your-head-elizabeth-hellmuth-margulis/think?lesson_collection=mind-matters' target='_blank' rel='noopener'>this video</a>. Then, take a little dance break and listen to <a href='https://www.youtube.com/watch?v=GaOQv34aEls' target='_blank' rel='noopener'>this song</a>!",
+          a: "Watch both the videos and then answer the questions below. Make sure you give fully sentenced, thoughtful answers, include relevant details. Remember the ",
+           bx: [
+            ["The following are multiple choice questions. Choose one ansswer from the given options. Earworms are experienced by: most people | some people | a few people | only people with experience playing an instrument.", 1],
+            ["Most earworms are composed of: timbre | string of harmonies | tune | texture.", 1],
+            ["A story by Mark Twain is one piece of evidence that: only people in certain cultures are susceptible to earworms | earworms existed before the advent of modern recording technology | earworms are not important | earworms can be cured.", 1],
+            ["A story by Mark Twain is one piece of evidence that: only people in certain cultures are susceptible to earworms | earworms existed before the advent of modern recording technology | earworms are not important | earworms can be cured.", 1],
+            ["Why are humans susceptible [meaning: capable of being affected emotionally] to earworms?", 2],
+            ["Name and describe the different types of bilinguals.", 3],
+            ["Why do children learn languages more easily? Include relevant theories and details.", 4],
+            ["What are three benefits of being bilingual?", 4],
+            ["What is the dorsolateral prefrontal cortex and what does it do?", 4],
+            ["How do you feel about being bilingual?", 4],
+            ["Describe the personalities of the snow chick and the rest of the baby penguins in the colony.", 4],
+            ["What is one new thing you learned from this video?", 4],
+            ["Reflect on the experiences of humans and penguins. Think about our social behaviours, similarities, differences, whether you ever felt like the snow chick and if you think penguins have the same emotions as us too. Your response should be a thoughtful, well-structured paragraph.", 10],
+           ]
+          },
+            
+      ] 
+    },
       { d: "Fri", n: "Friday",    t: "...", tasks: [] },
     ];
 
@@ -1883,20 +1944,37 @@ window.addEventListener("pagehide", () => {
     document.body.appendChild(c);
 
     const g = c.getContext("2d");
-    const colours = ["#ff6fa8", "#3f7cff", "#19c28a", "#f5a623", "#8a5cf6", "#ffe14d"];
+    // const colours = ["#ff6fa8", "#3f7cff", "#19c28a", "#f5a623", "#8a5cf6", "#ffe14d"]; // colours for confetti
+    const colours = ["#65439b", "#ddc17f"]; // dwts stars colours 
 
     // 150 pieces, starting above the top of the screen
     const bits = Array.from({ length: 150 }, () => ({
       x: Math.random() * c.width,
       y: -20 - Math.random() * c.height * 0.5,
-      w: 6 + Math.random() * 6,
-      h: 10 + Math.random() * 8,
+      // w: 6 + Math.random() * 6,
+      // h: 10 + Math.random() * 8,
+      size: 6 + Math.random() * 6, // for stars 
       vx: -1 + Math.random() * 2,        // sideways drift
       vy: 2 + Math.random() * 3,         // fall speed
       r: Math.random() * 6.28,
       vr: -0.15 + Math.random() * 0.3,   // spin
       col: colours[Math.floor(Math.random() * colours.length)]
     }));
+
+    // turn confetti into stars for dwts 
+    function drawStar(ctx, outerRadius, innerRadius = outerRadius * 0.45, points = 5) {
+      ctx.beginPath();
+      for (let i = 0; i < points * 2; i++) {
+        const radius = i % 2 === 0 ? outerRadius : innerRadius;
+        const angle = (i * Math.PI) / points - Math.PI / 2;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fill();
+   }
 
     (function tick() {
       g.clearRect(0, 0, c.width, c.height);
@@ -1908,7 +1986,8 @@ window.addEventListener("pagehide", () => {
         g.translate(b.x, b.y);
         g.rotate(b.r);
         g.fillStyle = b.col;
-        g.fillRect(-b.w / 2, -b.h / 2, b.w, b.h);
+        // g.fillRect(-b.w / 2, -b.h / 2, b.w, b.h); // for confetti 
+        drawStar(g, b.size);
         g.restore();
       });
       alive ? requestAnimationFrame(tick) : c.remove();   // cleans itself up
