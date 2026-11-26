@@ -701,10 +701,13 @@ const db = window.supabase.createClient(
 // Google sign-in
 document.getElementById("googleLogin").onclick =
 async () => {
+  const isLocal = location.hostname === "localhost";
   const { error } = await db.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: window.location.origin + "/yunay"
+      redirectTo: isLocal
+        ? location.origin + "/yunay"
+        : "https://krittika.dev/yunay"
     }
   });
 
